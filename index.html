@@ -255,9 +255,20 @@ button{
         </div>
 
         <div class="field">
-            <label>Valor do projeto (R$)</label>
-            <input id="valor" type="number" step="0.01" placeholder="0,00">
-        </div>
+  <label>Serviço</label>
+  <select id="servico" onchange="atualizarValorServico()">
+    <option value="">Selecione o serviço</option>
+    <option value="30">Consulta de disponibilidade</option>
+    <option value="100">Projeto com estudo</option>
+    <option value="150">Projeto sem estudo</option>
+    <option value="250">Estudo prévio de carga</option>
+  </select>
+</div>
+
+<div class="field">
+    <label>Valor do projeto (R$)</label>
+    <input id="valor" type="number" step="0.01" readonly>
+</div>
 
         <div class="field">
             <label>Repasse aos parceiros (R$)</label>
