@@ -1,820 +1,662 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos-DJ</title>
 
-  <title>Projetos-DJ</title>
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
+body{
+    background:#f3f4f6;
+    color:#1f2937;
+    padding-bottom:40px;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:22px 18px;
+}
+
+header h1{
+    font-size:24px;
+    margin-bottom:5px;
+}
+
+header p{
+    color:#d1d5db;
+    font-size:14px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:16px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.card h2{
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-size:13px;
+    font-weight:bold;
+    color:#374151;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:9px;
+    font-size:15px;
+    background:white;
+}
+
+button{
+    border:0;
+    border-radius:9px;
+    padding:12px 16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+    width:100%;
+    margin-top:14px;
+}
+
+.btn-secondary{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.btn-danger{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr auto;
+    gap:10px;
+    align-items:end;
+}
+
+.resumo{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.resumo-box{
+    border-radius:12px;
+    padding:15px;
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+}
+
+.resumo-box span{
+    display:block;
+    font-size:12px;
+    color:#6b7280;
+    margin-bottom:6px;
+}
+
+.resumo-box strong{
+    font-size:19px;
+}
+
+.lista{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.projeto{
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:15px;
+    background:#fff;
+}
+
+.projeto-topo{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:flex-start;
+}
+
+.projeto h3{
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.data{
+    color:#6b7280;
+    font-size:13px;
+}
+
+.valores{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-top:14px;
+}
+
+.valor-box{
+    background:#f9fafb;
+    padding:10px;
+    border-radius:8px;
+}
+
+.valor-box small{
+    display:block;
+    color:#6b7280;
+    font-size:11px;
+    margin-bottom:4px;
+}
+
+.valor-box strong{
+    font-size:14px;
+}
+
+.acoes{
+    margin-top:12px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.vazio{
+    text-align:center;
+    padding:30px 10px;
+    color:#6b7280;
+}
+
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:1fr;
     }
 
-    body {
-      background: #f3f5f7;
-      color: #1f2937;
-      padding-bottom: 40px;
+    .filters{
+        grid-template-columns:1fr;
     }
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 22px 18px;
-      text-align: center;
+    .resumo{
+        grid-template-columns:1fr;
     }
 
-    header h1 {
-      font-size: 26px;
-      margin-bottom: 5px;
+    .valores{
+        grid-template-columns:1fr;
     }
-
-    header p {
-      color: #cbd5e1;
-      font-size: 14px;
-    }
-
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 16px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 14px 8px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
-    .card span {
-      display: block;
-      font-size: 12px;
-      color: #64748b;
-      margin-bottom: 7px;
-    }
-
-    .card strong {
-      font-size: 17px;
-    }
-
-    .receita strong {
-      color: #15803d;
-    }
-
-    .parceiro strong {
-      color: #dc2626;
-    }
-
-    .resultado strong {
-      color: #2563eb;
-    }
-
-    .box {
-      background: white;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
-    .box h2 {
-      font-size: 19px;
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 6px;
-      color: #374151;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-size: 16px;
-      margin-bottom: 13px;
-      background: white;
-    }
-
-    input:focus,
-    select:focus {
-      outline: none;
-      border-color: #2563eb;
-    }
-
-    .linha {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    button {
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      padding: 14px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .btn-adicionar {
-      background: #2563eb;
-      color: white;
-    }
-
-    .btn-adicionar:active {
-      transform: scale(0.98);
-    }
-
-    .btn-limpar {
-      background: #fee2e2;
-      color: #b91c1c;
-      margin-top: 10px;
-    }
-
-    .projeto {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 12px;
-      background: #fafafa;
-    }
-
-    .projeto-topo {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .projeto-nome {
-      font-size: 17px;
-      font-weight: bold;
-    }
-
-    .tipo {
-      padding: 5px 8px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .tipo-cliente {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .tipo-parceiro {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .detalhes {
-      font-size: 13px;
-      color: #64748b;
-      line-height: 1.6;
-    }
-
-    .valor {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 8px;
-    }
-
-    .valor-cliente {
-      color: #15803d;
-    }
-
-    .valor-parceiro {
-      color: #dc2626;
-    }
-
-    .btn-excluir {
-      background: #ef4444;
-      color: white;
-      padding: 9px 12px;
-      font-size: 13px;
-      margin-top: 10px;
-      width: auto;
-    }
-
-    .vazio {
-      text-align: center;
-      color: #94a3b8;
-      padding: 25px 10px;
-      font-size: 14px;
-    }
-
-    .resumo-final {
-      background: #111827;
-      color: white;
-      border-radius: 14px;
-      padding: 18px;
-      margin-top: 15px;
-      text-align: center;
-    }
-
-    .resumo-final small {
-      color: #cbd5e1;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .resumo-final strong {
-      font-size: 26px;
-    }
-
-    @media (max-width: 500px) {
-      .cards {
-        gap: 7px;
-      }
-
-      .card {
-        padding: 12px 5px;
-      }
-
-      .card strong {
-        font-size: 14px;
-      }
-
-      .card span {
-        font-size: 10px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>📊 Projetos-DJ</h1>
-  <p>Controle financeiro dos seus projetos</p>
+    <div class="container">
+        <h1>Projetos-DJ</h1>
+        <p>Controle de projetos, repasses e lucros</p>
+    </div>
 </header>
 
 <div class="container">
 
-  <!-- RESUMO -->
-  <div class="cards">
+<!-- CADASTRO -->
+<div class="card">
+    <h2>➕ Novo projeto</h2>
 
-    <div class="card receita">
-      <span>RECEITAS</span>
-      <strong id="totalReceitas">R$ 0,00</strong>
-    </div>
+    <div class="grid">
 
-    <div class="card parceiro">
-      <span>PARCEIROS</span>
-      <strong id="totalParceiros">R$ 0,00</strong>
-    </div>
+        <div class="field full">
+            <label>Cliente</label>
+            <input id="cliente" type="text" placeholder="Nome do cliente">
+        </div>
 
-    <div class="card resultado">
-      <span>RESULTADO</span>
-      <strong id="resultado">R$ 0,00</strong>
-    </div>
+        <div class="field">
+            <label>Data do projeto</label>
+            <input id="data" type="date">
+        </div>
 
-  </div>
+        <div class="field">
+            <label>Valor do projeto (R$)</label>
+            <input id="valor" type="number" step="0.01" placeholder="0,00">
+        </div>
 
-
-  <!-- CADASTRO -->
-  <div class="box">
-
-    <h2>➕ Novo lançamento</h2>
-
-    <label>Tipo</label>
-
-    <select id="tipo">
-      <option value="Cliente">Cliente</option>
-      <option value="Parceiro">Parceiro</option>
-    </select>
-
-
-    <label>Nome</label>
-
-    <input
-      type="text"
-      id="nome"
-      placeholder="Nome do cliente ou parceiro"
-    >
-
-
-    <label>Serviço</label>
-
-    <input
-      type="text"
-      id="servico"
-      placeholder="Ex.: Projeto solar"
-    >
-
-
-    <div class="linha">
-
-      <div>
-        <label>Quantidade</label>
-
-        <input
-          type="number"
-          id="quantidade"
-          value="1"
-          min="1"
-          step="1"
-        >
-      </div>
-
-      <div>
-        <label>Valor unitário</label>
-
-        <input
-          type="number"
-          id="valor"
-          placeholder="0,00"
-          min="0"
-          step="0.01"
-        >
-      </div>
+        <div class="field">
+            <label>Repasse aos parceiros (R$)</label>
+            <input id="repasse" type="number" step="0.01" placeholder="0,00">
+        </div>
 
     </div>
 
-
-    <label>Data</label>
-
-    <input
-      type="date"
-      id="data"
-    >
-
-
-    <button
-      class="btn-adicionar"
-      onclick="adicionarProjeto()"
-    >
-      Adicionar lançamento
+    <button class="btn-primary" onclick="adicionarProjeto()">
+        SALVAR PROJETO
     </button>
-
-  </div>
-
-
-  <!-- LISTA -->
-  <div class="box">
-
-    <h2>📋 Lançamentos</h2>
-
-    <div id="listaProjetos"></div>
-
-    <button
-      class="btn-limpar"
-      onclick="limparTudo()"
-    >
-      🗑️ Limpar todos os lançamentos
-    </button>
-
-  </div>
+</div>
 
 
-  <!-- RESULTADO -->
-  <div class="resumo-final">
+<!-- FILTROS -->
+<div class="card">
+    <h2>🔎 Filtros</h2>
 
-    <small>RESULTADO DOS PROJETOS</small>
+    <div class="filters">
 
-    <strong id="resultadoFinal">
-      R$ 0,00
-    </strong>
+        <div class="field">
+            <label>Cliente</label>
+            <select id="filtroCliente" onchange="renderizar()">
+                <option value="">Todos os clientes</option>
+            </select>
+        </div>
 
-  </div>
+        <div class="field">
+            <label>Data inicial</label>
+            <input id="filtroInicio" type="date" onchange="renderizar()">
+        </div>
+
+        <div class="field">
+            <label>Data final</label>
+            <input id="filtroFim" type="date" onchange="renderizar()">
+        </div>
+
+        <button class="btn-secondary" onclick="limparFiltros()">
+            Limpar
+        </button>
+
+    </div>
+</div>
+
+
+<!-- RESUMO -->
+<div class="card">
+
+    <h2>📊 Fechamento</h2>
+
+    <div class="resumo">
+
+        <div class="resumo-box">
+            <span>Total dos projetos</span>
+            <strong id="totalProjetos">R$ 0,00</strong>
+        </div>
+
+        <div class="resumo-box">
+            <span>Total de repasses</span>
+            <strong id="totalRepasses">R$ 0,00</strong>
+        </div>
+
+        <div class="resumo-box">
+            <span>Lucro líquido</span>
+            <strong id="totalLucro">R$ 0,00</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- LISTA -->
+<div class="card">
+
+    <h2>📁 Projetos cadastrados</h2>
+
+    <div id="listaProjetos" class="lista"></div>
+
+</div>
 
 </div>
 
 
 <script>
 
-  // ==============================
-  // BANCO DE DADOS LOCAL
-  // ==============================
+const CHAVE = "projetosDJ";
 
-  let projetos =
-    JSON.parse(localStorage.getItem("projetosDJ")) || [];
+let projetos = JSON.parse(localStorage.getItem(CHAVE)) || [];
 
 
-  // ==============================
-  // DATA AUTOMÁTICA
-  // ==============================
+/* FORMATAÇÃO */
 
-  const campoData = document.getElementById("data");
-
-  const hoje = new Date();
-
-  const ano = hoje.getFullYear();
-
-  const mes = String(hoje.getMonth() + 1).padStart(2, "0");
-
-  const dia = String(hoje.getDate()).padStart(2, "0");
-
-  campoData.value = `${ano}-${mes}-${dia}`;
-
-
-  // ==============================
-  // FORMATAÇÃO DE MOEDA
-  // ==============================
-
-  function moeda(valor) {
-
-    return valor.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL"
+function moeda(valor){
+    return Number(valor || 0).toLocaleString("pt-BR",{
+        style:"currency",
+        currency:"BRL"
     });
+}
 
-  }
+function formatarData(data){
+    if(!data) return "-";
 
+    const partes = data.split("-");
 
-  // ==============================
-  // ADICIONAR PROJETO
-  // ==============================
+    if(partes.length !== 3) return data;
 
-  function adicionarProjeto() {
-
-    const tipo =
-      document.getElementById("tipo").value;
-
-    const nome =
-      document.getElementById("nome").value.trim();
-
-    const servico =
-      document.getElementById("servico").value.trim();
-
-    const quantidade =
-      Number(document.getElementById("quantidade").value);
-
-    const valor =
-      Number(document.getElementById("valor").value);
-
-    const data =
-      document.getElementById("data").value;
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
 
 
-    if (!nome) {
+/* SALVAR */
 
-      alert("Digite o nome do cliente ou parceiro.");
+function salvar(){
+    localStorage.setItem(CHAVE, JSON.stringify(projetos));
+}
 
-      return;
 
+/* ADICIONAR */
+
+function adicionarProjeto(){
+
+    const cliente = document.getElementById("cliente").value.trim();
+    const data = document.getElementById("data").value;
+    const valor = Number(document.getElementById("valor").value || 0);
+    const repasse = Number(document.getElementById("repasse").value || 0);
+
+    if(!cliente){
+        alert("Informe o nome do cliente.");
+        return;
     }
 
-
-    if (!servico) {
-
-      alert("Digite o serviço.");
-
-      return;
-
+    if(!data){
+        alert("Informe a data do projeto.");
+        return;
     }
 
-
-    if (!quantidade || quantidade <= 0) {
-
-      alert("Informe uma quantidade válida.");
-
-      return;
-
+    if(valor <= 0){
+        alert("Informe um valor de projeto válido.");
+        return;
     }
 
-
-    if (!valor || valor <= 0) {
-
-      alert("Informe um valor válido.");
-
-      return;
-
+    if(repasse < 0){
+        alert("O repasse não pode ser negativo.");
+        return;
     }
 
-
-    const total =
-      quantidade * valor;
-
+    if(repasse > valor){
+        alert("O repasse não pode ser maior que o valor do projeto.");
+        return;
+    }
 
     const projeto = {
-
-      id: Date.now(),
-
-      tipo: tipo,
-
-      nome: nome,
-
-      servico: servico,
-
-      quantidade: quantidade,
-
-      valor: valor,
-
-      total: total,
-
-      data: data
-
+        id: Date.now(),
+        cliente: cliente,
+        data: data,
+        valor: valor,
+        repasse: repasse,
+        lucro: valor - repasse
     };
-
 
     projetos.push(projeto);
 
-
     salvar();
 
-    atualizarTela();
-
-
-    // Limpar campos
-
-    document.getElementById("nome").value = "";
-
-    document.getElementById("servico").value = "";
-
-    document.getElementById("quantidade").value = 1;
-
+    document.getElementById("cliente").value = "";
+    document.getElementById("data").value = "";
     document.getElementById("valor").value = "";
+    document.getElementById("repasse").value = "";
 
-  }
+    atualizarClientes();
+    renderizar();
+
+    alert("Projeto salvo com sucesso!");
+}
 
 
-  // ==============================
-  // SALVAR
-  // ==============================
+/* EXCLUIR */
 
-  function salvar() {
+function excluirProjeto(id){
 
-    localStorage.setItem(
-      "projetosDJ",
-      JSON.stringify(projetos)
+    const confirmar = confirm(
+        "Tem certeza que deseja excluir este projeto?"
     );
 
-  }
+    if(!confirmar) return;
 
-
-  // ==============================
-  // EXCLUIR
-  // ==============================
-
-  function excluirProjeto(id) {
-
-    if (!confirm("Deseja excluir este lançamento?")) {
-
-      return;
-
-    }
-
-
-    projetos =
-      projetos.filter(
-        projeto => projeto.id !== id
-      );
-
+    projetos = projetos.filter(p => p.id !== id);
 
     salvar();
 
-    atualizarTela();
-
-  }
-
-
-  // ==============================
-  // LIMPAR TUDO
-  // ==============================
-
-  function limparTudo() {
-
-    if (projetos.length === 0) {
-
-      alert("Não existem lançamentos.");
-
-      return;
-
-    }
+    atualizarClientes();
+    renderizar();
+}
 
 
-    const confirmar =
-      confirm(
-        "ATENÇÃO!\n\nDeseja realmente apagar TODOS os lançamentos?"
-      );
+/* CLIENTES */
 
+function atualizarClientes(){
 
-    if (!confirmar) {
+    const select = document.getElementById("filtroCliente");
+    const valorAtual = select.value;
 
-      return;
+    const clientes = [...new Set(
+        projetos
+            .map(p => p.cliente)
+            .filter(Boolean)
+    )].sort((a,b) => a.localeCompare(b));
 
-    }
+    select.innerHTML =
+        '<option value="">Todos os clientes</option>';
 
+    clientes.forEach(cliente => {
 
-    projetos = [];
+        const option = document.createElement("option");
 
-    salvar();
+        option.value = cliente;
+        option.textContent = cliente;
 
-    atualizarTela();
-
-  }
-
-
-  // ==============================
-  // ATUALIZAR TELA
-  // ==============================
-
-  function atualizarTela() {
-
-    const lista =
-      document.getElementById("listaProjetos");
-
-
-    lista.innerHTML = "";
-
-
-    let receitas = 0;
-
-    let parceiros = 0;
-
-
-    // Calcular valores
-
-    projetos.forEach(projeto => {
-
-      if (projeto.tipo === "Cliente") {
-
-        receitas += projeto.total;
-
-      } else {
-
-        parceiros += projeto.total;
-
-      }
-
+        select.appendChild(option);
     });
 
-
-    const resultado =
-      receitas - parceiros;
-
-
-    // Atualizar cards
-
-    document.getElementById("totalReceitas")
-      .textContent = moeda(receitas);
+    if(clientes.includes(valorAtual)){
+        select.value = valorAtual;
+    }
+}
 
 
-    document.getElementById("totalParceiros")
-      .textContent = moeda(parceiros);
+/* FILTROS */
+
+function obterProjetosFiltrados(){
+
+    const cliente =
+        document.getElementById("filtroCliente").value;
+
+    const inicio =
+        document.getElementById("filtroInicio").value;
+
+    const fim =
+        document.getElementById("filtroFim").value;
+
+    return projetos.filter(p => {
+
+        if(cliente && p.cliente !== cliente){
+            return false;
+        }
+
+        if(inicio && p.data < inicio){
+            return false;
+        }
+
+        if(fim && p.data > fim){
+            return false;
+        }
+
+        return true;
+    });
+}
 
 
-    document.getElementById("resultado")
-      .textContent = moeda(resultado);
+/* RENDERIZAR */
+
+function renderizar(){
+
+    const lista =
+        document.getElementById("listaProjetos");
+
+    const filtrados =
+        obterProjetosFiltrados();
+
+    let totalProjetos = 0;
+    let totalRepasses = 0;
+    let totalLucro = 0;
+
+    filtrados.forEach(p => {
+
+        totalProjetos += Number(p.valor || 0);
+        totalRepasses += Number(p.repasse || 0);
+        totalLucro += Number(
+            p.lucro !== undefined
+            ? p.lucro
+            : (p.valor - p.repasse)
+        );
+    });
+
+    document.getElementById("totalProjetos").textContent =
+        moeda(totalProjetos);
+
+    document.getElementById("totalRepasses").textContent =
+        moeda(totalRepasses);
+
+    document.getElementById("totalLucro").textContent =
+        moeda(totalLucro);
 
 
-    document.getElementById("resultadoFinal")
-      .textContent = moeda(resultado);
+    if(filtrados.length === 0){
 
+        lista.innerHTML = `
+            <div class="vazio">
+                Nenhum projeto encontrado.
+            </div>
+        `;
 
-    // Lista vazia
-
-    if (projetos.length === 0) {
-
-      lista.innerHTML = `
-        <div class="vazio">
-          Nenhum lançamento cadastrado ainda.
-        </div>
-      `;
-
-      return;
-
+        return;
     }
 
 
-    // Mostrar projetos
-
-    projetos
-      .slice()
-      .reverse()
-      .forEach(projeto => {
-
-        const dataFormatada =
-          projeto.data
-            ? projeto.data.split("-").reverse().join("/")
-            : "";
+    filtrados.sort((a,b) =>
+        b.data.localeCompare(a.data)
+    );
 
 
-        const tipoClasse =
-          projeto.tipo === "Cliente"
-            ? "tipo-cliente"
-            : "tipo-parceiro";
+    lista.innerHTML = filtrados.map(p => {
 
+        const lucro =
+            p.lucro !== undefined
+            ? Number(p.lucro)
+            : Number(p.valor) - Number(p.repasse);
 
-        const valorClasse =
-          projeto.tipo === "Cliente"
-            ? "valor-cliente"
-            : "valor-parceiro";
+        return `
+            <div class="projeto">
 
+                <div class="projeto-topo">
 
-        const div =
-          document.createElement("div");
+                    <div>
+                        <h3>${escaparHTML(p.cliente)}</h3>
 
+                        <div class="data">
+                            📅 ${formatarData(p.data)}
+                        </div>
+                    </div>
 
-        div.className = "projeto";
+                </div>
 
+                <div class="valores">
 
-        div.innerHTML = `
+                    <div class="valor-box">
+                        <small>Projeto</small>
+                        <strong>${moeda(p.valor)}</strong>
+                    </div>
 
-          <div class="projeto-topo">
+                    <div class="valor-box">
+                        <small>Repasse</small>
+                        <strong>${moeda(p.repasse)}</strong>
+                    </div>
 
-            <div class="projeto-nome">
-              ${escapeHTML(projeto.nome)}
+                    <div class="valor-box">
+                        <small>Lucro</small>
+                        <strong>${moeda(lucro)}</strong>
+                    </div>
+
+                </div>
+
+                <div class="acoes">
+
+                    <button
+                        class="btn-danger"
+                        onclick="excluirProjeto(${p.id})">
+                        Excluir
+                    </button>
+
+                </div>
+
             </div>
-
-            <div class="tipo ${tipoClasse}">
-              ${projeto.tipo}
-            </div>
-
-          </div>
-
-
-          <div class="detalhes">
-
-            Serviço:
-            ${escapeHTML(projeto.servico)}
-
-            <br>
-
-            Quantidade:
-            ${projeto.quantidade}
-
-            <br>
-
-            Valor unitário:
-            ${moeda(projeto.valor)}
-
-            <br>
-
-            Data:
-            ${dataFormatada}
-
-          </div>
-
-
-          <div class="valor ${valorClasse}">
-
-            ${moeda(projeto.total)}
-
-          </div>
-
-
-          <button
-            class="btn-excluir"
-            onclick="excluirProjeto(${projeto.id})"
-          >
-            Excluir
-          </button>
-
         `;
 
-
-        lista.appendChild(div);
-
-      });
-
-  }
+    }).join("");
+}
 
 
-  // ==============================
-  // SEGURANÇA
-  // ==============================
+/* SEGURANÇA */
 
-  function escapeHTML(texto) {
+function escaparHTML(texto){
 
-    return texto
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  }
+    return String(texto)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
 
 
-  // ==============================
-  // INICIAR APP
-  // ==============================
+/* LIMPAR FILTROS */
 
-  atualizarTela();
+function limparFiltros(){
+
+    document.getElementById("filtroCliente").value = "";
+    document.getElementById("filtroInicio").value = "";
+    document.getElementById("filtroFim").value = "";
+
+    renderizar();
+}
+
+
+/* INICIALIZAÇÃO */
+
+atualizarClientes();
+renderizar();
 
 </script>
 
