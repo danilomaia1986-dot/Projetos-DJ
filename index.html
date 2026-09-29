@@ -2,774 +2,1736 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Projetos-DJ</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
     background:#f3f4f6;
     color:#1f2937;
-    padding:10px 7px 40px;
+    font-size:14px;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:16px;
+    text-align:center;
+}
+
+header h1{
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+header p{
+    font-size:12px;
+    opacity:.8;
+}
+
+.tabs{
+    display:flex;
+    background:white;
+    border-bottom:1px solid #ddd;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.tabs button{
+    flex:1;
+    border:0;
+    background:white;
+    padding:13px 5px;
+    font-size:13px;
+    color:#6b7280;
+    cursor:pointer;
+}
+
+.tabs button.active{
+    color:#111827;
+    font-weight:bold;
+    border-bottom:3px solid #2563eb;
 }
 
 .container{
     max-width:850px;
     margin:auto;
+    padding:15px;
+}
+
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
 }
 
 .card{
-    background:#ffffff;
-    border-radius:25px;
-    padding:28px 40px 35px;
-    margin-bottom:20px;
-    box-shadow:0 4px 18px rgba(0,0,0,0.08);
+    background:white;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 2px 7px rgba(0,0,0,.06);
 }
 
-h1{
-    font-size:30px;
-    margin-bottom:25px;
-    color:#1f2937;
+.card h2{
+    font-size:17px;
+    margin-bottom:14px;
 }
 
 label{
     display:block;
-    font-size:21px;
-    font-weight:700;
-    color:#374151;
-    margin-top:22px;
-    margin-bottom:10px;
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:5px;
 }
 
 input,
 select{
     width:100%;
-    height:64px;
-    border:2px solid #d1d5db;
-    border-radius:18px;
-    padding:0 20px;
-    font-size:20px;
-    background:#fff;
-    color:#111827;
+    padding:10px;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+    background:white;
+    font-size:14px;
+    margin-bottom:12px;
     outline:none;
 }
 
 input:focus,
 select:focus{
-    border-color:#2864e8;
+    border-color:#2563eb;
 }
 
-input[readonly]{
-    background:#f3f4f6;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.btn{
+    border:0;
+    border-radius:7px;
+    padding:11px 14px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-secondary{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.btn-small{
+    padding:7px 10px;
+    font-size:12px;
+}
+
+.total-box{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    border-radius:8px;
+    padding:12px;
+    margin:5px 0 12px;
+}
+
+.total-box span{
+    display:block;
+    font-size:12px;
+    color:#64748b;
+}
+
+.total-box strong{
+    display:block;
+    font-size:22px;
+    color:#1d4ed8;
+    margin-top:3px;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.summary-card{
+    background:white;
+    border-radius:9px;
+    padding:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+
+.summary-card span{
+    display:block;
+    font-size:11px;
     color:#6b7280;
 }
 
-button{
-    width:100%;
-    height:62px;
-    border:none;
-    border-radius:18px;
-    background:#2864e8;
-    color:#fff;
-    font-size:19px;
-    font-weight:700;
-    margin-top:28px;
-    cursor:pointer;
-}
-
-button:active{
-    transform:scale(.99);
-}
-
-.botao-excluir{
-    background:#dc2626;
-    height:46px;
-    font-size:15px;
-    margin-top:14px;
-}
-
-.item{
-    border:1px solid #e5e7eb;
-    border-radius:16px;
-    padding:16px;
-    margin-top:12px;
-    background:#fff;
-}
-
-.item strong{
+.summary-card strong{
     display:block;
-    font-size:18px;
-    margin-bottom:7px;
+    margin-top:5px;
+    font-size:17px;
 }
 
-.linha{
+.blue{
+    color:#2563eb;
+}
+
+.green{
+    color:#16a34a;
+}
+
+.red{
+    color:#dc2626;
+}
+
+.orange{
+    color:#ea580c;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+}
+
+th,
+td{
+    padding:9px 7px;
+    border-bottom:1px solid #e5e7eb;
+    text-align:left;
+    font-size:12px;
+}
+
+th{
+    background:#f9fafb;
+    font-weight:bold;
+}
+
+.badge{
+    display:inline-block;
+    padding:4px 7px;
+    border-radius:12px;
+    background:#e5e7eb;
+    font-size:11px;
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.empty{
+    text-align:center;
+    color:#6b7280;
+    padding:25px 10px;
+}
+
+.actions{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+}
+
+.close-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    padding:12px;
+    margin-top:12px;
+}
+
+.close-box div{
     display:flex;
     justify-content:space-between;
-    gap:10px;
-    margin-top:6px;
+    padding:5px 0;
+    border-bottom:1px solid #e5e7eb;
 }
 
-.vazio{
-    color:#6b7280;
-    font-size:15px;
+.close-box div:last-child{
+    border-bottom:0;
 }
 
-@media(max-width:600px){
+@media(max-width:650px){
 
-    body{
-        padding:10px 7px 30px;
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        padding:10px;
     }
 
     .card{
-        padding:24px 40px 30px;
+        padding:12px;
     }
-
-    h1{
-        font-size:28px;
-    }
-
-    label{
-        font-size:20px;
-    }
-
-    input,
-    select{
-        font-size:19px;
-    }
-
 }
-
 </style>
 </head>
 
-
 <body>
+
+<header>
+    <h1>Projetos-DJ</h1>
+    <p>Controle de projetos, serviços e repasses</p>
+</header>
+
+<div class="tabs">
+
+    <button class="tab-btn active" onclick="abrirAba('inicio',this)">
+        Início
+    </button>
+
+    <button class="tab-btn" onclick="abrirAba('lancar',this)">
+        Lançar
+    </button>
+
+    <button class="tab-btn" onclick="abrirAba('movimentacoes',this)">
+        Movimentações
+    </button>
+
+    <button class="tab-btn" onclick="abrirAba('relatorios',this)">
+        Relatórios
+    </button>
+
+</div>
 
 <div class="container">
 
+<!-- ================= INÍCIO ================= -->
 
-<!-- ================================================= -->
-<!-- NOVO PROJETO -->
-<!-- ================================================= -->
+<section id="inicio" class="tab-content active">
 
-<div class="card">
+    <div class="summary">
 
-<h1>Novo projeto</h1>
+        <div class="summary-card">
+            <span>Receitas</span>
+            <strong id="resumoReceitas" class="blue">
+                R$ 0,00
+            </strong>
+        </div>
 
+        <div class="summary-card">
+            <span>Repasses</span>
+            <strong id="resumoRepasses" class="orange">
+                R$ 0,00
+            </strong>
+        </div>
 
-<!-- CLIENTE -->
+        <div class="summary-card">
+            <span>Lucro</span>
+            <strong id="resumoLucro" class="green">
+                R$ 0,00
+            </strong>
+        </div>
 
-<label for="cliente">
-    Cliente
-</label>
+        <div class="summary-card">
+            <span>Projetos</span>
+            <strong id="resumoProjetos">
+                0
+            </strong>
+        </div>
 
-<input
-    type="text"
-    id="cliente"
-    placeholder="Nome do cliente"
->
+    </div>
 
+    <div class="card" style="margin-top:15px;">
 
-<!-- DATA -->
+        <h2>Resumo</h2>
 
-<label for="data">
-    Data do projeto
-</label>
+        <div class="close-box">
 
-<input
-    type="date"
-    id="data"
->
+            <div>
+                <span>Total de serviços</span>
+                <strong id="resumoQuantidadeServicos">0</strong>
+            </div>
 
+            <div>
+                <span>Valor dos serviços</span>
+                <strong id="resumoValorServicos">
+                    R$ 0,00
+                </strong>
+            </div>
 
-<!-- SERVIÇO -->
+            <div>
+                <span>Total a repassar</span>
+                <strong id="resumoRepasse">
+                    R$ 0,00
+                </strong>
+            </div>
 
-<label for="servico">
-    Serviço
-</label>
+            <div>
+                <span>Lucro acumulado</span>
+                <strong id="resumoLucro2" class="green">
+                    R$ 0,00
+                </strong>
+            </div>
 
-<select id="servico">
+        </div>
 
-    <option value="">
-        Selecione o serviço
-    </option>
+    </div>
 
-    <option value="Consulta de disponibilidade">
-        Consulta de disponibilidade
-    </option>
-
-    <option value="Projeto com estudo">
-        Projeto com estudo
-    </option>
-
-    <option value="Projeto sem estudo">
-        Projeto sem estudo
-    </option>
-
-    <option value="Estudo prévio de carga">
-        Estudo prévio de carga
-    </option>
-
-</select>
-
-
-<!-- VALOR UNITÁRIO -->
-
-<label for="valorUnitario">
-    Valor unitário (R$)
-</label>
-
-<input
-    type="text"
-    id="valorUnitario"
-    value="0,00"
-    readonly
->
+</section>
 
 
-<!-- QUANTIDADE -->
+<!-- ================= LANÇAR ================= -->
 
-<label for="quantidade">
-    Quantidade
-</label>
+<section id="lancar" class="tab-content">
 
-<input
-    type="number"
-    id="quantidade"
-    value="1"
-    min="1"
-    step="1"
-    inputmode="numeric"
->
+    <div class="card">
 
+        <h2>Novo lançamento</h2>
 
-<!-- VALOR TOTAL -->
+        <label>Tipo</label>
 
-<label for="valorTotal">
-    Valor total do projeto (R$)
-</label>
-
-<input
-    type="text"
-    id="valorTotal"
-    value="0,00"
-    readonly
->
+        <select id="tipo">
+            <option value="Cliente">Cliente</option>
+            <option value="Parceiro">Parceiro</option>
+        </select>
 
 
-<!-- REPASSE -->
+        <label>Nome do cliente/parceiro</label>
 
-<label for="repasse">
-    Repasse aos parceiros (R$)
-</label>
-
-<input
-    type="number"
-    id="repasse"
-    value="0"
-    min="0"
-    step="0.01"
-    inputmode="decimal"
->
+        <input
+            type="text"
+            id="nome"
+            placeholder="Digite o nome"
+        >
 
 
-<!-- BOTÃO -->
+        <label>Serviço</label>
 
-<button
-    type="button"
-    id="btnSalvar"
->
-    SALVAR PROJETO
-</button>
+        <select id="servico">
+
+            <option value="">
+                Selecione o serviço
+            </option>
+
+            <option
+                value="Consulta de disponibilidade"
+                data-valor="30"
+            >
+                Consulta de disponibilidade
+            </option>
+
+            <option
+                value="Projeto com estudo"
+                data-valor="100"
+            >
+                Projeto com estudo
+            </option>
+
+            <option
+                value="Projeto sem estudo"
+                data-valor="150"
+            >
+                Projeto sem estudo
+            </option>
+
+            <option
+                value="Estudo prévio de carga"
+                data-valor="250"
+            >
+                Estudo prévio de carga
+            </option>
+
+        </select>
+
+
+        <div class="grid">
+
+            <div>
+
+                <label>
+                    Valor do serviço
+                </label>
+
+                <input
+                    type="number"
+                    id="valorServico"
+                    min="0"
+                    step="0.01"
+                    value=""
+                    placeholder="0,00"
+                    inputmode="decimal"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Quantidade
+                </label>
+
+                <input
+                    type="number"
+                    id="quantidade"
+                    min="0"
+                    step="1"
+                    value="0"
+                    inputmode="numeric"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="total-box">
+
+            <span>
+                Valor total do serviço
+            </span>
+
+            <strong id="valorTotal">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div>
+
+                <label>
+                    Valor a repassar
+                </label>
+
+                <input
+                    type="number"
+                    id="repasse"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                    inputmode="decimal"
+                >
+
+            </div>
+
+            <div>
+
+                <label>
+                    Data
+                </label>
+
+                <input
+                    type="date"
+                    id="data"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="total-box">
+
+            <span>
+                Lucro do lançamento
+            </span>
+
+            <strong
+                id="lucroLancamento"
+                class="green"
+            >
+                R$ 0,00
+            </strong>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="btn btn-success"
+                onclick="salvarLancamento()"
+            >
+                Salvar lançamento
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="limparFormulario()"
+            >
+                Limpar
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MOVIMENTAÇÕES ================= -->
+
+<section id="movimentacoes" class="tab-content">
+
+    <div class="card">
+
+        <h2>Movimentações</h2>
+
+        <div class="filters">
+
+            <div>
+
+                <label>Cliente/parceiro</label>
+
+                <input
+                    type="text"
+                    id="filtroCliente"
+                    placeholder="Filtrar por nome"
+                    oninput="renderizarHistorico()"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Data inicial</label>
+
+                <input
+                    type="date"
+                    id="filtroDataInicio"
+                    onchange="renderizarHistorico()"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Data final</label>
+
+                <input
+                    type="date"
+                    id="filtroDataFim"
+                    onchange="renderizarHistorico()"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="actions"
+            style="margin-bottom:12px;"
+        >
+
+            <button
+                class="btn btn-secondary btn-small"
+                onclick="limparFiltros()"
+            >
+                Limpar filtros
+            </button>
+
+            <button
+                class="btn btn-danger btn-small"
+                onclick="limparTudo()"
+            >
+                Limpar tudo
+            </button>
+
+        </div>
+
+
+        <div class="close-box">
+
+            <div>
+                <span>Valor filtrado</span>
+                <strong id="filtroTotal">
+                    R$ 0,00
+                </strong>
+            </div>
+
+            <div>
+                <span>Repasses filtrados</span>
+                <strong id="filtroRepasse">
+                    R$ 0,00
+                </strong>
+            </div>
+
+            <div>
+                <span>Lucro filtrado</span>
+                <strong id="filtroLucro" class="green">
+                    R$ 0,00
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Data</th>
+                        <th>Cliente/Parceiro</th>
+                        <th>Serviço</th>
+                        <th>Qtd.</th>
+                        <th>Unitário</th>
+                        <th>Total</th>
+                        <th>Repasse</th>
+                        <th>Lucro</th>
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="historico"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= RELATÓRIOS ================= -->
+
+<section id="relatorios" class="tab-content">
+
+    <div class="card">
+
+        <h2>Fechamento</h2>
+
+        <div class="close-box">
+
+            <div>
+                <span>Receita total</span>
+                <strong id="relReceita">
+                    R$ 0,00
+                </strong>
+            </div>
+
+            <div>
+                <span>Total de repasses</span>
+                <strong id="relRepasse">
+                    R$ 0,00
+                </strong>
+            </div>
+
+            <div>
+                <span>Lucro acumulado</span>
+                <strong
+                    id="relLucro"
+                    class="green"
+                >
+                    R$ 0,00
+                </strong>
+            </div>
+
+            <div>
+                <span>Total de lançamentos</span>
+                <strong id="relLancamentos">
+                    0
+                </strong>
+            </div>
+
+            <div>
+                <span>Total de serviços</span>
+                <strong id="relServicos">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Fechamento dos valores a repassar</h2>
+
+        <div id="fechamentoRepasses"></div>
+
+    </div>
+
+</section>
 
 </div>
-
-
-
-<!-- ================================================= -->
-<!-- PROJETOS SALVOS -->
-<!-- ================================================= -->
-
-<div class="card">
-
-<h1>Projetos salvos</h1>
-
-<div id="listaProjetos"></div>
-
-</div>
-
-
-</div>
-
 
 
 <script>
 
-/* =====================================================
-   TABELA DE PREÇOS
-   ===================================================== */
+/* =========================================================
+   CONFIGURAÇÃO
+========================================================= */
 
-const PRECOS = {
+const STORAGE_KEY = "projetosDJ";
 
-    "Consulta de disponibilidade": 30,
+let lancamentos = [];
 
-    "Projeto com estudo": 100,
+try{
 
-    "Projeto sem estudo": 150,
+    lancamentos =
+        JSON.parse(
+            localStorage.getItem(STORAGE_KEY)
+        ) || [];
 
-    "Estudo prévio de carga": 250
+}catch(e){
 
-};
-
-
-
-/* =====================================================
-   ELEMENTOS
-   ===================================================== */
-
-const cliente =
-    document.getElementById("cliente");
-
-const data =
-    document.getElementById("data");
-
-const servico =
-    document.getElementById("servico");
-
-const valorUnitario =
-    document.getElementById("valorUnitario");
-
-const quantidade =
-    document.getElementById("quantidade");
-
-const valorTotal =
-    document.getElementById("valorTotal");
-
-const repasse =
-    document.getElementById("repasse");
-
-const btnSalvar =
-    document.getElementById("btnSalvar");
-
-const listaProjetos =
-    document.getElementById("listaProjetos");
-
-
-
-/* =====================================================
-   FORMATAR DINHEIRO
-   ===================================================== */
-
-function formatarDinheiro(valor){
-
-    valor = Number(valor) || 0;
-
-    return valor.toLocaleString("pt-BR", {
-
-        minimumFractionDigits:2,
-
-        maximumFractionDigits:2
-
-    });
+    lancamentos = [];
 
 }
 
 
+/* =========================================================
+   UTILITÁRIOS
+========================================================= */
 
-/* =====================================================
-   PEGAR VALOR DO SERVIÇO
-   ===================================================== */
+function moeda(valor){
 
-function pegarPrecoServico(){
+    valor = Number(valor) || 0;
 
-    const nomeServico = servico.value;
+    return valor.toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
+        }
+    );
 
-    if(!nomeServico){
+}
+
+
+function numero(valor){
+
+    if(
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+    ){
 
         return 0;
 
     }
 
-    return Number(PRECOS[nomeServico]) || 0;
+    if(typeof valor === "number"){
+
+        return valor;
+
+    }
+
+    let texto = String(valor)
+        .replace(/\s/g,"")
+        .replace("R$","")
+        .replace(/\./g,"")
+        .replace(",",".")
+        .trim();
+
+    let n = parseFloat(texto);
+
+    return isNaN(n) ? 0 : n;
 
 }
 
 
+function salvarDados(){
 
-/* =====================================================
-   ATUALIZAR VALOR UNITÁRIO
-   ===================================================== */
-
-function atualizarValorUnitario(){
-
-    const preco = pegarPrecoServico();
-
-    valorUnitario.value =
-        formatarDinheiro(preco);
-
-    atualizarValorTotal();
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(lancamentos)
+    );
 
 }
 
 
-
-/* =====================================================
-   ATUALIZAR VALOR TOTAL
-   ===================================================== */
-
-function atualizarValorTotal(){
-
-    let preco = pegarPrecoServico();
-
-    let qtd = Number(quantidade.value);
-
-    if(!Number.isFinite(qtd) || qtd < 1){
-
-        qtd = 1;
-
-        quantidade.value = 1;
-
-    }
-
-    const total = preco * qtd;
-
-    valorTotal.value =
-        formatarDinheiro(total);
-
-}
-
-
-
-/* =====================================================
-   EVENTO AO SELECIONAR SERVIÇO
-   ===================================================== */
-
-servico.addEventListener(
-    "change",
-    function(){
-
-        atualizarValorUnitario();
-
-    }
-);
-
-
-
-/* =====================================================
-   EVENTO AO ALTERAR QUANTIDADE
-   ===================================================== */
-
-quantidade.addEventListener(
-    "input",
-    function(){
-
-        atualizarValorTotal();
-
-    }
-);
-
-
-
-quantidade.addEventListener(
-    "change",
-    function(){
-
-        atualizarValorTotal();
-
-    }
-);
-
-
-
-/* =====================================================
-   SALVAR PROJETO
-   ===================================================== */
-
-btnSalvar.addEventListener(
-    "click",
-    function(){
-
-        const nomeCliente =
-            cliente.value.trim();
-
-        const dataProjeto =
-            data.value;
-
-        const nomeServico =
-            servico.value;
-
-        const preco =
-            pegarPrecoServico();
-
-        let qtd =
-            Number(quantidade.value);
-
-        const valorRepasse =
-            Number(repasse.value) || 0;
-
-
-        /* VALIDAR CLIENTE */
-
-        if(!nomeCliente){
-
-            alert(
-                "Informe o nome do cliente."
-            );
-
-            cliente.focus();
-
-            return;
-
-        }
-
-
-        /* VALIDAR SERVIÇO */
-
-        if(!nomeServico){
-
-            alert(
-                "Selecione um serviço."
-            );
-
-            servico.focus();
-
-            return;
-
-        }
-
-
-        /* VALIDAR QUANTIDADE */
-
-        if(!Number.isFinite(qtd) || qtd < 1){
-
-            qtd = 1;
-
-        }
-
-
-        /* CALCULAR TOTAL */
-
-        const total =
-            preco * qtd;
-
-
-        /* PEGAR PROJETOS EXISTENTES */
-
-        let projetos =
-            JSON.parse(
-                localStorage.getItem(
-                    "projetosDJ"
-                ) || "[]"
-            );
-
-
-        if(!Array.isArray(projetos)){
-
-            projetos = [];
-
-        }
-
-
-        /* CRIAR PROJETO */
-
-        const projeto = {
-
-            id:Date.now(),
-
-            cliente:nomeCliente,
-
-            data:dataProjeto,
-
-            servico:nomeServico,
-
-            valorUnitario:preco,
-
-            quantidade:qtd,
-
-            valorTotal:total,
-
-            repasse:valorRepasse
-
-        };
-
-
-        /* ADICIONAR */
-
-        projetos.push(projeto);
-
-
-        /* SALVAR */
-
-        localStorage.setItem(
-
-            "projetosDJ",
-
-            JSON.stringify(projetos)
-
+/* =========================================================
+   ABAS
+========================================================= */
+
+function abrirAba(id, botao){
+
+    document
+        .querySelectorAll(".tab-content")
+        .forEach(
+            aba => aba.classList.remove("active")
         );
 
+    document
+        .querySelectorAll(".tab-btn")
+        .forEach(
+            btn => btn.classList.remove("active")
+        );
 
-        /* ATUALIZAR LISTA */
+    document
+        .getElementById(id)
+        .classList.add("active");
 
-        mostrarProjetos();
+    botao.classList.add("active");
+
+    if(id === "movimentacoes"){
+
+        renderizarHistorico();
+
+    }
+
+    if(id === "inicio"){
+
+        atualizarResumo();
+
+    }
+
+    if(id === "relatorios"){
+
+        atualizarRelatorios();
+
+    }
+
+}
 
 
-        /* LIMPAR FORMULÁRIO */
+/* =========================================================
+   SERVIÇO → VALOR AUTOMÁTICO
+========================================================= */
 
-        cliente.value = "";
+document
+    .getElementById("servico")
+    .addEventListener(
+        "change",
+        function(){
 
-        data.value = "";
+            const opcao =
+                this.options[this.selectedIndex];
 
-        servico.value = "";
+            if(
+                opcao &&
+                opcao.dataset &&
+                opcao.dataset.valor !== undefined
+            ){
 
-        valorUnitario.value = "0,00";
+                document
+                    .getElementById("valorServico")
+                    .value =
+                    opcao.dataset.valor;
 
-        quantidade.value = "1";
+            }else{
 
-        valorTotal.value = "0,00";
+                document
+                    .getElementById("valorServico")
+                    .value = "";
 
-        repasse.value = "0";
+            }
 
+            calcularTotal();
+
+        }
+    );
+
+
+/* =========================================================
+   VALOR TOTAL AUTOMÁTICO
+========================================================= */
+
+document
+    .getElementById("valorServico")
+    .addEventListener(
+        "input",
+        calcularTotal
+    );
+
+
+document
+    .getElementById("quantidade")
+    .addEventListener(
+        "input",
+        calcularTotal
+    );
+
+
+document
+    .getElementById("repasse")
+    .addEventListener(
+        "input",
+        calcularTotal
+    );
+
+
+function calcularTotal(){
+
+    const valor =
+        numero(
+            document.getElementById(
+                "valorServico"
+            ).value
+        );
+
+    const quantidade =
+        numero(
+            document.getElementById(
+                "quantidade"
+            ).value
+        );
+
+    const repasse =
+        numero(
+            document.getElementById(
+                "repasse"
+            ).value
+        );
+
+    const total =
+        valor * quantidade;
+
+    const lucro =
+        total - repasse;
+
+    document
+        .getElementById("valorTotal")
+        .textContent =
+        moeda(total);
+
+    document
+        .getElementById("lucroLancamento")
+        .textContent =
+        moeda(lucro);
+
+}
+
+
+/* =========================================================
+   SALVAR LANÇAMENTO
+========================================================= */
+
+function salvarLancamento(){
+
+    const tipo =
+        document.getElementById("tipo").value;
+
+    const nome =
+        document
+            .getElementById("nome")
+            .value
+            .trim();
+
+    const servico =
+        document
+            .getElementById("servico")
+            .value;
+
+    const valorUnitario =
+        numero(
+            document
+                .getElementById("valorServico")
+                .value
+        );
+
+    const quantidade =
+        numero(
+            document
+                .getElementById("quantidade")
+                .value
+        );
+
+    const repasse =
+        numero(
+            document
+                .getElementById("repasse")
+                .value
+        );
+
+    const data =
+        document
+            .getElementById("data")
+            .value;
+
+
+    if(!nome){
 
         alert(
-            "Projeto salvo com sucesso!"
+            "Informe o nome do cliente ou parceiro."
         );
-
-    }
-);
-
-
-
-/* =====================================================
-   MOSTRAR PROJETOS
-   ===================================================== */
-
-function mostrarProjetos(){
-
-    let projetos =
-        JSON.parse(
-            localStorage.getItem(
-                "projetosDJ"
-            ) || "[]"
-        );
-
-
-    if(!Array.isArray(projetos)){
-
-        projetos = [];
-
-    }
-
-
-    if(projetos.length === 0){
-
-        listaProjetos.innerHTML =
-
-            '<div class="vazio">' +
-            'Nenhum projeto salvo.' +
-            '</div>';
 
         return;
 
     }
 
 
-    listaProjetos.innerHTML = "";
+    if(!servico){
+
+        alert(
+            "Selecione um serviço."
+        );
+
+        return;
+
+    }
 
 
-    projetos
-        .slice()
-        .reverse()
-        .forEach(function(projeto){
+    if(quantidade <= 0){
 
-            const item =
-                document.createElement("div");
+        alert(
+            "Informe uma quantidade maior que zero."
+        );
 
-            item.className = "item";
+        return;
 
-
-            item.innerHTML = `
-
-                <strong>
-                    ${escapar(projeto.cliente)}
-                </strong>
-
-                <div>
-                    ${escapar(projeto.servico)}
-                </div>
-
-                <div class="linha">
-                    <span>Quantidade</span>
-                    <b>
-                        ${projeto.quantidade}
-                    </b>
-                </div>
-
-                <div class="linha">
-                    <span>Valor unitário</span>
-                    <b>
-                        R$ ${formatarDinheiro(
-                            projeto.valorUnitario
-                        )}
-                    </b>
-                </div>
-
-                <div class="linha">
-                    <span>Valor total</span>
-                    <b>
-                        R$ ${formatarDinheiro(
-                            projeto.valorTotal
-                        )}
-                    </b>
-                </div>
-
-                <div class="linha">
-                    <span>Repasse</span>
-                    <b>
-                        R$ ${formatarDinheiro(
-                            projeto.repasse
-                        )}
-                    </b>
-                </div>
-
-                <button
-                    type="button"
-                    class="botao-excluir"
-                    onclick="excluirProjeto(${projeto.id})"
-                >
-                    EXCLUIR
-                </button>
-
-            `;
+    }
 
 
-            listaProjetos.appendChild(item);
+    if(valorUnitario < 0){
 
-        });
+        alert(
+            "O valor do serviço não pode ser negativo."
+        );
+
+        return;
+
+    }
+
+
+    const total =
+        valorUnitario * quantidade;
+
+    const lucro =
+        total - repasse;
+
+
+    const novo = {
+
+        id:
+            Date.now(),
+
+        tipo:
+            tipo,
+
+        nome:
+            nome,
+
+        servico:
+            servico,
+
+        quantidade:
+            quantidade,
+
+        valorUnitario:
+            valorUnitario,
+
+        valorServico:
+            valorUnitario,
+
+        total:
+            total,
+
+        valorTotal:
+            total,
+
+        repasse:
+            repasse,
+
+        lucro:
+            lucro,
+
+        data:
+            data ||
+            new Date()
+                .toISOString()
+                .split("T")[0]
+
+    };
+
+
+    lancamentos.unshift(novo);
+
+    salvarDados();
+
+    alert(
+        "Lançamento salvo com sucesso!"
+    );
+
+    limparFormulario();
+
+    atualizarResumo();
+
+    renderizarHistorico();
+
+    atualizarRelatorios();
+
+    abrirAba(
+        "movimentacoes",
+        document.querySelectorAll(
+            ".tab-btn"
+        )[2]
+    );
 
 }
 
 
+/* =========================================================
+   LIMPAR FORMULÁRIO
+========================================================= */
 
-/* =====================================================
-   EXCLUIR PROJETO
-   ===================================================== */
+function limparFormulario(){
 
-function excluirProjeto(id){
+    document
+        .getElementById("nome")
+        .value = "";
+
+    document
+        .getElementById("servico")
+        .value = "";
+
+    document
+        .getElementById("valorServico")
+        .value = "";
+
+    document
+        .getElementById("quantidade")
+        .value = "0";
+
+    document
+        .getElementById("repasse")
+        .value = "0";
+
+    document
+        .getElementById("data")
+        .value =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+    calcularTotal();
+
+}
+
+
+/* =========================================================
+   NORMALIZA DADOS ANTIGOS
+========================================================= */
+
+function normalizarLancamento(item){
+
+    const quantidade =
+        numero(
+            item.quantidade !== undefined
+                ? item.quantidade
+                : 1
+        );
+
+    const valorUnitario =
+        numero(
+            item.valorUnitario !== undefined
+                ? item.valorUnitario
+                : item.valorServico
+        );
+
+    let total =
+        numero(
+            item.total !== undefined
+                ? item.total
+                : item.valorTotal
+        );
+
+    if(!total){
+
+        total =
+            valorUnitario *
+            quantidade;
+
+    }
+
+    const repasse =
+        numero(item.repasse);
+
+    let lucro =
+        item.lucro !== undefined
+            ? numero(item.lucro)
+            : total - repasse;
+
+    return {
+
+        id:
+            item.id ||
+            Date.now() +
+            Math.random(),
+
+        tipo:
+            item.tipo ||
+            "Cliente",
+
+        nome:
+            item.nome ||
+            item.cliente ||
+            "",
+
+        servico:
+            item.servico ||
+            "",
+
+        quantidade:
+            quantidade,
+
+        valorUnitario:
+            valorUnitario,
+
+        valorServico:
+            valorUnitario,
+
+        total:
+            total,
+
+        valorTotal:
+            total,
+
+        repasse:
+            repasse,
+
+        lucro:
+            lucro,
+
+        data:
+            item.data ||
+            ""
+
+    };
+
+}
+
+
+/* =========================================================
+   HISTÓRICO
+========================================================= */
+
+function renderizarHistorico(){
+
+    const tbody =
+        document.getElementById(
+            "historico"
+        );
+
+    const filtroCliente =
+        document
+            .getElementById(
+                "filtroCliente"
+            )
+            .value
+            .toLowerCase()
+            .trim();
+
+    const inicio =
+        document
+            .getElementById(
+                "filtroDataInicio"
+            )
+            .value;
+
+    const fim =
+        document
+            .getElementById(
+                "filtroDataFim"
+            )
+            .value;
+
+
+    let dados =
+        lancamentos.map(
+            normalizarLancamento
+        );
+
+
+    dados =
+        dados.filter(
+            item => {
+
+                const nome =
+                    String(
+                        item.nome || ""
+                    )
+                    .toLowerCase();
+
+                if(
+                    filtroCliente &&
+                    !nome.includes(
+                        filtroCliente
+                    )
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    inicio &&
+                    item.data < inicio
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    fim &&
+                    item.data > fim
+                ){
+
+                    return false;
+
+                }
+
+
+                return true;
+
+            }
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    if(dados.length === 0){
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="9" class="empty">
+                    Nenhum lançamento encontrado.
+                </td>
+            </tr>
+        `;
+
+    }else{
+
+        dados.forEach(
+            item => {
+
+                const tr =
+                    document.createElement(
+                        "tr"
+                    );
+
+                tr.innerHTML = `
+
+                    <td>
+                        ${formatarData(item.data)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(item.nome)}
+                        <br>
+                        <span class="badge">
+                            ${escapeHTML(item.tipo)}
+                        </span>
+                    </td>
+
+                    <td>
+                        ${escapeHTML(item.servico)}
+                    </td>
+
+                    <td>
+                        ${item.quantidade}
+                    </td>
+
+                    <td>
+                        ${moeda(item.valorUnitario)}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${moeda(item.total)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${moeda(item.repasse)}
+                    </td>
+
+                    <td>
+                        <strong class="${
+                            item.lucro >= 0
+                                ? "green"
+                                : "red"
+                        }">
+                            ${moeda(item.lucro)}
+                        </strong>
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="btn btn-secondary btn-small"
+                                onclick="editarLancamento('${item.id}')"
+                            >
+                                Editar
+                            </button>
+
+                            <button
+                                class="btn btn-danger btn-small"
+                                onclick="excluirLancamento('${item.id}')"
+                            >
+                                Excluir
+                            </button>
+
+                        </div>
+
+                    </td>
+                `;
+
+                tbody.appendChild(tr);
+
+            }
+        );
+
+    }
+
+
+    atualizarTotaisFiltro(dados);
+
+}
+
+
+/* =========================================================
+   TOTAIS DOS FILTROS
+========================================================= */
+
+function atualizarTotaisFiltro(dados){
+
+    let total = 0;
+    let repasse = 0;
+    let lucro = 0;
+
+
+    dados.forEach(
+        item => {
+
+            total += numero(item.total);
+
+            repasse +=
+                numero(item.repasse);
+
+            lucro +=
+                numero(item.lucro);
+
+        }
+    );
+
+
+    document
+        .getElementById("filtroTotal")
+        .textContent =
+        moeda(total);
+
+    document
+        .getElementById("filtroRepasse")
+        .textContent =
+        moeda(repasse);
+
+    document
+        .getElementById("filtroLucro")
+        .textContent =
+        moeda(lucro);
+
+}
+
+
+/* =========================================================
+   EDITAR
+========================================================= */
+
+function editarLancamento(id){
+
+    const item =
+        lancamentos.find(
+            x => String(x.id) === String(id)
+        );
+
+    if(!item){
+
+        alert(
+            "Lançamento não encontrado."
+        );
+
+        return;
+
+    }
+
+
+    const dados =
+        normalizarLancamento(item);
+
+
+    document
+        .getElementById("tipo")
+        .value =
+        dados.tipo;
+
+    document
+        .getElementById("nome")
+        .value =
+        dados.nome;
+
+    document
+        .getElementById("servico")
+        .value =
+        dados.servico;
+
+    document
+        .getElementById("valorServico")
+        .value =
+        dados.valorUnitario;
+
+    document
+        .getElementById("quantidade")
+        .value =
+        dados.quantidade;
+
+    document
+        .getElementById("repasse")
+        .value =
+        dados.repasse;
+
+    document
+        .getElementById("data")
+        .value =
+        dados.data;
+
+
+    calcularTotal();
+
+
+    const index =
+        lancamentos.findIndex(
+            x => String(x.id) === String(id)
+        );
+
+
+    lancamentos.splice(
+        index,
+        1
+    );
+
+
+    salvarDados();
+
+    abrirAba(
+        "lancar",
+        document.querySelectorAll(
+            ".tab-btn"
+        )[1]
+    );
+
+    alert(
+        "Edite os dados e salve novamente."
+    );
+
+}
+
+
+/* =========================================================
+   EXCLUIR
+========================================================= */
+
+function excluirLancamento(id){
 
     const confirmar =
         confirm(
-            "Deseja excluir este projeto?"
+            "Deseja realmente excluir este lançamento?"
+        );
+
+    if(!confirmar){
+
+        return;
+
+    }
+
+
+    lancamentos =
+        lancamentos.filter(
+            item =>
+                String(item.id) !==
+                String(id)
+        );
+
+
+    salvarDados();
+
+    renderizarHistorico();
+
+    atualizarResumo();
+
+    atualizarRelatorios();
+
+}
+
+
+/* =========================================================
+   LIMPAR TUDO
+========================================================= */
+
+function limparTudo(){
+
+    if(lancamentos.length === 0){
+
+        alert(
+            "Não existem lançamentos para excluir."
+        );
+
+        return;
+
+    }
+
+
+    const confirmar =
+        confirm(
+            "ATENÇÃO!\n\nIsso apagará todos os lançamentos salvos neste dispositivo.\n\nDeseja continuar?"
         );
 
 
@@ -780,63 +1742,451 @@ function excluirProjeto(id){
     }
 
 
-    let projetos =
-        JSON.parse(
-            localStorage.getItem(
-                "projetosDJ"
-            ) || "[]"
-        );
+    lancamentos = [];
+
+    salvarDados();
+
+    renderizarHistorico();
+
+    atualizarResumo();
+
+    atualizarRelatorios();
 
 
-    projetos =
-        projetos.filter(
-            function(projeto){
+    alert(
+        "Todos os lançamentos foram apagados."
+    );
 
-                return projeto.id !== id;
+}
+
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+function atualizarResumo(){
+
+    let receitas = 0;
+    let repasses = 0;
+    let lucro = 0;
+    let quantidadeServicos = 0;
+
+
+    lancamentos
+        .map(normalizarLancamento)
+        .forEach(
+            item => {
+
+                receitas +=
+                    numero(item.total);
+
+                repasses +=
+                    numero(item.repasse);
+
+                lucro +=
+                    numero(item.lucro);
+
+                quantidadeServicos +=
+                    numero(item.quantidade);
 
             }
         );
 
 
-    localStorage.setItem(
+    document
+        .getElementById(
+            "resumoReceitas"
+        )
+        .textContent =
+        moeda(receitas);
 
-        "projetosDJ",
 
-        JSON.stringify(projetos)
+    document
+        .getElementById(
+            "resumoRepasses"
+        )
+        .textContent =
+        moeda(repasses);
 
+
+    document
+        .getElementById(
+            "resumoLucro"
+        )
+        .textContent =
+        moeda(lucro);
+
+
+    document
+        .getElementById(
+            "resumoProjetos"
+        )
+        .textContent =
+        lancamentos.length;
+
+
+    document
+        .getElementById(
+            "resumoQuantidadeServicos"
+        )
+        .textContent =
+        quantidadeServicos;
+
+
+    document
+        .getElementById(
+            "resumoValorServicos"
+        )
+        .textContent =
+        moeda(receitas);
+
+
+    document
+        .getElementById(
+            "resumoRepasse"
+        )
+        .textContent =
+        moeda(repasses);
+
+
+    document
+        .getElementById(
+            "resumoLucro2"
+        )
+        .textContent =
+        moeda(lucro);
+
+}
+
+
+/* =========================================================
+   RELATÓRIOS
+========================================================= */
+
+function atualizarRelatorios(){
+
+    const dados =
+        lancamentos.map(
+            normalizarLancamento
+        );
+
+
+    let receita = 0;
+    let repasse = 0;
+    let lucro = 0;
+    let servicos = 0;
+
+
+    dados.forEach(
+        item => {
+
+            receita +=
+                numero(item.total);
+
+            repasse +=
+                numero(item.repasse);
+
+            lucro +=
+                numero(item.lucro);
+
+            servicos +=
+                numero(item.quantidade);
+
+        }
     );
 
 
-    mostrarProjetos();
+    document
+        .getElementById("relReceita")
+        .textContent =
+        moeda(receita);
+
+
+    document
+        .getElementById("relRepasse")
+        .textContent =
+        moeda(repasse);
+
+
+    document
+        .getElementById("relLucro")
+        .textContent =
+        moeda(lucro);
+
+
+    document
+        .getElementById("relLancamentos")
+        .textContent =
+        dados.length;
+
+
+    document
+        .getElementById("relServicos")
+        .textContent =
+        servicos;
+
+
+    gerarFechamentoRepasses(dados);
 
 }
 
 
+/* =========================================================
+   FECHAMENTO DOS REPASSES
+========================================================= */
 
-/* =====================================================
-   PROTEGER TEXTO
-   ===================================================== */
+function gerarFechamentoRepasses(dados){
 
-function escapar(texto){
+    const container =
+        document.getElementById(
+            "fechamentoRepasses"
+        );
+
+
+    if(dados.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                Nenhum lançamento cadastrado.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    const grupos = {};
+
+
+    dados.forEach(
+        item => {
+
+            const chave =
+                item.nome || "Sem nome";
+
+
+            if(!grupos[chave]){
+
+                grupos[chave] = {
+
+                    quantidade:0,
+                    total:0,
+                    repasse:0,
+                    lucro:0
+
+                };
+
+            }
+
+
+            grupos[chave].quantidade +=
+                numero(item.quantidade);
+
+            grupos[chave].total +=
+                numero(item.total);
+
+            grupos[chave].repasse +=
+                numero(item.repasse);
+
+            grupos[chave].lucro +=
+                numero(item.lucro);
+
+        }
+    );
+
+
+    container.innerHTML = "";
+
+
+    Object.keys(grupos)
+        .sort()
+        .forEach(
+            nome => {
+
+                const grupo =
+                    grupos[nome];
+
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+                div.className =
+                    "close-box";
+
+
+                div.innerHTML = `
+
+                    <strong>
+                        ${escapeHTML(nome)}
+                    </strong>
+
+                    <div>
+                        <span>Serviços</span>
+                        <strong>
+                            ${grupo.quantidade}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Total</span>
+                        <strong>
+                            ${moeda(grupo.total)}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>A repassar</span>
+                        <strong>
+                            ${moeda(grupo.repasse)}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Lucro</span>
+                        <strong class="green">
+                            ${moeda(grupo.lucro)}
+                        </strong>
+                    </div>
+
+                `;
+
+
+                container.appendChild(div);
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+function limparFiltros(){
+
+    document
+        .getElementById(
+            "filtroCliente"
+        )
+        .value = "";
+
+    document
+        .getElementById(
+            "filtroDataInicio"
+        )
+        .value = "";
+
+    document
+        .getElementById(
+            "filtroDataFim"
+        )
+        .value = "";
+
+
+    renderizarHistorico();
+
+}
+
+
+/* =========================================================
+   FORMATA DATA
+========================================================= */
+
+function formatarData(data){
+
+    if(!data){
+
+        return "-";
+
+    }
+
+
+    const partes =
+        data.split("-");
+
+
+    if(partes.length !== 3){
+
+        return data;
+
+    }
+
+
+    return (
+        partes[2] +
+        "/" +
+        partes[1] +
+        "/" +
+        partes[0]
+    );
+
+}
+
+
+/* =========================================================
+   SEGURANÇA DE TEXTO
+========================================================= */
+
+function escapeHTML(texto){
 
     return String(texto || "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-
-/* =====================================================
+/* =========================================================
    INICIALIZAÇÃO
-   ===================================================== */
+========================================================= */
 
-mostrarProjetos();
+document
+    .getElementById("data")
+    .value =
+    new Date()
+        .toISOString()
+        .split("T")[0];
 
-atualizarValorUnitario();
+
+document
+    .getElementById("quantidade")
+    .value = "0";
+
+
+document
+    .getElementById("repasse")
+    .value = "0";
+
+
+calcularTotal();
+
+atualizarResumo();
+
+renderizarHistorico();
+
+atualizarRelatorios();
 
 </script>
 
