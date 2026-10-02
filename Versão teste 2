@@ -1,0 +1,3019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Projetos-DJ</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f3f4f6;
+    color:#1f2937;
+    font-size:14px;
+}
+
+header{
+    background:#111827;
+    color:#fff;
+    padding:16px;
+    text-align:center;
+}
+
+header h1{
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+header p{
+    font-size:12px;
+    opacity:.8;
+}
+
+.tabs{
+    display:flex;
+    background:#fff;
+    border-bottom:1px solid #ddd;
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.tabs button{
+    flex:1;
+    border:0;
+    background:#fff;
+    padding:13px 4px;
+    font-size:12px;
+    color:#6b7280;
+    cursor:pointer;
+}
+
+.tabs button.active{
+    color:#111827;
+    font-weight:bold;
+    border-bottom:3px solid #2563eb;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:12px;
+}
+
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+.card{
+    background:#fff;
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:14px;
+    box-shadow:0 2px 7px rgba(0,0,0,.06);
+}
+
+.card h2{
+    font-size:17px;
+    margin-bottom:14px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+    background:#fff;
+    font-size:14px;
+    margin-bottom:12px;
+    outline:none;
+}
+
+textarea{
+    min-height:70px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#2563eb;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.btn{
+    border:0;
+    border-radius:7px;
+    padding:10px 13px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:#fff;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:#fff;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:#fff;
+}
+
+.btn-secondary{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.btn-whatsapp{
+    background:#25D366;
+    color:#fff;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.total-box{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    border-radius:8px;
+    padding:12px;
+    margin:4px 0 12px;
+}
+
+.total-box span{
+    display:block;
+    font-size:12px;
+    color:#64748b;
+}
+
+.total-box strong{
+    display:block;
+    font-size:22px;
+    color:#1d4ed8;
+    margin-top:3px;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
+}
+
+.summary-card{
+    background:#fff;
+    border-radius:9px;
+    padding:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+
+.summary-card span{
+    display:block;
+    font-size:11px;
+    color:#6b7280;
+}
+
+.summary-card strong{
+    display:block;
+    margin-top:5px;
+    font-size:16px;
+}
+
+.blue{color:#2563eb;}
+.green{color:#16a34a;}
+.red{color:#dc2626;}
+.orange{color:#ea580c;}
+
+.section-title{
+    font-size:13px;
+    font-weight:bold;
+    color:#374151;
+    margin:5px 0 10px;
+}
+
+.service-group{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:10px;
+    margin-bottom:12px;
+}
+
+.service-group h3{
+    font-size:13px;
+    margin-bottom:9px;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+th,
+td{
+    padding:8px 6px;
+    border-bottom:1px solid #e5e7eb;
+    text-align:left;
+    font-size:11px;
+}
+
+th{
+    background:#f9fafb;
+}
+
+.badge{
+    display:inline-block;
+    padding:4px 7px;
+    border-radius:12px;
+    background:#e5e7eb;
+    font-size:10px;
+}
+
+.badge-client{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.badge-partner{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.close-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    padding:12px;
+    margin-bottom:10px;
+}
+
+.close-box div{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:6px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.close-box div:last-child{
+    border-bottom:0;
+}
+
+.empty{
+    text-align:center;
+    color:#6b7280;
+    padding:25px 10px;
+}
+
+.comprovante{
+    background:#fff;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    padding:18px;
+    max-width:500px;
+    margin:auto;
+}
+
+.comprovante h2{
+    text-align:center;
+    margin-bottom:4px;
+}
+
+.comprovante-sub{
+    text-align:center;
+    color:#6b7280;
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.comp-line{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:7px 0;
+    border-bottom:1px solid #eee;
+}
+
+.comp-total{
+    font-size:20px;
+    font-weight:bold;
+    margin-top:12px;
+    text-align:right;
+}
+
+.partner-card{
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:13px;
+    margin-bottom:10px;
+}
+
+.partner-card h3{
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.partner-total{
+    font-size:20px;
+    font-weight:bold;
+    color:#ea580c;
+    margin:8px 0;
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.small{
+    font-size:11px;
+    color:#6b7280;
+}
+
+@media(max-width:650px){
+
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid,
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        padding:9px;
+    }
+
+    .card{
+        padding:12px;
+    }
+
+    .tabs button{
+        font-size:11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Projetos-DJ</h1>
+    <p>Controle de projetos, serviços e repasses</p>
+</header>
+
+<nav class="tabs">
+
+    <button class="tab-btn active" onclick="abrirAba('inicio',this)">
+        Início
+    </button>
+
+    <button class="tab-btn" onclick="abrirAba('lancar',this)">
+        Lançar
+    </button>
+
+    <button class="tab-btn" onclick="abrirAba('movimentacoes',this)">
+        Histórico
+    </button>
+
+    <button class="tab-btn" onclick="abrirAba('relatorios',this)">
+        Relatórios
+    </button>
+
+</nav>
+
+<main class="container">
+
+<!-- =====================================================
+INÍCIO
+===================================================== -->
+
+<section id="inicio" class="tab-content active">
+
+    <div class="summary">
+
+        <div class="summary-card">
+            <span>Receitas</span>
+            <strong id="inicioReceitas" class="blue">
+                R$ 0,00
+            </strong>
+        </div>
+
+        <div class="summary-card">
+            <span>Repasses</span>
+            <strong id="inicioRepasses" class="orange">
+                R$ 0,00
+            </strong>
+        </div>
+
+        <div class="summary-card">
+            <span>Lucro</span>
+            <strong id="inicioLucro" class="green">
+                R$ 0,00
+            </strong>
+        </div>
+
+        <div class="summary-card">
+            <span>Lançamentos</span>
+            <strong id="inicioLancamentos">
+                0
+            </strong>
+        </div>
+
+    </div>
+
+    <div class="card" style="margin-top:14px">
+
+        <h2>Resumo</h2>
+
+        <div class="close-box">
+
+            <div>
+                <span>Serviços de clientes</span>
+                <strong id="inicioClientes">0</strong>
+            </div>
+
+            <div>
+                <span>Serviços de parceiros</span>
+                <strong id="inicioParceiros">0</strong>
+            </div>
+
+            <div>
+                <span>Quantidade total de serviços</span>
+                <strong id="inicioQuantidade">0</strong>
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="irParaLancamento()"
+            >
+                + Novo lançamento
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="abrirAbaPorId('relatorios')"
+            >
+                Ver relatórios
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+LANÇAR
+===================================================== -->
+
+<section id="lancar" class="tab-content">
+
+    <div class="card">
+
+        <h2>Novo lançamento</h2>
+
+        <label>Categoria</label>
+
+        <select id="tipo" onchange="atualizarServicos()">
+
+            <option value="Cliente">
+                Cliente
+            </option>
+
+            <option value="Parceiro">
+                Parceiro
+            </option>
+
+        </select>
+
+        <label>Nome</label>
+
+        <input
+            id="nome"
+            type="text"
+            placeholder="Nome do cliente ou parceiro"
+        >
+
+        <label>WhatsApp</label>
+
+        <input
+            id="telefone"
+            type="tel"
+            placeholder="Ex.: (62) 99999-9999"
+            inputmode="tel"
+        >
+
+        <div id="servicosCliente" class="service-group">
+
+            <h3>Serviços para clientes</h3>
+
+            <select id="servicoCliente">
+
+                <option value="">
+                    Selecione o serviço
+                </option>
+
+                <option value="Consulta de disponibilidade" data-valor="30">
+                    Consulta de disponibilidade — R$ 30
+                </option>
+
+                <option value="Projeto com estudo" data-valor="100">
+                    Projeto com estudo — R$ 100
+                </option>
+
+                <option value="Projeto sem estudo" data-valor="150">
+                    Projeto sem estudo — R$ 150
+                </option>
+
+                <option value="Estudo prévio de carga" data-valor="250">
+                    Estudo prévio de carga — R$ 250
+                </option>
+
+            </select>
+
+        </div>
+
+        <div id="servicosParceiro" class="service-group hidden">
+
+            <h3>Serviços para parceiros</h3>
+
+            <select id="servicoParceiro">
+
+                <option value="">
+                    Selecione o serviço
+                </option>
+
+                <option value="Ingresso de projeto" data-valor="20">
+                    Ingresso de projeto — R$ 20
+                </option>
+
+                <option value="Envio de parecer" data-valor="50">
+                    Envio de parecer — R$ 50
+                </option>
+
+                <option value="Aprovação de projeto" data-valor="75">
+                    Aprovação de projeto — R$ 75
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="grid">
+
+            <div>
+
+                <label>Valor unitário</label>
+
+                <input
+                    id="valorServico"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="0,00"
+                    inputmode="decimal"
+                >
+
+            </div>
+
+            <div>
+
+                <label>Quantidade</label>
+
+                <input
+                    id="quantidade"
+                    type="number"
+                    min="1"
+                    step="1"
+                    value="1"
+                    inputmode="numeric"
+                >
+
+            </div>
+
+        </div>
+
+        <div class="total-box">
+
+            <span>Valor total do serviço</span>
+
+            <strong id="valorTotal">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+        <div class="grid">
+
+            <div>
+
+                <label>Valor a repassar</label>
+
+                <input
+                    id="repasse"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                    inputmode="decimal"
+                >
+
+            </div>
+
+            <div>
+
+                <label>Data</label>
+
+                <input
+                    id="data"
+                    type="date"
+                >
+
+            </div>
+
+        </div>
+
+        <label>Observação</label>
+
+        <textarea
+            id="observacao"
+            placeholder="Opcional"
+        ></textarea>
+
+        <div class="total-box">
+
+            <span>Lucro do lançamento</span>
+
+            <strong
+                id="lucroLancamento"
+                class="green"
+            >
+                R$ 0,00
+            </strong>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="btn btn-success"
+                onclick="salvarLancamento()"
+            >
+                Salvar lançamento
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="limparFormulario()"
+            >
+                Limpar
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+HISTÓRICO
+===================================================== -->
+
+<section id="movimentacoes" class="tab-content">
+
+    <div class="card">
+
+        <h2>Histórico</h2>
+
+        <div class="filters">
+
+            <div>
+
+                <label>Nome</label>
+
+                <input
+                    id="filtroNome"
+                    placeholder="Cliente/parceiro"
+                    oninput="renderizarHistorico()"
+                >
+
+            </div>
+
+            <div>
+
+                <label>Categoria</label>
+
+                <select
+                    id="filtroTipo"
+                    onchange="renderizarHistorico()"
+                >
+
+                    <option value="">
+                        Todas
+                    </option>
+
+                    <option value="Cliente">
+                        Clientes
+                    </option>
+
+                    <option value="Parceiro">
+                        Parceiros
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div>
+
+                <label>Serviço</label>
+
+                <input
+                    id="filtroServico"
+                    placeholder="Nome do serviço"
+                    oninput="renderizarHistorico()"
+                >
+
+            </div>
+
+        </div>
+
+        <div class="filters">
+
+            <div>
+
+                <label>Data inicial</label>
+
+                <input
+                    id="filtroInicio"
+                    type="date"
+                    onchange="renderizarHistorico()"
+                >
+
+            </div>
+
+            <div>
+
+                <label>Data final</label>
+
+                <input
+                    id="filtroFim"
+                    type="date"
+                    onchange="renderizarHistorico()"
+                >
+
+            </div>
+
+        </div>
+
+        <div class="actions" style="margin-top:4px">
+
+            <button
+                class="btn btn-secondary"
+                onclick="limparFiltros()"
+            >
+                Limpar filtros
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="close-box">
+
+            <div>
+                <span>Total filtrado</span>
+                <strong id="filtroTotal">R$ 0,00</strong>
+            </div>
+
+            <div>
+                <span>Repasses</span>
+                <strong id="filtroRepasse">R$ 0,00</strong>
+            </div>
+
+            <div>
+                <span>Lucro</span>
+                <strong id="filtroLucro" class="green">
+                    R$ 0,00
+                </strong>
+            </div>
+
+        </div>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Data</th>
+                        <th>Tipo</th>
+                        <th>Nome</th>
+                        <th>Serviço</th>
+                        <th>Qtd.</th>
+                        <th>Total</th>
+                        <th>Repasse</th>
+                        <th>Lucro</th>
+                        <th>Ações</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="historico"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+RELATÓRIOS
+===================================================== -->
+
+<section id="relatorios" class="tab-content">
+
+    <div class="card">
+
+        <h2>Resumo financeiro</h2>
+
+        <div class="close-box">
+
+            <div>
+                <span>Receita de clientes</span>
+                <strong id="relClientes">R$ 0,00</strong>
+            </div>
+
+            <div>
+                <span>Serviços de parceiros</span>
+                <strong id="relParceiros">R$ 0,00</strong>
+            </div>
+
+            <div>
+                <span>Receita total</span>
+                <strong id="relReceita">R$ 0,00</strong>
+            </div>
+
+            <div>
+                <span>Total de repasses</span>
+                <strong id="relRepasse">R$ 0,00</strong>
+            </div>
+
+            <div>
+                <span>Lucro</span>
+                <strong id="relLucro" class="green">
+                    R$ 0,00
+                </strong>
+            </div>
+
+            <div>
+                <span>Quantidade de serviços</span>
+                <strong id="relServicos">0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Fechamento dos parceiros</h2>
+
+        <div id="fechamentoParceiros"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Resumo dos clientes</h2>
+
+        <div id="resumoClientes"></div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+MODAL COMPROVANTE
+===================================================== -->
+
+<div
+    id="modalComprovante"
+    class="hidden"
+    style="
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.55);
+        z-index:100;
+        padding:15px;
+        overflow:auto;
+    "
+>
+
+    <div class="card" style="max-width:550px;margin:20px auto">
+
+        <div id="comprovanteArea"></div>
+
+        <div
+            class="actions"
+            style="margin-top:12px"
+        >
+
+            <button
+                class="btn btn-primary"
+                onclick="compartilharComprovante()"
+            >
+                Compartilhar
+            </button>
+
+            <button
+                class="btn btn-whatsapp"
+                onclick="whatsappComprovante()"
+            >
+                WhatsApp
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="fecharComprovante()"
+            >
+                Fechar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+CONFIGURAÇÃO
+===================================================== */
+
+const STORAGE_KEY = "projetosDJ_v2";
+
+let lancamentos = [];
+
+let comprovanteAtual = null;
+
+let editandoId = null;
+
+
+/* =====================================================
+CARREGAMENTO
+===================================================== */
+
+try{
+
+    lancamentos =
+        JSON.parse(
+            localStorage.getItem(STORAGE_KEY)
+        ) || [];
+
+}catch(e){
+
+    lancamentos = [];
+
+}
+
+
+/* =====================================================
+UTILITÁRIOS
+===================================================== */
+
+function moeda(valor){
+
+    return (Number(valor)||0).toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
+        }
+    );
+
+}
+
+
+function numero(valor){
+
+    if(
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+    ){
+
+        return 0;
+
+    }
+
+    let n =
+        Number(
+            String(valor)
+            .replace("R$","")
+            .replace(/\s/g,"")
+            .replace(/\./g,"")
+            .replace(",",".")
+        );
+
+    return isNaN(n) ? 0 : n;
+
+}
+
+
+function salvarDados(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(lancamentos)
+    );
+
+}
+
+
+function hoje(){
+
+    return new Date()
+        .toISOString()
+        .split("T")[0];
+
+}
+
+
+function escapar(texto){
+
+    return String(texto || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function formatarData(data){
+
+    if(!data) return "-";
+
+    const p = data.split("-");
+
+    if(p.length !== 3) return data;
+
+    return p[2]+"/"+p[1]+"/"+p[0];
+
+}
+
+
+function telefoneWhatsApp(numeroTelefone){
+
+    return String(numeroTelefone || "")
+        .replace(/\D/g,"");
+
+}
+
+
+/* =====================================================
+ABAS
+===================================================== */
+
+function abrirAba(id,botao){
+
+    document
+        .querySelectorAll(".tab-content")
+        .forEach(
+            x => x.classList.remove("active")
+        );
+
+    document
+        .querySelectorAll(".tab-btn")
+        .forEach(
+            x => x.classList.remove("active")
+        );
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    if(botao){
+
+        botao.classList.add("active");
+
+    }else{
+
+        const btn =
+            document.querySelector(
+                '.tab-btn[onclick*="' + id + '"]'
+            );
+
+        if(btn) btn.classList.add("active");
+
+    }
+
+    if(id === "inicio") atualizarInicio();
+
+    if(id === "movimentacoes") renderizarHistorico();
+
+    if(id === "relatorios") atualizarRelatorios();
+
+}
+
+
+function abrirAbaPorId(id){
+
+    abrirAba(id);
+
+}
+
+
+function irParaLancamento(){
+
+    abrirAbaPorId("lancar");
+
+}
+
+
+/* =====================================================
+SERVIÇOS
+===================================================== */
+
+function atualizarServicos(){
+
+    const tipo =
+        document.getElementById("tipo").value;
+
+    const clientes =
+        document.getElementById(
+            "servicosCliente"
+        );
+
+    const parceiros =
+        document.getElementById(
+            "servicosParceiro"
+        );
+
+    if(tipo === "Cliente"){
+
+        clientes.classList.remove("hidden");
+        parceiros.classList.add("hidden");
+
+    }else{
+
+        clientes.classList.add("hidden");
+        parceiros.classList.remove("hidden");
+
+    }
+
+    document.getElementById(
+        "servicoCliente"
+    ).value = "";
+
+    document.getElementById(
+        "servicoParceiro"
+    ).value = "";
+
+    document.getElementById(
+        "valorServico"
+    ).value = "";
+
+    calcularTotal();
+
+}
+
+
+function selecionarServico(){
+
+    const tipo =
+        document.getElementById("tipo").value;
+
+    const select =
+        tipo === "Cliente"
+        ?
+        document.getElementById("servicoCliente")
+        :
+        document.getElementById("servicoParceiro");
+
+    const opcao =
+        select.options[
+            select.selectedIndex
+        ];
+
+    if(
+        opcao &&
+        opcao.dataset &&
+        opcao.dataset.valor
+    ){
+
+        document.getElementById(
+            "valorServico"
+        ).value =
+        opcao.dataset.valor;
+
+    }
+
+    calcularTotal();
+
+}
+
+
+document
+    .getElementById("servicoCliente")
+    .addEventListener(
+        "change",
+        selecionarServico
+    );
+
+
+document
+    .getElementById("servicoParceiro")
+    .addEventListener(
+        "change",
+        selecionarServico
+    );
+
+
+/* =====================================================
+CÁLCULOS
+===================================================== */
+
+function calcularTotal(){
+
+    const valor =
+        numero(
+            document.getElementById(
+                "valorServico"
+            ).value
+        );
+
+    const quantidade =
+        numero(
+            document.getElementById(
+                "quantidade"
+            ).value
+        );
+
+    const repasse =
+        numero(
+            document.getElementById(
+                "repasse"
+            ).value
+        );
+
+    const total =
+        valor * quantidade;
+
+    const lucro =
+        total - repasse;
+
+    document.getElementById(
+        "valorTotal"
+    ).textContent =
+        moeda(total);
+
+    document.getElementById(
+        "lucroLancamento"
+    ).textContent =
+        moeda(lucro);
+
+}
+
+
+document
+    .getElementById("valorServico")
+    .addEventListener(
+        "input",
+        calcularTotal
+    );
+
+
+document
+    .getElementById("quantidade")
+    .addEventListener(
+        "input",
+        calcularTotal
+    );
+
+
+document
+    .getElementById("repasse")
+    .addEventListener(
+        "input",
+        calcularTotal
+    );
+
+
+/* =====================================================
+SERVIÇO SELECIONADO
+===================================================== */
+
+function obterServicoSelecionado(){
+
+    const tipo =
+        document.getElementById("tipo").value;
+
+    const select =
+        tipo === "Cliente"
+        ?
+        document.getElementById("servicoCliente")
+        :
+        document.getElementById("servicoParceiro");
+
+    return select.value;
+
+}
+
+
+/* =====================================================
+SALVAR
+===================================================== */
+
+function salvarLancamento(){
+
+    const tipo =
+        document.getElementById("tipo").value;
+
+    const nome =
+        document.getElementById("nome").value.trim();
+
+    const telefone =
+        document.getElementById("telefone").value.trim();
+
+    const servico =
+        obterServicoSelecionado();
+
+    const valor =
+        numero(
+            document.getElementById(
+                "valorServico"
+            ).value
+        );
+
+    const quantidade =
+        numero(
+            document.getElementById(
+                "quantidade"
+            ).value
+        );
+
+    const repasse =
+        numero(
+            document.getElementById(
+                "repasse"
+            ).value
+        );
+
+    const data =
+        document.getElementById("data").value
+        || hoje();
+
+    const observacao =
+        document.getElementById(
+            "observacao"
+        ).value.trim();
+
+
+    if(!nome){
+
+        alert("Informe o nome.");
+
+        return;
+
+    }
+
+
+    if(!servico){
+
+        alert("Selecione o serviço.");
+
+        return;
+
+    }
+
+
+    if(valor < 0){
+
+        alert("Valor inválido.");
+
+        return;
+
+    }
+
+
+    if(quantidade <= 0){
+
+        alert(
+            "Informe uma quantidade maior que zero."
+        );
+
+        return;
+
+    }
+
+
+    if(repasse < 0){
+
+        alert("Repasse inválido.");
+
+        return;
+
+    }
+
+
+    const total =
+        valor * quantidade;
+
+    const lucro =
+        total - repasse;
+
+
+    const dados = {
+
+        id:
+            editandoId ||
+            Date.now().toString(),
+
+        tipo:
+            tipo,
+
+        nome:
+            nome,
+
+        telefone:
+            telefone,
+
+        servico:
+            servico,
+
+        valorUnitario:
+            valor,
+
+        quantidade:
+            quantidade,
+
+        total:
+            total,
+
+        repasse:
+            repasse,
+
+        lucro:
+            lucro,
+
+        data:
+            data,
+
+        observacao:
+            observacao
+
+    };
+
+
+    if(editandoId){
+
+        const index =
+            lancamentos.findIndex(
+                x =>
+                String(x.id) ===
+                String(editandoId)
+            );
+
+        if(index >= 0){
+
+            lancamentos[index] = dados;
+
+        }
+
+    }else{
+
+        lancamentos.unshift(dados);
+
+    }
+
+
+    salvarDados();
+
+    editandoId = null;
+
+    alert(
+        "Lançamento salvo com sucesso!"
+    );
+
+    limparFormulario();
+
+    atualizarInicio();
+
+    atualizarRelatorios();
+
+    renderizarHistorico();
+
+    abrirAbaPorId("movimentacoes");
+
+}
+
+
+/* =====================================================
+LIMPAR
+===================================================== */
+
+function limparFormulario(){
+
+    editandoId = null;
+
+    document.getElementById(
+        "tipo"
+    ).value = "Cliente";
+
+    document.getElementById(
+        "nome"
+    ).value = "";
+
+    document.getElementById(
+        "telefone"
+    ).value = "";
+
+    document.getElementById(
+        "servicoCliente"
+    ).value = "";
+
+    document.getElementById(
+        "servicoParceiro"
+    ).value = "";
+
+    document.getElementById(
+        "valorServico"
+    ).value = "";
+
+    document.getElementById(
+        "quantidade"
+    ).value = "1";
+
+    document.getElementById(
+        "repasse"
+    ).value = "0";
+
+    document.getElementById(
+        "data"
+    ).value = hoje();
+
+    document.getElementById(
+        "observacao"
+    ).value = "";
+
+    document.getElementById(
+        "servicosCliente"
+    ).classList.remove("hidden");
+
+    document.getElementById(
+        "servicosParceiro"
+    ).classList.add("hidden");
+
+    calcularTotal();
+
+}
+
+
+/* =====================================================
+HISTÓRICO
+===================================================== */
+
+function renderizarHistorico(){
+
+    const tbody =
+        document.getElementById(
+            "historico"
+        );
+
+    const nome =
+        document.getElementById(
+            "filtroNome"
+        ).value.toLowerCase().trim();
+
+    const tipo =
+        document.getElementById(
+            "filtroTipo"
+        ).value;
+
+    const servico =
+        document.getElementById(
+            "filtroServico"
+        ).value.toLowerCase().trim();
+
+    const inicio =
+        document.getElementById(
+            "filtroInicio"
+        ).value;
+
+    const fim =
+        document.getElementById(
+            "filtroFim"
+        ).value;
+
+
+    const dados =
+        lancamentos.filter(item => {
+
+            if(
+                nome &&
+                !String(item.nome)
+                    .toLowerCase()
+                    .includes(nome)
+            ){
+
+                return false;
+
+            }
+
+            if(
+                tipo &&
+                item.tipo !== tipo
+            ){
+
+                return false;
+
+            }
+
+            if(
+                servico &&
+                !String(item.servico)
+                    .toLowerCase()
+                    .includes(servico)
+            ){
+
+                return false;
+
+            }
+
+            if(
+                inicio &&
+                item.data < inicio
+            ){
+
+                return false;
+
+            }
+
+            if(
+                fim &&
+                item.data > fim
+            ){
+
+                return false;
+
+            }
+
+            return true;
+
+        });
+
+
+    let total = 0;
+    let repasse = 0;
+    let lucro = 0;
+
+
+    dados.forEach(item => {
+
+        total += numero(item.total);
+        repasse += numero(item.repasse);
+        lucro += numero(item.lucro);
+
+    });
+
+
+    document.getElementById(
+        "filtroTotal"
+    ).textContent = moeda(total);
+
+    document.getElementById(
+        "filtroRepasse"
+    ).textContent = moeda(repasse);
+
+    document.getElementById(
+        "filtroLucro"
+    ).textContent = moeda(lucro);
+
+
+    tbody.innerHTML = "";
+
+
+    if(dados.length === 0){
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="9" class="empty">
+                    Nenhum lançamento encontrado.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    dados.forEach(item => {
+
+        const tr =
+            document.createElement("tr");
+
+        const classeTipo =
+            item.tipo === "Cliente"
+            ?
+            "badge-client"
+            :
+            "badge-partner";
+
+
+        tr.innerHTML = `
+
+            <td>
+                ${formatarData(item.data)}
+            </td>
+
+            <td>
+                <span class="badge ${classeTipo}">
+                    ${escapar(item.tipo)}
+                </span>
+            </td>
+
+            <td>
+                <strong>
+                    ${escapar(item.nome)}
+                </strong>
+            </td>
+
+            <td>
+                ${escapar(item.servico)}
+            </td>
+
+            <td>
+                ${item.quantidade}
+            </td>
+
+            <td>
+                <strong>
+                    ${moeda(item.total)}
+                </strong>
+            </td>
+
+            <td>
+                ${moeda(item.repasse)}
+            </td>
+
+            <td>
+                <strong class="${
+                    item.lucro >= 0
+                    ?
+                    "green"
+                    :
+                    "red"
+                }">
+                    ${moeda(item.lucro)}
+                </strong>
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="abrirComprovante('${item.id}')"
+                    >
+                        Comprovante
+                    </button>
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="editarLancamento('${item.id}')"
+                    >
+                        Editar
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="excluirLancamento('${item.id}')"
+                    >
+                        Excluir
+                    </button>
+
+                </div>
+
+            </td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+    });
+
+}
+
+
+/* =====================================================
+EDITAR
+===================================================== */
+
+function editarLancamento(id){
+
+    const item =
+        lancamentos.find(
+            x =>
+            String(x.id) === String(id)
+        );
+
+    if(!item){
+
+        alert("Lançamento não encontrado.");
+
+        return;
+
+    }
+
+
+    editandoId = item.id;
+
+
+    document.getElementById(
+        "tipo"
+    ).value = item.tipo;
+
+
+    atualizarServicos();
+
+
+    document.getElementById(
+        "nome"
+    ).value = item.nome;
+
+
+    document.getElementById(
+        "telefone"
+    ).value = item.telefone || "";
+
+
+    const select =
+        item.tipo === "Cliente"
+        ?
+        document.getElementById(
+            "servicoCliente"
+        )
+        :
+        document.getElementById(
+            "servicoParceiro"
+        );
+
+
+    select.value = item.servico;
+
+
+    document.getElementById(
+        "valorServico"
+    ).value = item.valorUnitario;
+
+
+    document.getElementById(
+        "quantidade"
+    ).value = item.quantidade;
+
+
+    document.getElementById(
+        "repasse"
+    ).value = item.repasse;
+
+
+    document.getElementById(
+        "data"
+    ).value = item.data;
+
+
+    document.getElementById(
+        "observacao"
+    ).value = item.observacao || "";
+
+
+    calcularTotal();
+
+    abrirAbaPorId("lancar");
+
+}
+
+
+/* =====================================================
+EXCLUIR
+===================================================== */
+
+function excluirLancamento(id){
+
+    if(
+        !confirm(
+            "Deseja excluir este lançamento?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    lancamentos =
+        lancamentos.filter(
+            item =>
+            String(item.id) !== String(id)
+        );
+
+
+    salvarDados();
+
+    renderizarHistorico();
+
+    atualizarInicio();
+
+    atualizarRelatorios();
+
+}
+
+
+/* =====================================================
+LIMPAR FILTROS
+===================================================== */
+
+function limparFiltros(){
+
+    document.getElementById(
+        "filtroNome"
+    ).value = "";
+
+    document.getElementById(
+        "filtroTipo"
+    ).value = "";
+
+    document.getElementById(
+        "filtroServico"
+    ).value = "";
+
+    document.getElementById(
+        "filtroInicio"
+    ).value = "";
+
+    document.getElementById(
+        "filtroFim"
+    ).value = "";
+
+    renderizarHistorico();
+
+}
+
+
+/* =====================================================
+INÍCIO
+===================================================== */
+
+function atualizarInicio(){
+
+    let receita = 0;
+    let repasse = 0;
+    let lucro = 0;
+
+    let clientes = 0;
+    let parceiros = 0;
+    let quantidade = 0;
+
+
+    lancamentos.forEach(item => {
+
+        receita += numero(item.total);
+        repasse += numero(item.repasse);
+        lucro += numero(item.lucro);
+        quantidade += numero(item.quantidade);
+
+        if(item.tipo === "Cliente"){
+
+            clientes += numero(item.quantidade);
+
+        }else{
+
+            parceiros += numero(item.quantidade);
+
+        }
+
+    });
+
+
+    document.getElementById(
+        "inicioReceitas"
+    ).textContent = moeda(receita);
+
+    document.getElementById(
+        "inicioRepasses"
+    ).textContent = moeda(repasse);
+
+    document.getElementById(
+        "inicioLucro"
+    ).textContent = moeda(lucro);
+
+    document.getElementById(
+        "inicioLancamentos"
+    ).textContent = lancamentos.length;
+
+    document.getElementById(
+        "inicioClientes"
+    ).textContent = clientes;
+
+    document.getElementById(
+        "inicioParceiros"
+    ).textContent = parceiros;
+
+    document.getElementById(
+        "inicioQuantidade"
+    ).textContent = quantidade;
+
+}
+
+
+/* =====================================================
+RELATÓRIOS
+===================================================== */
+
+function atualizarRelatorios(){
+
+    let clientes = 0;
+    let parceiros = 0;
+    let receita = 0;
+    let repasse = 0;
+    let lucro = 0;
+    let quantidade = 0;
+
+
+    lancamentos.forEach(item => {
+
+        const total =
+            numero(item.total);
+
+        const qtd =
+            numero(item.quantidade);
+
+        receita += total;
+        repasse += numero(item.repasse);
+        lucro += numero(item.lucro);
+        quantidade += qtd;
+
+
+        if(item.tipo === "Cliente"){
+
+            clientes += total;
+
+        }else{
+
+            parceiros += total;
+
+        }
+
+    });
+
+
+    document.getElementById(
+        "relClientes"
+    ).textContent = moeda(clientes);
+
+    document.getElementById(
+        "relParceiros"
+    ).textContent = moeda(parceiros);
+
+    document.getElementById(
+        "relReceita"
+    ).textContent = moeda(receita);
+
+    document.getElementById(
+        "relRepasse"
+    ).textContent = moeda(repasse);
+
+    document.getElementById(
+        "relLucro"
+    ).textContent = moeda(lucro);
+
+    document.getElementById(
+        "relServicos"
+    ).textContent = quantidade;
+
+
+    gerarFechamentoParceiros();
+
+    gerarResumoClientes();
+
+}
+
+
+/* =====================================================
+FECHAMENTO DOS PARCEIROS
+===================================================== */
+
+function gerarFechamentoParceiros(){
+
+    const container =
+        document.getElementById(
+            "fechamentoParceiros"
+        );
+
+    const parceiros = {};
+
+
+    lancamentos
+        .filter(
+            item => item.tipo === "Parceiro"
+        )
+        .forEach(item => {
+
+            const nome =
+                item.nome || "Sem nome";
+
+
+            if(!parceiros[nome]){
+
+                parceiros[nome] = {
+
+                    telefone:
+                        item.telefone || "",
+
+                    servicos: {},
+
+                    totalRepasse: 0,
+
+                    quantidade: 0
+
+                };
+
+            }
+
+
+            const servico =
+                item.servico;
+
+
+            if(
+                !parceiros[nome].servicos[
+                    servico
+                ]
+            ){
+
+                parceiros[nome].servicos[
+                    servico
+                ] = {
+
+                    quantidade:0,
+                    valor:0
+
+                };
+
+            }
+
+
+            parceiros[nome].servicos[
+                servico
+            ].quantidade +=
+                numero(item.quantidade);
+
+
+            parceiros[nome].servicos[
+                servico
+            ].valor +=
+                numero(item.repasse);
+
+
+            parceiros[nome].totalRepasse +=
+                numero(item.repasse);
+
+
+            parceiros[nome].quantidade +=
+                numero(item.quantidade);
+
+        });
+
+
+    container.innerHTML = "";
+
+
+    const nomes =
+        Object.keys(parceiros);
+
+
+    if(nomes.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                Nenhum serviço de parceiro cadastrado.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    nomes.sort().forEach(nome => {
+
+        const parceiro =
+            parceiros[nome];
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "partner-card";
+
+
+        let servicosHTML = "";
+
+
+        Object.keys(parceiro.servicos)
+            .sort()
+            .forEach(servico => {
+
+                const s =
+                    parceiro.servicos[servico];
+
+
+                servicosHTML += `
+
+                    <div class="close-box">
+
+                        <div>
+                            <span>
+                                ${escapar(servico)}
+                            </span>
+
+                            <strong>
+                                ${s.quantidade}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>
+                                Valor a repassar
+                            </span>
+
+                            <strong>
+                                ${moeda(s.valor)}
+                            </strong>
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+
+        const telefone =
+            telefoneWhatsApp(
+                parceiro.telefone
+            );
+
+
+        card.innerHTML = `
+
+            <h3>
+                ${escapar(nome)}
+            </h3>
+
+            ${servicosHTML}
+
+            <div class="partner-total">
+                Total a repassar:
+                ${moeda(parceiro.totalRepasse)}
+            </div>
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="abrirFechamentoParceiro('${escapar(nome)}')"
+                >
+                    Ver fechamento
+                </button>
+
+                ${
+                    telefone
+                    ?
+                    `
+                    <button
+                        class="btn btn-whatsapp"
+                        onclick="whatsappParceiro('${escapar(nome)}')"
+                    >
+                        WhatsApp
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+RESUMO CLIENTES
+===================================================== */
+
+function gerarResumoClientes(){
+
+    const container =
+        document.getElementById(
+            "resumoClientes"
+        );
+
+
+    const clientes = {};
+
+
+    lancamentos
+        .filter(
+            item => item.tipo === "Cliente"
+        )
+        .forEach(item => {
+
+            const nome =
+                item.nome || "Sem nome";
+
+
+            if(!clientes[nome]){
+
+                clientes[nome] = {
+
+                    telefone:
+                        item.telefone || "",
+
+                    total:0,
+                    quantidade:0
+
+                };
+
+            }
+
+
+            clientes[nome].total +=
+                numero(item.total);
+
+
+            clientes[nome].quantidade +=
+                numero(item.quantidade);
+
+        });
+
+
+    container.innerHTML = "";
+
+
+    const nomes =
+        Object.keys(clientes);
+
+
+    if(nomes.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                Nenhum cliente cadastrado.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    nomes.sort().forEach(nome => {
+
+        const cliente =
+            clientes[nome];
+
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "partner-card";
+
+
+        div.innerHTML = `
+
+            <h3>
+                ${escapar(nome)}
+            </h3>
+
+            <div class="close-box">
+
+                <div>
+                    <span>Serviços</span>
+                    <strong>
+                        ${cliente.quantidade}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Total</span>
+                    <strong>
+                        ${moeda(cliente.total)}
+                    </strong>
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+COMPROVANTE
+===================================================== */
+
+function abrirComprovante(id){
+
+    const item =
+        lancamentos.find(
+            x =>
+            String(x.id) === String(id)
+        );
+
+    if(!item){
+
+        alert(
+            "Lançamento não encontrado."
+        );
+
+        return;
+
+    }
+
+
+    comprovanteAtual = item;
+
+
+    const area =
+        document.getElementById(
+            "comprovanteArea"
+        );
+
+
+    area.innerHTML = `
+
+        <div class="comprovante">
+
+            <h2>Projetos-DJ</h2>
+
+            <div class="comprovante-sub">
+                Comprovante de serviço
+            </div>
+
+            <div class="comp-line">
+                <span>Cliente</span>
+                <strong>
+                    ${escapar(item.nome)}
+                </strong>
+            </div>
+
+            <div class="comp-line">
+                <span>Serviço</span>
+                <strong>
+                    ${escapar(item.servico)}
+                </strong>
+            </div>
+
+            <div class="comp-line">
+                <span>Quantidade</span>
+                <strong>
+                    ${item.quantidade}
+                </strong>
+            </div>
+
+            <div class="comp-line">
+                <span>Valor unitário</span>
+                <strong>
+                    ${moeda(item.valorUnitario)}
+                </strong>
+            </div>
+
+            <div class="comp-line">
+                <span>Data</span>
+                <strong>
+                    ${formatarData(item.data)}
+                </strong>
+            </div>
+
+            ${
+                item.observacao
+                ?
+                `
+                <div class="comp-line">
+                    <span>Observação</span>
+                    <strong>
+                        ${escapar(item.observacao)}
+                    </strong>
+                </div>
+                `
+                :
+                ""
+            }
+
+            <div class="comp-total">
+                Total:
+                ${moeda(item.total)}
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById(
+            "modalComprovante"
+        )
+        .classList.remove("hidden");
+
+}
+
+
+function fecharComprovante(){
+
+    document
+        .getElementById(
+            "modalComprovante"
+        )
+        .classList.add("hidden");
+
+    comprovanteAtual = null;
+
+}
+
+
+/* =====================================================
+COMPARTILHAR COMPROVANTE
+===================================================== */
+
+async function compartilharComprovante(){
+
+    if(!comprovanteAtual){
+
+        return;
+
+    }
+
+
+    const item =
+        comprovanteAtual;
+
+
+    const texto =
+`Projetos-DJ
+Comprovante de serviço
+
+Cliente: ${item.nome}
+Serviço: ${item.servico}
+Quantidade: ${item.quantidade}
+Valor unitário: ${moeda(item.valorUnitario)}
+Total: ${moeda(item.total)}
+Data: ${formatarData(item.data)}
+${item.observacao ? "Observação: "+item.observacao : ""}`;
+
+
+    if(
+        navigator.share
+    ){
+
+        try{
+
+            await navigator.share({
+
+                title:
+                    "Projetos-DJ - Comprovante",
+
+                text:
+                    texto
+
+            });
+
+        }catch(e){
+
+            /* usuário cancelou */
+
+        }
+
+    }else{
+
+        try{
+
+            await navigator.clipboard.writeText(
+                texto
+            );
+
+            alert(
+                "Comprovante copiado."
+            );
+
+        }catch(e){
+
+            alert(texto);
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+WHATSAPP CLIENTE
+===================================================== */
+
+function whatsappComprovante(){
+
+    if(!comprovanteAtual){
+
+        return;
+
+    }
+
+
+    const item =
+        comprovanteAtual;
+
+
+    const mensagem =
+`Olá, ${item.nome}!
+
+Segue o resumo do serviço realizado pela Projetos-DJ:
+
+Serviço: ${item.servico}
+Quantidade: ${item.quantidade}
+Valor unitário: ${moeda(item.valorUnitario)}
+Total: ${moeda(item.total)}
+Data: ${formatarData(item.data)}
+${item.observacao ? "\nObservação: "+item.observacao : ""}
+
+Obrigado!`;
+
+
+    abrirWhatsApp(
+        item.telefone,
+        mensagem
+    );
+
+}
+
+
+/* =====================================================
+WHATSAPP
+===================================================== */
+
+function abrirWhatsApp(numeroTelefone,mensagem){
+
+    const numero =
+        telefoneWhatsApp(
+            numeroTelefone
+        );
+
+
+    if(numero.length < 10){
+
+        const deseja =
+            confirm(
+                "O telefone não está cadastrado corretamente.\n\nDeseja abrir o WhatsApp para escolher o contato?"
+            );
+
+        if(!deseja){
+
+            return;
+
+        }
+
+        window.open(
+            "https://wa.me/?text="+
+            encodeURIComponent(mensagem),
+            "_blank"
+        );
+
+        return;
+
+    }
+
+
+    window.open(
+        "https://wa.me/55"+
+        numero+
+        "?text="+
+        encodeURIComponent(mensagem),
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+WHATSAPP PARCEIRO
+===================================================== */
+
+function whatsappParceiro(nome){
+
+    const itens =
+        lancamentos.filter(
+            item =>
+            item.tipo === "Parceiro" &&
+            item.nome === nome
+        );
+
+
+    if(!itens.length){
+
+        return;
+
+    }
+
+
+    const telefone =
+        itens.find(
+            x => x.telefone
+        )?.telefone || "";
+
+
+    const grupos = {};
+
+
+    let total = 0;
+
+
+    itens.forEach(item => {
+
+        if(!grupos[item.servico]){
+
+            grupos[item.servico] = {
+
+                quantidade:0,
+                valor:0
+
+            };
+
+        }
+
+
+        grupos[item.servico].quantidade +=
+            numero(item.quantidade);
+
+        grupos[item.servico].valor +=
+            numero(item.repasse);
+
+        total +=
+            numero(item.repasse);
+
+    });
+
+
+    let linhas = "";
+
+
+    Object.keys(grupos)
+        .sort()
+        .forEach(servico => {
+
+            const s =
+                grupos[servico];
+
+
+            linhas +=
+`${servico}: ${s.quantidade} × ${moeda(s.valor / s.quantidade)} = ${moeda(s.valor)}
+`;
+
+        });
+
+
+    const mensagem =
+`Olá, ${nome}!
+
+Segue o fechamento dos serviços:
+
+${linhas}
+Total a repassar: ${moeda(total)}
+
+Projetos-DJ`;
+
+
+    abrirWhatsApp(
+        telefone,
+        mensagem
+    );
+
+}
+
+
+/* =====================================================
+FECHAMENTO INDIVIDUAL
+===================================================== */
+
+function abrirFechamentoParceiro(nome){
+
+    const itens =
+        lancamentos.filter(
+            item =>
+            item.tipo === "Parceiro" &&
+            item.nome === nome
+        );
+
+
+    if(!itens.length){
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+    let texto = "";
+
+
+    itens.forEach(item => {
+
+        total +=
+            numero(item.repasse);
+
+        texto += `
+            <div class="comp-line">
+                <span>
+                    ${escapar(item.servico)}
+                </span>
+
+                <strong>
+                    ${item.quantidade} ×
+                    ${moeda(item.valorUnitario)}
+                </strong>
+            </div>
+        `;
+
+    });
+
+
+    const area =
+        document.getElementById(
+            "comprovanteArea"
+        );
+
+
+    area.innerHTML = `
+
+        <div class="comprovante">
+
+            <h2>Projetos-DJ</h2>
+
+            <div class="comprovante-sub">
+                Fechamento de parceiro
+            </div>
+
+            <div class="comp-line">
+                <span>Parceiro</span>
+                <strong>
+                    ${escapar(nome)}
+                </strong>
+            </div>
+
+            ${texto}
+
+            <div class="comp-total">
+                Total a repassar:
+                ${moeda(total)}
+            </div>
+
+        </div>
+
+    `;
+
+
+    comprovanteAtual = {
+
+        tipo:"Parceiro",
+
+        nome:nome,
+
+        totalRepasse:total,
+
+        itens:itens
+
+    };
+
+
+    document
+        .getElementById(
+            "modalComprovante"
+        )
+        .classList.remove("hidden");
+
+}
+
+
+/* =====================================================
+INICIALIZAÇÃO
+===================================================== */
+
+document.getElementById(
+    "data"
+).value = hoje();
+
+document.getElementById(
+    "quantidade"
+).value = "1";
+
+document.getElementById(
+    "repasse"
+).value = "0";
+
+atualizarServicos();
+
+calcularTotal();
+
+atualizarInicio();
+
+renderizarHistorico();
+
+atualizarRelatorios();
+
+</script>
+
+</body>
+</html>
