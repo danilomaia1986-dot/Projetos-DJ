@@ -3327,26 +3327,20 @@ Object.keys(servicos)
 .forEach(servico=>{
 
 const s=
-servicos[servico];
+const total = registros.reduce((s, x) => {
+  const valorRepasse = typeof x.repasse === "number"
+    ? x.repasse
+    : parseFloat(
+        String(x.repasse || "0")
+          .replace(/[R$\s]/g, "")
+          .replace(/\./g, "")
+          .replace(",", ".")
+      ) || 0;
 
+  return s + valorRepasse;
+}, 0);
 
-texto+=
-`${servico}: ${s.quantidade} serviço(s) - ${dinheiro(s.repasse)}
-`;
-
-});
-
-
-const total=
-registros.reduce(
-(s,x)=>
-s+numero(x.repasse),
-0
-);
-
-
-texto+=`
-
+texto += `
 TOTAL A REPASSAR:
 ${dinheiro(total)}
 
