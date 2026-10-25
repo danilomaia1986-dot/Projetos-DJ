@@ -1,475 +1,327 @@
+
+
 <!DOCTYPE html>
+
 <html lang="pt-BR">
-<head> 
+
+<head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111827">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
 <title>Projetos-DJ</title>
+
 <style>
-:root{font-family:Arial,Helvetica,sans-serif;color:#17202a;background:#f3f5f8}
+
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0}
-header{background:#111827;color:#fff;padding:18px 15px;text-align:center}
-header h1{font-size:23px;margin:0}
-header p{font-size:13px;margin:6px 0 0;opacity:.82}
-main{max-width:850px;margin:auto;padding:14px}
-.card{background:#fff;border-radius:14px;padding:16px;margin:0 0 14px;box-shadow:0 2px 8px #0000000b}
-h2{font-size:18px;margin:0 0 14px}
-h3{font-size:15px;margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
-label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
-input,select{width:100%;min-width:0;padding:12px;border:1px solid #ccd2d9;border-radius:9px;background:white;font-size:16px;color:#17202a}
-input:focus,select:focus{outline:2px solid #bfdbfe;border-color:#2563eb}
-button{cursor:pointer;font:inherit}
-.btn{border:0;border-radius:9px;padding:11px 13px;font-size:14px;font-weight:700}
-.primary{background:#2563eb;color:#fff}
-.greenbtn{background:#16a34a;color:#fff}
-.redbtn{background:#dc2626;color:#fff}
-.graybtn{background:#e5e7eb;color:#111827}
-.whatsapp{background:#25d366;color:#fff}
-.darkbtn{background:#111827;color:#fff}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
-.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:14px}
-.metric{background:#fff;border-radius:12px;padding:13px;box-shadow:0 2px 7px #00000008;min-width:0}
-.metric span{display:block;font-size:12px;color:#667085;margin-bottom:7px}
-.metric strong{font-size:17px;overflow-wrap:anywhere}
-.blue{color:#2563eb}.green{color:#15803d}.red{color:#dc2626}.orange{color:#c2410c}
-.note{background:#eff6ff;border-left:4px solid #2563eb;padding:11px;border-radius:7px;margin-top:10px;font-size:13px}
-.tabs{display:flex;gap:7px;overflow:auto;padding:0 0 12px}
-.tabs button{white-space:nowrap;border:1px solid #d1d5db;background:#fff;border-radius:999px;padding:10px 14px;font-weight:700;color:#374151}
-.tabs button.active{background:#111827;color:#fff;border-color:#111827}
-.panel{display:none}.panel.active{display:block}
-.list{display:grid;gap:10px}
-.item{border:1px solid #e5e7eb;border-radius:11px;padding:12px}
-.itemtop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.itemtop strong{overflow-wrap:anywhere}
-.meta{font-size:12px;color:#667085;margin-top:5px;line-height:1.5}
-.itemmoney{font-weight:700;text-align:right;white-space:nowrap}
-.pill{display:inline-block;font-size:11px;font-weight:700;padding:4px 7px;border-radius:999px;background:#f3f4f6;margin-top:6px}
-.empty{text-align:center;color:#6b7280;padding:22px 8px}
-hr{border:0;border-top:1px solid #e5e7eb;margin:15px 0}
-.report{line-height:1.7}
-.reportrow{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #eee}
-.reportrow strong{text-align:right}
-.toast{display:none;position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:12px 16px;border-radius:9px;z-index:99;max-width:90%;font-size:14px}
-.small{font-size:12px;color:#667085}
-@media print{header,.tabs,.no-print{display:none!important}body{background:#fff}main{max-width:none;padding:0}.card,.metric{box-shadow:none;border:1px solid #ddd}}
+
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f2f4f7;color:#17202a}
+
+header{background:#111827;color:white;padding:18px 15px;text-align:center}
+
+header h1{margin:0;font-size:23px}header p{margin:5px 0 0;font-size:13px;opacity:.8}
+
+nav{display:flex;background:#fff;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:10}
+
+nav button{flex:1;border:0;background:white;padding:14px 4px;font-size:13px;font-weight:bold;color:#555}
+
+nav button.active{color:#2563eb;border-bottom:3px solid #2563eb}
+
+.container{max-width:850px;margin:auto;padding:15px}.tab{display:none}.tab.active{display:block}
+
+.card{background:white;border-radius:14px;padding:16px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+
+.card h2{margin:0 0 15px;font-size:18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+label{display:block;font-size:13px;font-weight:bold;margin-bottom:5px}
+
+input,select{width:100%;padding:12px;border:1px solid #ccd2d9;border-radius:9px;background:white;font-size:16px;outline:none}
+
+input:focus,select:focus{border-color:#2563eb}button{cursor:pointer}
+
+.btn{border:0;border-radius:9px;padding:12px 16px;font-size:14px;font-weight:bold}
+
+.btn-primary{background:#2563eb;color:white}.btn-success{background:#16a34a;color:white}
+
+.btn-danger{background:#dc2626;color:white}.btn-secondary{background:#e5e7eb;color:#111827}
+
+.btn-whatsapp{background:#25d366;color:white}.btn-print{background:#111827;color:white}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+
+@media(max-width:650px){.summary{grid-template-columns:1fr 1fr}}
+
+.summary-card{background:white;border-radius:12px;padding:13px;box-shadow:0 2px 7px rgba(0,0,0,.05)}
+
+.summary-card span{display:block;font-size:12px;color:#666;margin-bottom:6px}.summary-card strong{font-size:17px}
+
+.blue{color:#2563eb}.green{color:#16a34a}.red{color:#dc2626}.orange{color:#ea580c}
+
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:800px}
+
+th,td{padding:9px 7px;border-bottom:1px solid #e5e7eb;text-align:left;font-size:12px}
+
+th{background:#f8fafc;font-weight:bold}.empty{text-align:center;color:#777;padding:25px}
+
+.small{font-size:12px;color:#666}.highlight{background:#eff6ff;border-left:4px solid #2563eb;padding:12px;border-radius:7px;margin-top:10px}
+
+.closing-box{background:#f8fafc;border-radius:10px;padding:15px;margin-top:12px}
+
+.closing-total{font-size:23px;font-weight:bold;color:#16a34a}
+
+.service-row{display:grid;grid-template-columns:1fr 130px;gap:8px;margin-bottom:8px;align-items:end}
+
+@media(max-width:600px){.service-row{grid-template-columns:1fr}}
+
+hr{border:0;border-top:1px solid #e5e7eb;margin:18px 0}
+
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#111827;color:white;padding:12px 18px;border-radius:9px;display:none;z-index:999;font-size:14px}
+
+@media print{body{background:white}header,nav,.no-print{display:none!important}.container{max-width:none;padding:0}.card{box-shadow:none}}
+
 </style>
+
 </head>
+
 <body>
-<header>
-  <h1>Projetos-DJ</h1>
-  <p>Serviços dos clientes • Repasses dos parceiros • Lucro</p>
-</header>
-<main>
-  <section class="summary" aria-label="Resumo financeiro">
-    <div class="metric"><span>Recebido dos clientes</span><strong class="green" id="mRecebido">R$ 0,00</strong></div>
-    <div class="metric"><span>A repassar</span><strong class="red" id="mRepasse">R$ 0,00</strong></div>
-    <div class="metric"><span>Lucro calculado</span><strong class="blue" id="mLucro">R$ 0,00</strong></div>
-    <div class="metric"><span>Saldo após pagos</span><strong id="mCaixa">R$ 0,00</strong></div>
-  </section>
 
-  <nav class="tabs no-print">
-    <button class="active" data-panel="lancar">Lançar serviço</button>
-    <button data-panel="movimentos">Lançamentos</button>
-    <button data-panel="relatorio">Relatório final</button>
-  </nav>
+<header><h1>Projetos-DJ</h1><p>Controle de projetos, serviços, recebimentos e repasses</p></header>
 
-  <section class="panel active" id="lancar">
-    <div class="card">
-      <h2 id="formTitulo">Novo lançamento</h2>
-      <form id="formLancamento">
-        <input type="hidden" id="editId">
-        <div class="grid">
-          <div><label for="data">Data</label><input id="data" type="date" required></div>
-          <div>
-            <label for="tipo">O que deseja lançar?</label>
-            <select id="tipo">
-              <option value="cliente">Serviço cobrado do cliente</option>
-              <option value="parceiro">Serviço / repasse de parceiro</option>
-            </select>
-          </div>
-          <div><label for="cliente" id="nomeLabel">Nome do cliente</label><input id="cliente" type="text" placeholder="Nome do cliente ou parceiro" required></div>
-          <div><label for="servico">Descrição do serviço</label><input id="servico" type="text" placeholder="Ex.: Projeto fotovoltaico" required></div>
-          <div><label for="valorTotal" id="valorLabel">Valor do serviço (R$)</label><input id="valorTotal" type="number" min="0" step="0.01" value="0" required></div>
-          <div id="recebidoWrap"><label for="valorRecebido">Quanto o cliente já pagou (R$)</label><input id="valorRecebido" type="number" min="0" step="0.01" value="0"></div>
-          <div id="repasseWrap"><label for="valorRepasse">Valor a repassar ao parceiro (R$)</label><input id="valorRepasse" type="number" min="0" step="0.01" value="0"></div>
-          <div id="pagoWrap"><label for="valorRepassePago">Quanto já foi pago ao parceiro (R$)</label><input id="valorRepassePago" type="number" min="0" step="0.01" value="0"></div>
-        </div>
-        <div class="note" id="preview">Lucro calculado: R$ 0,00</div>
-        <div class="actions">
-          <button class="btn primary" type="submit" id="salvarBtn">Salvar lançamento</button>
-          <button class="btn graybtn" type="button" id="cancelarEdicao" hidden>Cancelar edição</button>
-          <button class="btn graybtn" type="button" id="limparBtn">Limpar campos</button>
-        </div>
-      </form>
-      <p class="small">Os serviços dos clientes e os repasses dos parceiros são registrados separadamente para evitar somar ou descontar valores duas vezes.</p>
-    </div>
-  </section>
+<nav>
 
-  <section class="panel" id="movimentos">
-    <div class="card">
-      <h2>Lançamentos</h2>
-      <div class="grid">
-        <div><label for="filtro">Buscar cliente/parceiro</label><input id="filtro" placeholder="Digite um nome"></div>
-        <div>
-          <label for="fTipo">Tipo</label>
-          <select id="fTipo">
-            <option value="">Todos</option>
-            <option value="cliente">Clientes</option>
-            <option value="parceiro">Parceiros</option>
-          </select>
-        </div>
-        <div><label for="fInicio">Data inicial</label><input id="fInicio" type="date"></div>
-        <div><label for="fFim">Data final</label><input id="fFim" type="date"></div>
-      </div>
-      <div class="actions"><button class="btn graybtn" id="limparFiltros">Limpar filtros</button></div>
-    </div>
-    <div class="card"><div id="listaLancamentos" class="list"></div></div>
-  </section>
+<button class="tab-btn active" onclick="abrirAba('inicio',this)">Início</button>
 
-  <section class="panel" id="relatorio">
-    <div class="card">
-      <h2>Relatório final</h2>
-      <div class="grid">
-        <div><label for="rInicio">Data inicial (opcional)</label><input id="rInicio" type="date"></div>
-        <div><label for="rFim">Data final (opcional)</label><input id="rFim" type="date"></div>
-      </div>
-      <div class="actions no-print">
-        <button class="btn primary" id="gerarRelatorio">Atualizar relatório</button>
-        <button class="btn whatsapp" id="whatsapp">Enviar pelo WhatsApp</button>
-        <button class="btn darkbtn" id="imprimir">Imprimir / salvar PDF</button>
-      </div>
-    </div>
-    <div class="card report" id="conteudoRelatorio"></div>
-  </section>
-</main>
-<div class="toast" id="toast" role="status"></div>
+<button class="tab-btn" onclick="abrirAba('lancar',this)">Lançar</button>
+
+<button class="tab-btn" onclick="abrirAba('movimentacoes',this)">Movimentações</button>
+
+<button class="tab-btn" onclick="abrirAba('relatorios',this)">Relatórios</button>
+
+</nav>
+
+<div class="container">
+
+<section id="inicio" class="tab active">
+
+<div class="summary">
+
+<div class="summary-card"><span>Recebido</span><strong class="green" id="dashRecebido">R$ 0,00</strong></div>
+
+<div class="summary-card"><span>A repassar</span><strong class="red" id="dashRepasse">R$ 0,00</strong></div>
+
+<div class="summary-card"><span>Saldo</span><strong class="blue" id="dashSaldo">R$ 0,00</strong></div>
+
+<div class="summary-card"><span>Lançamentos</span><strong id="dashLancamentos">0</strong></div>
+
+</div>
+
+<div class="card"><h2>Resumo</h2>
+
+<div class="highlight"><div class="small">Valor total dos serviços lançados</div><strong id="dashServicos">R$ 0,00</strong></div>
+
+<div class="highlight"><div class="small">Lucro acumulado</div><strong id="dashLucro">R$ 0,00</strong></div>
+
+<div class="actions"><button class="btn btn-primary" onclick="abrirAbaPorNome('lancar')">+ Novo lançamento</button></div>
+
+</div>
+
+</section>
+
+<section id="lancar" class="tab">
+
+<div class="card"><h2>Novo lançamento</h2>
+
+<div class="grid">
+
+<div><label>Data</label><input type="date" id="data"></div>
+
+<div><label>Cliente / Parceiro</label><input type="text" id="cliente" placeholder="Nome"></div>
+
+<div><label>Tipo de lançamento</label><select id="tipo" onchange="alterarTipo()"><option value="cliente">Serviço para cliente</option><option value="parceiro">Serviço de parceiro</option></select></div>
+
+<div id="modeloWrap" style="display:none"><label>Modelo financeiro do parceiro</label><select id="modeloFinanceiro" onchange="atualizarRotulosModelo()"><option value="comissao">Comissão recebida do parceiro</option><option value="repasse">Recebo do cliente e pago o parceiro</option></select></div>
+
+<div><label>Serviço</label><select id="servico" onchange="preencherValor()"><option value="">Selecione</option></select></div>
+
+<div><label>Quantidade</label><input type="number" id="quantidade" value="1" min="0" step="1" oninput="calcularLancamento()"></div>
+
+<div><label>Valor unitário do serviço/projeto</label><input type="number" id="valorUnitario" value="0" min="0" step="0.01" oninput="calcularLancamento()"></div>
+
+<div><label>Valor total do serviço/projeto</label><input type="number" id="valorTotal" value="0" readonly></div>
+
+<div><label id="labelRecebido">Valor recebido</label><input type="number" id="valorRecebido" value="0" min="0" step="0.01" oninput="calcularLancamento()"></div>
+
+<div id="repasseWrap"><label id="labelRepasse">Valor a repassar ao parceiro</label><input type="number" id="valorRepasse" value="0" min="0" step="0.01" oninput="calcularLancamento()"></div>
+
+<div><label>Lucro do lançamento</label><input type="number" id="valorLucro" value="0" readonly></div>
+
+</div>
+
+<div class="highlight"><div class="small">Valor total do serviço/projeto</div><strong id="previewTotal">R$ 0,00</strong></div>
+
+<div class="highlight"><div class="small">Saldo/lucro deste lançamento</div><strong id="previewSaldo">R$ 0,00</strong></div>
+
+<p class="small" id="ajudaModelo">Serviço para cliente: lucro = valor recebido − repasse.</p>
+
+<div class="actions"><button class="btn btn-success" onclick="salvarLancamento()">Salvar lançamento</button><button class="btn btn-secondary" onclick="limparFormulario()">Limpar</button></div>
+
+</div>
+
+<div class="card"><h2>Serviços e valores</h2><p class="small">Os valores podem ser alterados a qualquer momento. Isso não altera lançamentos já realizados.</p>
+
+<div id="listaServicos"></div>
+
+<div class="actions"><button class="btn btn-primary" onclick="adicionarServico()">+ Adicionar serviço</button><button class="btn btn-success" onclick="salvarServicos()">Salvar valores</button></div>
+
+</div>
+
+</section>
+
+<section id="movimentacoes" class="tab">
+
+<div class="card"><h2>Movimentações</h2><div class="grid">
+
+<div><label>Cliente / parceiro</label><input type="text" id="filtroCliente" placeholder="Todos" oninput="renderTabela()"></div>
+
+<div><label>Data inicial</label><input type="date" id="filtroInicio" onchange="renderTabela()"></div>
+
+<div><label>Data final</label><input type="date" id="filtroFim" onchange="renderTabela()"></div>
+
+</div><div class="actions"><button class="btn btn-secondary" onclick="limparFiltros()">Limpar filtros</button></div></div>
+
+<div class="card"><div class="table-wrap"><table><thead><tr><th>Data</th><th>Cliente/parceiro</th><th>Tipo/modelo</th><th>Serviço</th><th>Qtd.</th><th>Total</th><th>Recebido</th><th>Repasse</th><th>Saldo</th><th>Ações</th></tr></thead><tbody id="tabelaLancamentos"></tbody></table></div></div>
+
+</section>
+
+<section id="relatorios" class="tab">
+
+<div class="card"><h2>Fechamento por cliente/parceiro</h2><div class="grid">
+
+<div><label>Cliente/parceiro</label><input type="text" id="relCliente" placeholder="Digite o nome"></div>
+
+<div><label>Data inicial</label><input type="date" id="relInicio"></div>
+
+<div><label>Data final</label><input type="date" id="relFim"></div>
+
+</div><div class="actions"><button class="btn btn-primary" onclick="gerarFechamento()">Gerar fechamento</button><button class="btn btn-secondary" onclick="limparFechamento()">Limpar</button></div></div>
+
+<div id="fechamento" class="card" style="display:none"><h2>Fechamento</h2><div id="fechamentoConteudo"></div>
+
+<div class="actions no-print"><button class="btn btn-whatsapp" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button><button class="btn btn-print" onclick="imprimirFechamento()">Imprimir</button></div></div>
+
+</section>
+
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-"use strict";
-const STORAGE_KEY = "projetosDJ";
-const $ = id => document.getElementById(id);
-let lancamentos = lerArray(STORAGE_KEY);
-let relatorioTexto = "";
 
-function lerArray(chave){
-  try{
-    const v = JSON.parse(localStorage.getItem(chave) || "[]");
-    return Array.isArray(v) ? v : [];
-  }catch(e){return [];}
-}
-function numero(v){
-  if(v===null||v===undefined||v==="")return 0;
-  if(typeof v==="number")return Number.isFinite(v)?v:0;
-  let s=String(v).replace(/\s/g,"").replace(/R\$/g,"");
-  if(s.includes(",")&&s.includes("."))s=s.replace(/\./g,"").replace(",",".");
-  else s=s.replace(",",".");
-  const n=Number.parseFloat(s);
-  return Number.isFinite(n)?n:0;
-}
-function moeda(v){
-  return numero(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-}
-function dataBR(v){
-  if(!v)return "—";
-  const p=String(v).split("-");
-  return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:v;
-}
-function escapeHTML(v){
-  return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-}
-function toast(msg){
-  const el=$("toast");el.textContent=msg;el.style.display="block";
-  clearTimeout(toast.timer);
-  toast.timer=setTimeout(()=>el.style.display="none",2300);
-}
-function salvarDados(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(lancamentos));
-}
-function normalizar(item){
-  const x={...item};
-  x.id=x.id??(Date.now()+Math.random());
-  x.data=x.data||"";
-  x.cliente=x.cliente||x.parceiro||"";
-  x.tipo=x.tipo==="parceiro"?"parceiro":"cliente";
-  x.servico=x.servico||(x.tipo==="parceiro"?"Serviço de parceiro":"Serviço");
-  x.valorTotal=numero(x.valorTotal??x.valor??0);
-  x.valorRecebido=numero(x.valorRecebido??0);
-  x.valorRepasse=numero(x.valorRepasse??(x.tipo==="parceiro"?x.valorTotal:0));
-  x.valorRepassePago=numero(x.valorRepassePago??0);
-  return x;
-}
-lancamentos=lancamentos.map(normalizar);
+const STORAGE_KEY="projetosDJ";
 
-function dataHoje(){
-  const d=new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-}
-$("data").value=dataHoje();
+const SERVICOS_KEY="servicosDJ";
 
-function mudarTipo(){
-  const parceiro=$("tipo").value==="parceiro";
-  $("nomeLabel").textContent=parceiro?"Nome do parceiro":"Nome do cliente";
-  $("valorLabel").textContent=parceiro?"Valor a repassar (R$)":"Valor cobrado do cliente (R$)";
-  $("recebidoWrap").hidden=parceiro;
-  $("repasseWrap").hidden=parceiro;
-  $("pagoWrap").hidden=!parceiro;
-  if(parceiro){
-    $("valorRecebido").value="0";
-    $("valorRepasse").value=$("valorTotal").value;
-  }
-  atualizarPreview();
-}
-function atualizarPreview(){
-  const tipo=$("tipo").value;
-  const total=numero($("valorTotal").value);
-  const recebido=tipo==="cliente"?numero($("valorRecebido").value):0;
-  const repasse=tipo==="parceiro"?total:numero($("valorRepasse").value);
-  const pago=tipo==="parceiro"?numero($("valorRepassePago").value):0;
-  const lucro=recebido-repasse;
-  $("preview").textContent=`Neste lançamento: ${tipo==="cliente"?"recebido do cliente":"repasse previsto"} ${moeda(tipo==="cliente"?recebido:repasse)} • impacto no lucro: ${moeda(lucro)}${tipo==="parceiro"?" • já pago: "+moeda(pago):""}`;
-}
-$("tipo").addEventListener("change",mudarTipo);
-["valorTotal","valorRecebido","valorRepasse","valorRepassePago"].forEach(id=>{
-  $(id).addEventListener("input",()=>{
-    if($("tipo").value==="parceiro"&&id==="valorTotal"&&!$("editId").value){
-      $("valorRepasse").value=$("valorTotal").value;
-    }
-    atualizarPreview();
-  });
-});
+const SERVICOS_PADRAO=[
 
-function totais(dados=lancamentos){
-  let cobrados=0,recebido=0,aReceber=0,repasses=0,pagos=0,clienteRepasse=0;
-  dados.forEach(raw=>{
-    const x=normalizar(raw);
-    if(x.tipo==="cliente"){
-      cobrados+=x.valorTotal;
-      recebido+=x.valorRecebido;
-      aReceber+=Math.max(0,x.valorTotal-x.valorRecebido);
-      clienteRepasse+=x.valorRepasse;
-      pagos+=Math.min(x.valorRepasse,Math.max(0,x.valorRepassePago));
-    }else{
-      repasses+=x.valorRepasse||x.valorTotal;
-      pagos+=Math.min(x.valorRepasse||x.valorTotal,Math.max(0,x.valorRepassePago));
-    }
-  });
-  repasses+=clienteRepasse;
-  return {
-    cobrados,recebido,aReceber,repasses,pagos,
-    lucro:recebido-repasses,
-    caixa:recebido-pagos
-  };
-}
-function atualizarResumo(){
-  const t=totais();
-  $("mRecebido").textContent=moeda(t.recebido);
-  $("mRepasse").textContent=moeda(Math.max(0,t.repasses-t.pagos));
-  $("mLucro").textContent=moeda(t.lucro);
-  $("mCaixa").textContent=moeda(t.caixa);
-}
-function filtrados(){
-  const nome=$("filtro").value.trim().toLowerCase();
-  const tipo=$("fTipo").value;
-  const ini=$("fInicio").value;
-  const fim=$("fFim").value;
-  return lancamentos.filter(x=>{
-    if(nome&&!String(x.cliente).toLowerCase().includes(nome))return false;
-    if(tipo&&x.tipo!==tipo)return false;
-    if(ini&&x.data<ini)return false;
-    if(fim&&x.data>fim)return false;
-    return true;
-  }).sort((a,b)=>String(b.data).localeCompare(String(a.data)));
-}
-function renderLista(){
-  const area=$("listaLancamentos");
-  const dados=filtrados();
-  if(!dados.length){
-    area.innerHTML='<div class="empty">Nenhum lançamento encontrado.</div>';
-    return;
-  }
-  area.innerHTML=dados.map(raw=>{
-    const x=normalizar(raw);
-    const parceiro=x.tipo==="parceiro";
-    const valorPrincipal=parceiro?(x.valorRepasse||x.valorTotal):x.valorTotal;
-    const linhaSecundaria=parceiro
-      ?`Repasse: ${moeda(valorPrincipal)} • Pago: ${moeda(x.valorRepassePago)}`
-      :`Recebido: ${moeda(x.valorRecebido)} • Falta receber: ${moeda(Math.max(0,x.valorTotal-x.valorRecebido))} • Repasse vinculado: ${moeda(x.valorRepasse)}`;
-    return `<article class="item">
-      <div class="itemtop">
-        <div>
-          <strong>${escapeHTML(x.cliente)}</strong>
-          <div class="meta">${dataBR(x.data)} • ${escapeHTML(x.servico)}</div>
-          <span class="pill">${parceiro?"Parceiro / repasse":"Serviço de cliente"}</span>
-        </div>
-        <div class="itemmoney">${moeda(valorPrincipal)}</div>
-      </div>
-      <div class="meta">${linhaSecundaria}</div>
-      <div class="actions">
-        <button class="btn primary" onclick='editarLancamento(${JSON.stringify(String(x.id))})'>Editar</button>
-        ${parceiro?`<button class="btn greenbtn" onclick='alternarPago(${JSON.stringify(String(x.id))})'>${x.valorRepassePago>=valorPrincipal?"Marcar pendente":"Marcar pago"}</button>`:""}
-        <button class="btn redbtn" onclick='excluirLancamento(${JSON.stringify(String(x.id))})'>Excluir</button>
-      </div>
-    </article>`;
-  }).join("");
-}
-function limparFormulario(){
-  $("formLancamento").reset();
-  $("editId").value="";
-  $("data").value=dataHoje();
-  $("valorTotal").value="0";
-  $("valorRecebido").value="0";
-  $("valorRepasse").value="0";
-  $("valorRepassePago").value="0";
-  $("formTitulo").textContent="Novo lançamento";
-  $("salvarBtn").textContent="Salvar lançamento";
-  $("cancelarEdicao").hidden=true;
-  mudarTipo();
-}
-$("limparBtn").addEventListener("click",limparFormulario);
-$("cancelarEdicao").addEventListener("click",limparFormulario);
+{nome:"Consulta de disponibilidade",valor:30},
 
-$("formLancamento").addEventListener("submit",e=>{
-  e.preventDefault();
-  const id=$("editId").value;
-  const tipo=$("tipo").value;
-  const data=$("data").value;
-  const cliente=$("cliente").value.trim();
-  const servico=$("servico").value.trim();
-  const valorTotal=numero($("valorTotal").value);
-  const valorRecebido=tipo==="cliente"?numero($("valorRecebido").value):0;
-  const valorRepasse=tipo==="parceiro"?valorTotal:numero($("valorRepasse").value);
-  const valorRepassePago=tipo==="parceiro"?numero($("valorRepassePago").value):0;
+{nome:"Projeto com estudo",valor:100},
 
-  if(!data||!cliente||!servico){
-    alert("Preencha data, nome e descrição do serviço.");
-    return;
-  }
-  if(valorTotal<0||valorRecebido<0||valorRepasse<0||valorRepassePago<0){
-    alert("Os valores não podem ser negativos.");
-    return;
-  }
-  if(tipo==="cliente"&&valorRecebido>valorTotal){
-    if(!confirm("O valor recebido é maior que o valor do serviço. Deseja continuar?"))return;
-  }
-  if(tipo==="parceiro"&&valorRepassePago>valorRepasse){
-    if(!confirm("O valor já pago é maior que o repasse previsto. Deseja continuar?"))return;
-  }
+{nome:"Projeto sem estudo",valor:150},
 
-  const item={
-    id:id||String(Date.now())+"-"+Math.random().toString(16).slice(2),
-    data,cliente,tipo,servico,quantidade:1,
-    valorUnitario:valorTotal,valorTotal,valorRecebido,
-    valorRepasse,valorRepassePago,
-    valorLucro:valorRecebido-valorRepasse
-  };
-  if(id){
-    lancamentos=lancamentos.map(x=>String(x.id)===id?item:x);
-    toast("Lançamento atualizado.");
-  }else{
-    lancamentos.push(item);
-    toast("Lançamento salvo.");
-  }
-  salvarDados();
-  renderTudo();
-  limparFormulario();
-  abrirPainel("movimentos");
-});
+{nome:"Estudo prévio de carga",valor:250},
 
-function editarLancamento(id){
-  const x=lancamentos.find(v=>String(v.id)===String(id));
-  if(!x)return;
-  $("editId").value=String(x.id);
-  $("data").value=x.data||dataHoje();
-  $("tipo").value=x.tipo;
-  $("cliente").value=x.cliente||"";
-  $("servico").value=x.servico||"";
-  $("valorTotal").value=numero(x.valorTotal).toFixed(2);
-  $("valorRecebido").value=numero(x.valorRecebido).toFixed(2);
-  $("valorRepasse").value=numero(x.valorRepasse).toFixed(2);
-  $("valorRepassePago").value=numero(x.valorRepassePago).toFixed(2);
-  $("formTitulo").textContent="Editar lançamento";
-  $("salvarBtn").textContent="Salvar alterações";
-  $("cancelarEdicao").hidden=false;
-  mudarTipo();
-  abrirPainel("lancar");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function excluirLancamento(id){
-  const x=lancamentos.find(v=>String(v.id)===String(id));
-  if(!x)return;
-  if(!confirm(`Excluir o lançamento de "${x.cliente}" — ${x.servico}? Esta ação não pode ser desfeita.`))return;
-  lancamentos=lancamentos.filter(v=>String(v.id)!==String(id));
-  salvarDados();
-  renderTudo();
-  toast("Lançamento excluído.");
-}
-function alternarPago(id){
-  const x=lancamentos.find(v=>String(v.id)===String(id));
-  if(!x)return;
-  const total=numero(x.valorRepasse||x.valorTotal);
-  x.valorRepassePago=numero(x.valorRepassePago)>=total?0:total;
-  salvarDados();
-  renderTudo();
-  toast(x.valorRepassePago?"Repasse marcado como pago.":"Repasse marcado como pendente.");
-}
-function abrirPainel(id){
-  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===id));
-  document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("active",b.dataset.panel===id));
-  if(id==="relatorio")gerarRelatorio();
-}
-document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>abrirPainel(b.dataset.panel)));
-["filtro","fTipo","fInicio","fFim"].forEach(id=>$(id).addEventListener(id==="filtro"?"input":"change",renderLista));
-$("limparFiltros").addEventListener("click",()=>{
-  ["filtro","fTipo","fInicio","fFim"].forEach(id=>$(id).value="");
-  renderLista();
-});
+{nome:"Ingresso de projeto",valor:20},
 
-function dadosRelatorio(){
-  const ini=$("rInicio").value;
-  const fim=$("rFim").value;
-  return lancamentos.filter(x=>(!ini||x.data>=ini)&&(!fim||x.data<=fim));
-}
-function gerarRelatorio(){
-  const dados=dadosRelatorio();
-  const t=totais(dados);
-  const ini=$("rInicio").value;
-  const fim=$("rFim").value;
-  const periodo=(ini?dataBR(ini):"Início")+" até "+(fim?dataBR(fim):"Sem limite final");
-  const linhas=[
-    ["Serviços cobrados dos clientes",moeda(t.cobrados)],
-    ["Dinheiro recebido dos clientes",moeda(t.recebido)],
-    ["Ainda a receber dos clientes",moeda(t.aReceber)],
-    ["Repasses previstos aos parceiros",moeda(t.repasses)],
-    ["Repasses já pagos",moeda(t.pagos)],
-    ["Repasses ainda pendentes",moeda(Math.max(0,t.repasses-t.pagos))],
-    ["Lucro calculado (recebido − repasses previstos)",moeda(t.lucro)],
-    ["Saldo de caixa (recebido − repasses pagos)",moeda(t.caixa)]
-  ];
-  $("conteudoRelatorio").innerHTML=
-    `<h2>Fechamento financeiro</h2><div class="small">Período: ${escapeHTML(periodo)} • ${dados.length} lançamento(s)</div><hr>`+
-    linhas.map(([a,b],i)=>`<div class="reportrow"><span>${escapeHTML(a)}</span><strong class="${i===6?"blue":i===7?"green":""}">${escapeHTML(b)}</strong></div>`).join("")+
-    `<p class="small">Regra do lucro: dinheiro recebido dos clientes menos todos os repasses previstos. O saldo de caixa desconta somente os repasses marcados como pagos.</p>`;
-  relatorioTexto=`PROJETOS-DJ — FECHAMENTO FINANCEIRO\nPeríodo: ${periodo}\nLançamentos: ${dados.length}\n\n${linhas.map(([a,b])=>`${a}: ${b}`).join("\n")}\n\nRegra do lucro: recebido dos clientes menos repasses previstos.`;
-}
-$("gerarRelatorio").addEventListener("click",gerarRelatorio);
-$("whatsapp").addEventListener("click",()=>{
-  gerarRelatorio();
-  const url="https://wa.me/?text="+encodeURIComponent(relatorioTexto);
-  window.open(url,"_blank","noopener,noreferrer");
-});
-$("imprimir").addEventListener("click",()=>{gerarRelatorio();window.print();});
+{nome:"Envio de parecer",valor:50},
 
-function renderTudo(){
-  atualizarResumo();
-  renderLista();
-  gerarRelatorio();
-}
-renderTudo();
-mudarTipo();
+{nome:"Aprovação de projeto",valor:75}
+
+];
+
+let servicos=JSON.parse(localStorage.getItem(SERVICOS_KEY))||SERVICOS_PADRAO;
+
+let lancamentos=JSON.parse(localStorage.getItem(STORAGE_KEY))||[];
+
+let fechamentoAtual=null;
+
+function numero(v){if(v===null||v===undefined||v==="")return 0;if(typeof v==="number")return isNaN(v)?0:v;let t=String(v).replace(/\s/g,"").replace(/R\$/g,"");if(t.includes(",")&&t.includes("."))t=t.replace(/\./g,"").replace(",",".");else t=t.replace(",",".");let n=parseFloat(t);return isNaN(n)?0:n}
+
+function moeda(v){return numero(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+
+function dataBR(d){if(!d)return "";let p=d.split("-");return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:d}
+
+function mostrarToast(m){let t=document.getElementById("toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",2200)}
+
+function escapeHTML(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+
+function abrirAba(nome,botao){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));let a=document.getElementById(nome);if(a)a.classList.add("active");if(botao)botao.classList.add("active");atualizarTudo()}
+
+function abrirAbaPorNome(nome){let b=[...document.querySelectorAll(".tab-btn")].find(x=>x.getAttribute("onclick")?.includes("'"+nome+"'"));abrirAba(nome,b)}
+
+function carregarServicosSelect(){let s=document.getElementById("servico");let atual=s.value;s.innerHTML='<option value="">Selecione</option>';servicos.forEach((x,i)=>{let o=document.createElement("option");o.value=i;o.textContent=x.nome+" - "+moeda(x.valor);s.appendChild(o)});if(atual!=="")s.value=atual}
+
+function preencherValor(){let i=document.getElementById("servico").value;if(i==="")return;let s=servicos[Number(i)];if(!s)return;document.getElementById("valorUnitario").value=numero(s.valor).toFixed(2);calcularLancamento()}
+
+function renderServicos(){let a=document.getElementById("listaServicos");a.innerHTML="";servicos.forEach((s,i)=>{let d=document.createElement("div");d.className="service-row";d.innerHTML=`<div><label>Serviço</label><input type="text" value="${escapeHTML(s.nome)}" data-servico-nome="${i}"></div><div><label>Valor</label><input type="number" min="0" step="0.01" value="${numero(s.valor).toFixed(2)}" data-servico-valor="${i}"></div>`;a.appendChild(d)})}
+
+function adicionarServico(){servicos.push({nome:"Novo serviço",valor:0});renderServicos();carregarServicosSelect()}
+
+function salvarServicos(){document.querySelectorAll("[data-servico-nome]").forEach(i=>servicos[Number(i.dataset.servicoNome)].nome=i.value.trim()||"Novo serviço");document.querySelectorAll("[data-servico-valor]").forEach(i=>servicos[Number(i.dataset.servicoValor)].valor=numero(i.value));localStorage.setItem(SERVICOS_KEY,JSON.stringify(servicos));carregarServicosSelect();mostrarToast("Serviços salvos!")}
+
+function definirDataAtual(){let d=new Date();document.getElementById("data").value=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+
+function alterarTipo(){let tipo=document.getElementById("tipo").value;document.getElementById("modeloWrap").style.display=tipo==="parceiro"?"block":"none";if(tipo==="cliente")document.getElementById("modeloFinanceiro").value="repasse";atualizarRotulosModelo();document.getElementById("servico").value="";document.getElementById("valorUnitario").value="0";calcularLancamento()}
+
+function atualizarRotulosModelo(){let tipo=document.getElementById("tipo").value;let modelo=document.getElementById("modeloFinanceiro").value;let comissao=tipo==="parceiro"&&modelo==="comissao";document.getElementById("labelRecebido").textContent=comissao?"Comissão recebida do parceiro":"Valor recebido do cliente";document.getElementById("labelRepasse").textContent="Valor a repassar ao parceiro";document.getElementById("repasseWrap").style.display=comissao?"none":"block";document.getElementById("ajudaModelo").textContent=comissao?"Comissão de parceiro: registre no valor recebido somente a sua comissão. O total do projeto pode ser informado no valor unitário; a receita/lucro considerado é a comissão recebida.":"Recebimento com repasse: lucro = valor recebido − valor a repassar. Para serviço próprio, também vale a regra de recebido menos repasses.";calcularLancamento()}
+
+function lerValoresFormulario(){let tipo=document.getElementById("tipo").value;let modelo=tipo==="parceiro"?document.getElementById("modeloFinanceiro").value:"cliente";let qtd=numero(document.getElementById("quantidade").value),unit=numero(document.getElementById("valorUnitario").value),total=qtd*unit,recebido=numero(document.getElementById("valorRecebido").value),repasse=(tipo==="parceiro"&&modelo==="comissao")?0:numero(document.getElementById("valorRepasse").value);return {tipo,modelo,qtd,unit,total,recebido,repasse,lucro:recebido-repasse}}
+
+function calcularLancamento(){let v=lerValoresFormulario();document.getElementById("valorTotal").value=v.total.toFixed(2);document.getElementById("valorLucro").value=v.lucro.toFixed(2);document.getElementById("previewTotal").textContent=moeda(v.total);document.getElementById("previewSaldo").textContent=moeda(v.lucro)}
+
+function salvarLancamento(){let data=document.getElementById("data").value,cliente=document.getElementById("cliente").value.trim(),si=document.getElementById("servico").value;if(!data)return alert("Informe a data.");if(!cliente)return alert("Informe o cliente ou parceiro.");if(si==="")return alert("Selecione um serviço.");let v=lerValoresFormulario();if(v.qtd<0||v.unit<0||v.recebido<0||v.repasse<0)return alert("Os valores não podem ser negativos.");let s=servicos[Number(si)];let item={id:Date.now(),data,cliente,tipo:v.tipo,modeloFinanceiro:v.modelo,servico:s?s.nome:"Serviço",quantidade:v.qtd,valorUnitario:v.unit,valorTotal:v.total,valorRecebido:v.recebido,valorRepasse:v.repasse,lucro:v.lucro};lancamentos.push(item);salvarDados();mostrarToast("Lançamento salvo!");limparFormulario();atualizarTudo()}
+
+function limparFormulario(){document.getElementById("cliente").value="";document.getElementById("tipo").value="cliente";document.getElementById("modeloFinanceiro").value="comissao";document.getElementById("servico").value="";document.getElementById("quantidade").value="1";document.getElementById("valorUnitario").value="0";document.getElementById("valorTotal").value="0";document.getElementById("valorRecebido").value="0";document.getElementById("valorRepasse").value="0";document.getElementById("valorLucro").value="0";alterarTipo();calcularLancamento();definirDataAtual()}
+
+function salvarDados(){localStorage.setItem(STORAGE_KEY,JSON.stringify(lancamentos))}
+
+function excluirLancamento(id){if(!confirm("Deseja excluir este lançamento?"))return;lancamentos=lancamentos.filter(x=>String(x.id)!==String(id));salvarDados();atualizarTudo();mostrarToast("Lançamento excluído.")}
+
+function obterLancamentosFiltrados(){let c=(document.getElementById("filtroCliente")?.value||"").trim().toLowerCase(),i=document.getElementById("filtroInicio")?.value||"",f=document.getElementById("filtroFim")?.value||"";return lancamentos.filter(x=>(!c||String(x.cliente).toLowerCase().includes(c))&&(!i||x.data>=i)&&(!f||x.data<=f))}
+
+function limparFiltros(){document.getElementById("filtroCliente").value="";document.getElementById("filtroInicio").value="";document.getElementById("filtroFim").value="";renderTabela()}
+
+function rotuloTipo(x){if(x.tipo!=="parceiro")return "Serviço próprio/cliente";if(x.modeloFinanceiro==="comissao")return "Comissão recebida";if(x.modeloFinanceiro==="repasse")return "Recebe e repassa";return "Parceiro (registro antigo)"}
+
+function valorRepasseEfetivo(x){return numero(x.valorRepasse)}
+
+function valorRecebidoEfetivo(x){return numero(x.valorRecebido)}
+
+function lucroEfetivo(x){return valorRecebidoEfetivo(x)-valorRepasseEfetivo(x)}
+
+function renderTabela(){let tb=document.getElementById("tabelaLancamentos");if(!tb)return;let dados=obterLancamentosFiltrados();tb.innerHTML="";if(!dados.length){tb.innerHTML='<tr><td colspan="10" class="empty">Nenhum lançamento encontrado.</td></tr>';return}dados.slice().sort((a,b)=>String(b.data).localeCompare(String(a.data))).forEach(x=>{let tr=document.createElement("tr");tr.innerHTML=`<td>${dataBR(x.data)}</td><td>${escapeHTML(x.cliente)}</td><td>${escapeHTML(rotuloTipo(x))}</td><td>${escapeHTML(x.servico)}</td><td>${numero(x.quantidade)}</td><td>${moeda(x.valorTotal)}</td><td class="green">${moeda(valorRecebidoEfetivo(x))}</td><td class="red">${moeda(valorRepasseEfetivo(x))}</td><td class="blue">${moeda(lucroEfetivo(x))}</td><td><button class="btn btn-danger" onclick="excluirLancamento('${String(x.id).replace(/'/g,"")}')">Excluir</button></td>`;tb.appendChild(tr)})}
+
+function atualizarDashboard(){let total=0,recebido=0,repasse=0,lucro=0;lancamentos.forEach(x=>{total+=numero(x.valorTotal);recebido+=valorRecebidoEfetivo(x);repasse+=valorRepasseEfetivo(x);lucro+=lucroEfetivo(x)});document.getElementById("dashServicos").textContent=moeda(total);document.getElementById("dashRecebido").textContent=moeda(recebido);document.getElementById("dashRepasse").textContent=moeda(repasse);document.getElementById("dashSaldo").textContent=moeda(recebido-repasse);document.getElementById("dashLucro").textContent=moeda(lucro);document.getElementById("dashLancamentos").textContent=lancamentos.length}
+
+function gerarFechamento(){let cliente=document.getElementById("relCliente").value.trim(),inicio=document.getElementById("relInicio").value,fim=document.getElementById("relFim").value;if(!cliente)return alert("Digite o nome do cliente ou parceiro.");let dados=lancamentos.filter(x=>String(x.cliente).toLowerCase().includes(cliente.toLowerCase())&&(!inicio||x.data>=inicio)&&(!fim||x.data<=fim));if(!dados.length)return alert("Nenhum lançamento encontrado para esse cliente/parceiro.");let total=0,recebido=0,repasse=0;dados.forEach(x=>{total+=numero(x.valorTotal);recebido+=valorRecebidoEfetivo(x);repasse+=valorRepasseEfetivo(x)});fechamentoAtual={cliente:dados[0].cliente,inicio,fim,itens:dados,total,recebido,repasse,saldo:recebido-repasse};document.getElementById("fechamento").style.display="block";let linhas=dados.slice().sort((a,b)=>String(a.data).localeCompare(String(b.data))).map(x=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #ddd"><div><strong>${dataBR(x.data)}</strong><br><span class="small">${escapeHTML(x.servico)} × ${numero(x.quantidade)}<br>${escapeHTML(rotuloTipo(x))}</span></div><strong>${moeda(x.valorTotal)}</strong></div>`).join("");document.getElementById("fechamentoConteudo").innerHTML=`<div class="closing-box"><div class="small">Cliente/parceiro</div><strong style="font-size:19px">${escapeHTML(fechamentoAtual.cliente)}</strong></div><div class="closing-box"><div class="small">Período</div><strong>${inicio?dataBR(inicio):"Todos"} até ${fim?dataBR(fim):"Todos"}</strong></div><div class="closing-box"><h3 style="margin-top:0">Serviços</h3>${linhas}</div><div class="closing-box"><div class="small">Valor total dos serviços</div><strong>${moeda(total)}</strong><p class="small">Recebido: ${moeda(recebido)} | A repassar: ${moeda(repasse)}</p><div class="small">Saldo após repasses</div><div class="closing-total">${moeda(recebido-repasse)}</div></div>`;document.getElementById("fechamento").scrollIntoView({behavior:"smooth",block:"start"})}
+
+function enviarWhatsApp(){if(!fechamentoAtual)return alert("Gere o fechamento primeiro.");let d=fechamentoAtual;let msg=`Olá, ${d.cliente}!\n\nSegue o fechamento dos serviços:\n\n`;d.itens.forEach(x=>msg+=`${dataBR(x.data)} - ${x.servico} - ${numero(x.quantidade)} un. - ${moeda(x.valorTotal)}\n`);msg+=`\nTOTAL DOS SERVIÇOS: ${moeda(d.total)}\nRECEBIDO: ${moeda(d.recebido)}\nA REPASSAR: ${moeda(d.repasse)}\nSALDO APÓS REPASSES: ${moeda(d.saldo)}\n\nObrigado!`;window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank")}
+
+function imprimirFechamento(){if(!fechamentoAtual)return alert("Gere o fechamento primeiro.");window.print()}
+
+function limparFechamento(){document.getElementById("relCliente").value="";document.getElementById("relInicio").value="";document.getElementById("relFim").value="";document.getElementById("fechamento").style.display="none";document.getElementById("fechamentoConteudo").innerHTML="";fechamentoAtual=null}
+
+function atualizarTudo(){atualizarDashboard();renderTabela();renderServicos();carregarServicosSelect();calcularLancamento();atualizarRotulosModelo()}
+
+document.addEventListener("DOMContentLoaded",()=>{definirDataAtual();renderServicos();carregarServicosSelect();alterarTipo();atualizarTudo()});
+
 </script>
-</body>
-</html>
 
+</body>
+
+</html>
