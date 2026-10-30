@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Projetos-DJ — Teste</title>
+
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f2f4f7;color:#17202a}
@@ -63,6 +63,7 @@ header,nav,.no-print{display:none!important}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -81,46 +82,79 @@ header,nav,.no-print{display:none!important}
 
 <section id="inicio" class="tab active">
 <div class="summary">
+
 <div class="summary-card">
-<span>Valor total de serviços</span>
+<span>Valor recebido dos clientes</span>
 <strong class="blue" id="dashServicos">R$ 0,00</strong>
 </div>
+
 <div class="summary-card">
 <span>Valor total a repassar aos parceiros</span>
 <strong class="red" id="dashRepasse">R$ 0,00</strong>
 </div>
+
 <div class="summary-card">
-<span>Saldo final que fica para mim</span>
+<span>Lucro da DJ Consultoria</span>
 <strong class="green" id="dashSaldo">R$ 0,00</strong>
 </div>
+
 </div>
 </section>
 
 <section id="lancar" class="tab">
+
 <div class="card">
 <h2 id="tituloFormulario">Novo lançamento</h2>
+
 <div class="grid">
-<div><label>Data</label><input type="date" id="data"></div>
-<div><label>Tipo</label>
+
+<div>
+<label>Data</label>
+<input type="date" id="data">
+</div>
+
+<div>
+<label>Tipo</label>
 <select id="tipo">
 <option value="cliente">Cliente</option>
 <option value="parceiro">Parceiro</option>
-</select></div>
-<div><label id="labelNome">Nome do cliente</label>
-<input type="text" id="cliente" placeholder="Digite o nome"></div>
-<div><label>Tipo de serviço realizado</label>
-<select id="servico"><option value="">Selecione</option></select></div>
-<div><label>Quantidade</label>
-<input type="number" id="quantidade" value="1" min="1" step="1" oninput="calcularLancamento()"></div>
-<div><label>Valor unitário do serviço</label>
-<input type="number" id="valorUnitario" value="0" min="0" step="0.01" oninput="calcularLancamento()"></div>
-<div><label>Valor total</label>
-<input type="number" id="valorTotal" value="0" readonly></div>
+</select>
 </div>
+
+<div>
+<label id="labelNome">Nome do cliente</label>
+<input type="text" id="cliente" placeholder="Digite o nome">
+</div>
+
+<div>
+<label>Tipo de serviço realizado</label>
+<select id="servico">
+<option value="">Selecione</option>
+</select>
+</div>
+
+<div>
+<label>Quantidade</label>
+<input type="number" id="quantidade" value="1" min="1" step="1" oninput="calcularLancamento()">
+</div>
+
+<div>
+<label>Valor unitário do serviço</label>
+<input type="number" id="valorUnitario" value="0" min="0" step="0.01" oninput="calcularLancamento()">
+</div>
+
+<div>
+<label>Valor total</label>
+<input type="number" id="valorTotal" value="0" readonly>
+</div>
+
+</div>
+
 <div class="highlight">
 <div class="small">Total do lançamento</div>
 <strong id="previewTotal">R$ 0,00</strong>
 </div>
+
 <div class="actions">
 <button class="btn btn-success" onclick="salvarLancamento()" id="btnSalvar">Salvar lançamento</button>
 <button class="btn btn-secondary" onclick="limparFormulario()">Limpar</button>
@@ -131,25 +165,41 @@ header,nav,.no-print{display:none!important}
 <div class="card">
 <h2>Serviços e valores</h2>
 <p class="small">Altere os valores padrão dos serviços. Os lançamentos já realizados não serão modificados.</p>
+
 <div id="listaServicos"></div>
+
 <div class="actions">
 <button class="btn btn-primary" onclick="adicionarServico()">+ Adicionar serviço</button>
 <button class="btn btn-success" onclick="salvarServicos()">Salvar valores</button>
 </div>
 </div>
+
 </section>
 
 <section id="movimentacoes" class="tab">
+
 <div class="card">
 <h2>Movimentações</h2>
+
 <div class="grid">
-<div><label>Cliente / parceiro</label>
-<input type="text" id="filtroCliente" placeholder="Todos" oninput="renderTabela()"></div>
-<div><label>Data inicial</label>
-<input type="date" id="filtroInicio" onchange="renderTabela()"></div>
-<div><label>Data final</label>
-<input type="date" id="filtroFim" onchange="renderTabela()"></div>
+
+<div>
+<label>Cliente / parceiro</label>
+<input type="text" id="filtroCliente" placeholder="Todos" oninput="renderTabela()">
 </div>
+
+<div>
+<label>Data inicial</label>
+<input type="date" id="filtroInicio" onchange="renderTabela()">
+</div>
+
+<div>
+<label>Data final</label>
+<input type="date" id="filtroFim" onchange="renderTabela()">
+</div>
+
+</div>
+
 <div class="actions">
 <button class="btn btn-secondary" onclick="limparFiltros()">Limpar filtros</button>
 </div>
@@ -160,31 +210,55 @@ header,nav,.no-print{display:none!important}
 <table>
 <thead>
 <tr>
-<th>Data</th><th>Tipo</th><th>Cliente/parceiro</th>
-<th>Serviço</th><th>Qtd.</th><th>Valor unitário</th>
-<th>Valor total</th><th>Ações</th>
+<th>Data</th>
+<th>Tipo</th>
+<th>Cliente/parceiro</th>
+<th>Serviço</th>
+<th>Qtd.</th>
+<th>Valor unitário</th>
+<th>Valor total</th>
+<th>Ações</th>
 </tr>
 </thead>
 <tbody id="tabelaLancamentos"></tbody>
 </table>
 </div>
 </div>
+
 </section>
 
 <section id="relatorios" class="tab">
+
 <div class="card">
 <h2>Relatório individual</h2>
+
 <div class="grid">
-<div><label>Tipo</label>
+
+<div>
+<label>Tipo</label>
 <select id="relTipo">
 <option value="cliente">Cliente — valor a repassar à DJ</option>
 <option value="parceiro">Parceiro — valor a receber</option>
-</select></div>
-<div><label>Nome do cliente/parceiro</label>
-<input type="text" id="relCliente" placeholder="Digite o nome"></div>
-<div><label>Data inicial</label><input type="date" id="relInicio"></div>
-<div><label>Data final</label><input type="date" id="relFim"></div>
+</select>
 </div>
+
+<div>
+<label>Nome do cliente/parceiro</label>
+<input type="text" id="relCliente" placeholder="Digite o nome">
+</div>
+
+<div>
+<label>Data inicial</label>
+<input type="date" id="relInicio">
+</div>
+
+<div>
+<label>Data final</label>
+<input type="date" id="relFim">
+</div>
+
+</div>
+
 <div class="actions">
 <button class="btn btn-primary" onclick="gerarFechamento()">Gerar relatório</button>
 <button class="btn btn-secondary" onclick="limparFechamento()">Limpar</button>
@@ -194,17 +268,21 @@ header,nav,.no-print{display:none!important}
 <div id="fechamento" class="card" style="display:none">
 <h2>Relatório de serviços</h2>
 <div id="fechamentoConteudo"></div>
+
 <div class="actions no-print">
 <button class="btn btn-whatsapp" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
 <button class="btn btn-print" onclick="imprimirFechamento()">Imprimir</button>
 </div>
 </div>
+
 </section>
+
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
+
 const STORAGE_KEY="projetosDJ_teste_v1";
 const SERVICOS_KEY="servicosDJ_teste_v1";
 
@@ -222,28 +300,41 @@ function lerJSON(chave,padrao){
 try{
 const v=JSON.parse(localStorage.getItem(chave));
 return v??padrao;
-}catch(e){return padrao}
+}catch(e){
+return padrao;
+}
 }
 
 let servicos=lerJSON(SERVICOS_KEY,SERVICOS_PADRAO);
 let lancamentos=lerJSON(STORAGE_KEY,[]);
+
 if(!Array.isArray(servicos))servicos=SERVICOS_PADRAO;
 if(!Array.isArray(lancamentos))lancamentos=[];
+
 let fechamentoAtual=null;
 let editandoId=null;
 
 function numero(v){
 if(v===null||v===undefined||v==="")return 0;
 if(typeof v==="number")return Number.isFinite(v)?v:0;
+
 let t=String(v).replace(/\s/g,"").replace(/R\$/g,"");
-if(t.includes(",")&&t.includes("."))t=t.replace(/\./g,"").replace(",",".");
-else t=t.replace(",",".");
+
+if(t.includes(",")&&t.includes(".")){
+t=t.replace(/\./g,"").replace(",",".");
+}else{
+t=t.replace(",",".");
+}
+
 let n=parseFloat(t);
 return Number.isFinite(n)?n:0;
 }
 
 function moeda(v){
-return numero(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+return numero(v).toLocaleString("pt-BR",{
+style:"currency",
+currency:"BRL"
+});
 }
 
 function dataBR(d){
@@ -253,7 +344,12 @@ return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:d;
 }
 
 function escapeHTML(s){
-return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+return String(s??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 }
 
 function mostrarToast(m){
@@ -271,49 +367,78 @@ localStorage.setItem(STORAGE_KEY,JSON.stringify(lancamentos));
 function abrirAba(nome,botao){
 document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
 document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));
+
 document.getElementById(nome)?.classList.add("active");
+
 if(botao)botao.classList.add("active");
+
 atualizarTudo();
 }
 
 function abrirAbaPorNome(nome){
-let b=[...document.querySelectorAll(".tab-btn")].find(x=>x.getAttribute("onclick")?.includes("'"+nome+"'"));
+let b=[...document.querySelectorAll(".tab-btn")].find(
+x=>x.getAttribute("onclick")?.includes("'"+nome+"'")
+);
 abrirAba(nome,b);
 }
 
 function definirDataAtual(){
 let d=new Date();
-document.getElementById("data").value=[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+
+document.getElementById("data").value=[
+d.getFullYear(),
+String(d.getMonth()+1).padStart(2,"0"),
+String(d.getDate()).padStart(2,"0")
+].join("-");
 }
 
 function carregarServicosSelect(){
-let s=document.getElementById("servico"),atual=s.value;
+let s=document.getElementById("servico");
+let atual=s.value;
+
 s.innerHTML='<option value="">Selecione</option>';
+
 servicos.forEach((x,i)=>{
 let o=document.createElement("option");
 o.value=String(i);
 o.textContent=x.nome+" — "+moeda(x.valor);
 s.appendChild(o);
 });
+
 if(atual!=="")s.value=atual;
 }
 
 function preencherValor(){
 let i=document.getElementById("servico").value;
+
 if(i==="")return;
+
 let s=servicos[Number(i)];
 if(!s)return;
+
 document.getElementById("valorUnitario").value=numero(s.valor).toFixed(2);
+
 calcularLancamento();
 }
 
 function renderServicos(){
 let a=document.getElementById("listaServicos");
 a.innerHTML="";
+
 servicos.forEach((s,i)=>{
 let d=document.createElement("div");
 d.className="service-row";
-d.innerHTML=`<div><label>Serviço</label><input type="text" value="${escapeHTML(s.nome)}" data-servico-nome="${i}"></div><div><label>Valor</label><input type="number" min="0" step="0.01" value="${numero(s.valor).toFixed(2)}" data-servico-valor="${i}"></div>`;
+
+d.innerHTML=`
+<div>
+<label>Serviço</label>
+<input type="text" value="${escapeHTML(s.nome)}" data-servico-nome="${i}">
+</div>
+<div>
+<label>Valor</label>
+<input type="number" min="0" step="0.01" value="${numero(s.valor).toFixed(2)}" data-servico-valor="${i}">
+</div>`;
+
 a.appendChild(d);
 });
 }
@@ -325,39 +450,56 @@ carregarServicosSelect();
 }
 
 function salvarServicos(){
-document.querySelectorAll("[data-servico-nome]").forEach(i=>servicos[Number(i.dataset.servicoNome)].nome=i.value.trim()||"Novo serviço");
-document.querySelectorAll("[data-servico-valor]").forEach(i=>servicos[Number(i.dataset.servicoValor)].valor=numero(i.value));
+document.querySelectorAll("[data-servico-nome]").forEach(i=>{
+servicos[Number(i.dataset.servicoNome)].nome=i.value.trim()||"Novo serviço";
+});
+
+document.querySelectorAll("[data-servico-valor]").forEach(i=>{
+servicos[Number(i.dataset.servicoValor)].valor=numero(i.value);
+});
+
 localStorage.setItem(SERVICOS_KEY,JSON.stringify(servicos));
+
 renderServicos();
 carregarServicosSelect();
+
 mostrarToast("Serviços salvos!");
 }
 
 function atualizarTipoNome(){
 let tipo=document.getElementById("tipo").value;
-document.getElementById("labelNome").textContent=tipo==="cliente"?"Nome do cliente":"Nome do parceiro";
-document.getElementById("cliente").placeholder=tipo==="cliente"?"Digite o nome do cliente":"Digite o nome do parceiro";
+
+document.getElementById("labelNome").textContent=
+tipo==="cliente"?"Nome do cliente":"Nome do parceiro";
+
+document.getElementById("cliente").placeholder=
+tipo==="cliente"?"Digite o nome do cliente":"Digite o nome do parceiro";
 }
 
 function calcularLancamento(){
 let qtd=Math.max(0,numero(document.getElementById("quantidade").value));
 let unit=Math.max(0,numero(document.getElementById("valorUnitario").value));
+
 let total=qtd*unit;
+
 document.getElementById("valorTotal").value=total.toFixed(2);
 document.getElementById("previewTotal").textContent=moeda(total);
 }
 
 function limparFormulario(){
 editandoId=null;
+
 document.getElementById("cliente").value="";
 document.getElementById("tipo").value="cliente";
 document.getElementById("servico").value="";
 document.getElementById("quantidade").value="1";
 document.getElementById("valorUnitario").value="0";
 document.getElementById("valorTotal").value="0";
+
 document.getElementById("tituloFormulario").textContent="Novo lançamento";
 document.getElementById("btnSalvar").textContent="Salvar lançamento";
 document.getElementById("btnCancelarEdicao").style.display="none";
+
 atualizarTipoNome();
 calcularLancamento();
 definirDataAtual();
@@ -369,6 +511,7 @@ mostrarToast("Edição cancelada.");
 }
 
 function salvarLancamento(){
+
 let data=document.getElementById("data").value;
 let nome=document.getElementById("cliente").value.trim();
 let tipo=document.getElementById("tipo").value;
@@ -383,23 +526,36 @@ if(qtd<=0)return alert("A quantidade deve ser maior que zero.");
 if(unit<0)return alert("O valor unitário não pode ser negativo.");
 
 let s=servicos[Number(si)];
+
 if(!s)return alert("Selecione um serviço válido.");
 
 let item={
 id:editandoId??Date.now(),
-data,cliente:nome,tipo,servico:s.nome,
-quantidade:qtd,valorUnitario:unit,
-valorTotal:qtd*unit,versaoSimplificada:true
+data,
+cliente:nome,
+tipo,
+servico:s.nome,
+quantidade:qtd,
+valorUnitario:unit,
+valorTotal:qtd*unit,
+versaoSimplificada:true
 };
 
 if(editandoId!==null){
+
 let idx=lancamentos.findIndex(x=>String(x.id)===String(editandoId));
+
 if(idx<0)return alert("Lançamento não encontrado.");
+
 lancamentos[idx]={...lancamentos[idx],...item};
+
 mostrarToast("Lançamento atualizado!");
+
 }else{
+
 lancamentos.push(item);
 mostrarToast("Lançamento salvo!");
+
 }
 
 salvarDados();
@@ -408,60 +564,91 @@ atualizarTudo();
 }
 
 function editarLancamento(id){
+
 let x=lancamentos.find(a=>String(a.id)===String(id));
+
 if(!x)return alert("Lançamento não encontrado.");
 
 editandoId=x.id;
+
 document.getElementById("data").value=x.data||"";
 document.getElementById("tipo").value=x.tipo==="parceiro"?"parceiro":"cliente";
 document.getElementById("cliente").value=x.cliente||"";
 
 let idx=servicos.findIndex(s=>s.nome===x.servico);
+
 if(idx<0){
-servicos.push({nome:x.servico||"Serviço antigo",valor:numero(x.valorUnitario)});
+
+servicos.push({
+nome:x.servico||"Serviço antigo",
+valor:numero(x.valorUnitario)
+});
+
 localStorage.setItem(SERVICOS_KEY,JSON.stringify(servicos));
+
 renderServicos();
 carregarServicosSelect();
+
 idx=servicos.length-1;
 }
 
 document.getElementById("servico").value=String(idx);
+
 document.getElementById("quantidade").value=numero(x.quantidade)||1;
-document.getElementById("valorUnitario").value=numero(x.valorUnitario??(numero(x.valorTotal)/(numero(x.quantidade)||1))).toFixed(2);
+
+document.getElementById("valorUnitario").value=
+numero(x.valorUnitario??(numero(x.valorTotal)/(numero(x.quantidade)||1))).toFixed(2);
+
 document.getElementById("tituloFormulario").textContent="Editar lançamento";
 document.getElementById("btnSalvar").textContent="Salvar alterações";
 document.getElementById("btnCancelarEdicao").style.display="inline-block";
+
 atualizarTipoNome();
 calcularLancamento();
 abrirAbaPorNome("lancar");
+
 window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function excluirLancamento(id){
+
 if(!confirm("Deseja excluir este lançamento?"))return;
+
 lancamentos=lancamentos.filter(x=>String(x.id)!==String(id));
+
 salvarDados();
 atualizarTudo();
+
 mostrarToast("Lançamento excluído.");
 }
 
 function obterLancamentosFiltrados(){
+
 let c=(document.getElementById("filtroCliente")?.value||"").trim().toLowerCase();
 let i=document.getElementById("filtroInicio")?.value||"";
 let f=document.getElementById("filtroFim")?.value||"";
-return lancamentos.filter(x=>(!c||String(x.cliente).toLowerCase().includes(c))&&(!i||x.data>=i)&&(!f||x.data<=f));
+
+return lancamentos.filter(x=>
+(!c||String(x.cliente).toLowerCase().includes(c))&&
+(!i||x.data>=i)&&
+(!f||x.data<=f)
+);
 }
 
 function limparFiltros(){
+
 document.getElementById("filtroCliente").value="";
 document.getElementById("filtroInicio").value="";
 document.getElementById("filtroFim").value="";
+
 renderTabela();
 }
 
 function renderTabela(){
+
 let tb=document.getElementById("tabelaLancamentos");
 let dados=obterLancamentosFiltrados();
+
 tb.innerHTML="";
 
 if(!dados.length){
@@ -470,130 +657,303 @@ return;
 }
 
 dados.slice().sort((a,b)=>String(b.data).localeCompare(String(a.data))).forEach(x=>{
+
 let tr=document.createElement("tr");
-tr.innerHTML=`<td>${dataBR(x.data)}</td><td>${x.tipo==="parceiro"?"Parceiro":"Cliente"}</td><td>${escapeHTML(x.cliente)}</td><td>${escapeHTML(x.servico)}</td><td>${numero(x.quantidade)}</td><td>${moeda(x.valorUnitario??(numero(x.valorTotal)/(numero(x.quantidade)||1)))}</td><td>${moeda(x.valorTotal)}</td><td><div class="actions" style="margin:0"><button class="btn btn-edit" onclick="editarLancamento('${String(x.id).replace(/'/g,"")}')">Editar</button><button class="btn btn-danger" onclick="excluirLancamento('${String(x.id).replace(/'/g,"")}')">Excluir</button></div></td>`;
+
+tr.innerHTML=`
+<td>${dataBR(x.data)}</td>
+<td>${x.tipo==="parceiro"?"Parceiro":"Cliente"}</td>
+<td>${escapeHTML(x.cliente)}</td>
+<td>${escapeHTML(x.servico)}</td>
+<td>${numero(x.quantidade)}</td>
+<td>${moeda(x.valorUnitario??(numero(x.valorTotal)/(numero(x.quantidade)||1)))}</td>
+<td>${moeda(x.valorTotal)}</td>
+<td>
+<div class="actions" style="margin:0">
+<button class="btn btn-edit" onclick="editarLancamento('${String(x.id).replace(/'/g,"")}')">Editar</button>
+<button class="btn btn-danger" onclick="excluirLancamento('${String(x.id).replace(/'/g,"")}')">Excluir</button>
+</div>
+</td>`;
+
 tb.appendChild(tr);
 });
 }
 
+/* ==================================================
+   REGRA FINANCEIRA CORRIGIDA
+
+   RECEBIDO = SOMENTE LANÇAMENTOS DE CLIENTES
+   REPASSE = SOMENTE VALORES DOS PARCEIROS
+   LUCRO = RECEBIDO - REPASSES
+
+   O valor do parceiro nunca é somado à receita.
+================================================== */
+
 function totaisDashboard(){
-let totalServicos=0,totalClientes=0,totalParceiros=0,repasseLegado=0,receitaComissaoLegada=0;
+
+let totalClientes=0;
+let totalParceiros=0;
+let repasseLegado=0;
+let receitaComissaoLegada=0;
 
 lancamentos.forEach(x=>{
+
 let total=numero(x.valorTotal);
-totalServicos+=total;
 
 if(x.versaoSimplificada){
-if(x.tipo==="parceiro")totalParceiros+=total;
-else totalClientes+=total;
-}else if(x.tipo==="parceiro"&&x.modeloFinanceiro==="comissao"){
-receitaComissaoLegada+=numero(x.valorRecebido);
+
+if(x.tipo==="parceiro"){
+totalParceiros+=total;
 }else{
-if(x.tipo==="parceiro")totalParceiros+=numero(x.valorRepasse||total);
-else{
+totalClientes+=total;
+}
+
+}else if(x.tipo==="parceiro"&&x.modeloFinanceiro==="comissao"){
+
+receitaComissaoLegada+=numero(x.valorRecebido);
+
+}else{
+
+if(x.tipo==="parceiro"){
+totalParceiros+=numero(x.valorRepasse||total);
+}else{
 totalClientes+=total;
 repasseLegado+=numero(x.valorRepasse);
 }
+
 }
+
 });
 
 let repasse=totalParceiros+repasseLegado;
-let saldo=totalClientes+receitaComissaoLegada-repasse;
-return{totalServicos,repasse,saldo};
+let recebido=totalClientes+receitaComissaoLegada;
+let saldo=recebido-repasse;
+
+return{
+totalServicos:recebido,
+repasse:repasse,
+saldo:saldo
+};
+
 }
 
 function atualizarDashboard(){
+
 let t=totaisDashboard();
+
 document.getElementById("dashServicos").textContent=moeda(t.totalServicos);
 document.getElementById("dashRepasse").textContent=moeda(t.repasse);
 document.getElementById("dashSaldo").textContent=moeda(t.saldo);
+
 }
 
 function gerarFechamento(){
+
 let tipo=document.getElementById("relTipo").value;
 let nome=document.getElementById("relCliente").value.trim();
 let inicio=document.getElementById("relInicio").value;
 let fim=document.getElementById("relFim").value;
 
 if(!nome)return alert("Digite o nome do cliente ou parceiro.");
-if(inicio&&fim&&inicio>fim)return alert("A data inicial não pode ser posterior à data final.");
 
-let dados=lancamentos.filter(x=>(x.tipo==="parceiro"?"parceiro":"cliente")===tipo&&String(x.cliente).toLowerCase()===nome.toLowerCase()&&(!inicio||x.data>=inicio)&&(!fim||x.data<=fim));
+if(inicio&&fim&&inicio>fim){
+return alert("A data inicial não pode ser posterior à data final.");
+}
 
-if(!dados.length)return alert("Nenhum lançamento encontrado para esse nome, tipo e período.");
+let dados=lancamentos.filter(x=>
+(x.tipo==="parceiro"?"parceiro":"cliente")===tipo&&
+String(x.cliente).toLowerCase()===nome.toLowerCase()&&
+(!inicio||x.data>=inicio)&&
+(!fim||x.data<=fim)
+);
+
+if(!dados.length){
+return alert("Nenhum lançamento encontrado para esse nome, tipo e período.");
+}
 
 let mapa={};
+
 dados.forEach(x=>{
+
 let chave=x.servico||"Serviço";
-if(!mapa[chave])mapa[chave]={servico:chave,quantidade:0,total:0};
+
+if(!mapa[chave]){
+mapa[chave]={
+servico:chave,
+quantidade:0,
+total:0
+};
+}
+
 mapa[chave].quantidade+=numero(x.quantidade);
 mapa[chave].total+=numero(x.valorTotal);
+
 });
 
 let itens=Object.values(mapa).sort((a,b)=>a.servico.localeCompare(b.servico,"pt-BR"));
+
 let total=itens.reduce((s,x)=>s+x.total,0);
 let quantidade=itens.reduce((s,x)=>s+x.quantidade,0);
 
-fechamentoAtual={tipo,nome:dados[0].cliente,inicio,fim,itens,total,quantidade};
+fechamentoAtual={
+tipo,
+nome:dados[0].cliente,
+inicio,
+fim,
+itens,
+total,
+quantidade
+};
 
-let periodo=(inicio?dataBR(inicio):"Início não informado")+" até "+(fim?dataBR(fim):"data atual");
-let titulo=tipo==="cliente"?"Valor a repassar à DJ":"Valor a receber do parceiro";
+let periodo=
+(inicio?dataBR(inicio):"Início não informado")+
+" até "+
+(fim?dataBR(fim):"data atual");
 
-let linhas=itens.map(x=>`<tr><td>${escapeHTML(x.servico)}</td><td>${x.quantidade}</td><td>${moeda(x.total)}</td></tr>`).join("");
+let titulo=tipo==="cliente"?
+"Valor a repassar à DJ":
+"Valor a receber do parceiro";
 
-document.getElementById("fechamentoConteudo").innerHTML=`<div class="closing-box"><div class="small">${tipo==="cliente"?"Cliente":"Parceiro"}</div><strong>${escapeHTML(fechamentoAtual.nome)}</strong><br><span class="small">${escapeHTML(periodo)}</span></div><div class="closing-box"><div class="small">Resumo dos serviços</div><div class="table-wrap"><table style="min-width:0"><thead><tr><th>Tipo de serviço</th><th>Quantidade</th><th>Valor total</th></tr></thead><tbody>${linhas}</tbody></table></div><p><strong>Total de serviços: ${quantidade}</strong></p><div class="small">${titulo}</div><div class="closing-total">${moeda(total)}</div></div>`;
+let linhas=itens.map(x=>`
+<tr>
+<td>${escapeHTML(x.servico)}</td>
+<td>${x.quantidade}</td>
+<td>${moeda(x.total)}</td>
+</tr>
+`).join("");
+
+document.getElementById("fechamentoConteudo").innerHTML=`
+
+<div class="closing-box">
+<div class="small">${tipo==="cliente"?"Cliente":"Parceiro"}</div>
+<strong>${escapeHTML(fechamentoAtual.nome)}</strong>
+<br>
+<span class="small">${escapeHTML(periodo)}</span>
+</div>
+
+<div class="closing-box">
+<div class="small">Resumo dos serviços</div>
+
+<div class="table-wrap">
+<table style="min-width:0">
+<thead>
+<tr>
+<th>Tipo de serviço</th>
+<th>Quantidade</th>
+<th>Valor total</th>
+</tr>
+</thead>
+<tbody>${linhas}</tbody>
+</table>
+</div>
+
+<p><strong>Total de serviços: ${quantidade}</strong></p>
+
+<div class="small">${titulo}</div>
+<div class="closing-total">${moeda(total)}</div>
+</div>
+`;
 
 document.getElementById("fechamento").style.display="block";
-document.getElementById("fechamento").scrollIntoView({behavior:"smooth",block:"start"});
+
+document.getElementById("fechamento").scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
 }
 
 function textoRelatorio(){
+
 let d=fechamentoAtual;
+
 if(!d)return"";
+
 let tipo=d.tipo==="cliente"?"Cliente":"Parceiro";
-let destino=d.tipo==="cliente"?"Valor a repassar à DJ":"Valor a receber do parceiro";
-let msg=`PROJETOS-DJ — RELATÓRIO DE SERVIÇOS\n${tipo}: ${d.nome}\nPeríodo: ${d.inicio?dataBR(d.inicio):"Não informado"} até ${d.fim?dataBR(d.fim):"Não informado"}\n\nSERVIÇOS:\n`;
-d.itens.forEach(x=>msg+=`${x.servico} | Quantidade: ${x.quantidade} | Total: ${moeda(x.total)}\n`);
-msg+=`\nQuantidade total de serviços: ${d.quantidade}\n${destino}: ${moeda(d.total)}\n\nProjetos-DJ`;
+
+let destino=d.tipo==="cliente"?
+"Valor a repassar à DJ":
+"Valor a receber do parceiro";
+
+let msg=`PROJETOS-DJ — RELATÓRIO DE SERVIÇOS
+${tipo}: ${d.nome}
+Período: ${d.inicio?dataBR(d.inicio):"Não informado"} até ${d.fim?dataBR(d.fim):"Não informado"}
+
+SERVIÇOS:
+`;
+
+d.itens.forEach(x=>{
+msg+=`${x.servico} | Quantidade: ${x.quantidade} | Total: ${moeda(x.total)}\n`;
+});
+
+msg+=`
+Quantidade total de serviços: ${d.quantidade}
+${destino}: ${moeda(d.total)}
+
+Projetos-DJ`;
+
 return msg;
 }
 
 function enviarWhatsApp(){
-if(!fechamentoAtual)return alert("Gere o relatório primeiro.");
-window.open("https://wa.me/?text="+encodeURIComponent(textoRelatorio()),"_blank");
+
+if(!fechamentoAtual){
+return alert("Gere o relatório primeiro.");
+}
+
+window.open(
+"https://wa.me/?text="+encodeURIComponent(textoRelatorio()),
+"_blank"
+);
+
 }
 
 function imprimirFechamento(){
-if(!fechamentoAtual)return alert("Gere o relatório primeiro.");
+
+if(!fechamentoAtual){
+return alert("Gere o relatório primeiro.");
+}
+
 window.print();
 }
 
 function limparFechamento(){
+
 document.getElementById("relCliente").value="";
 document.getElementById("relInicio").value="";
 document.getElementById("relFim").value="";
+
 document.getElementById("fechamento").style.display="none";
 document.getElementById("fechamentoConteudo").innerHTML="";
+
 fechamentoAtual=null;
 }
 
 function atualizarTudo(){
+
 atualizarDashboard();
 renderTabela();
 renderServicos();
 carregarServicosSelect();
 calcularLancamento();
 atualizarTipoNome();
+
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
+
 definirDataAtual();
 renderServicos();
 carregarServicosSelect();
+
 document.getElementById("servico").addEventListener("change",preencherValor);
 document.getElementById("tipo").addEventListener("change",atualizarTipoNome);
+
 atualizarTudo();
+
 });
+
 </script>
+
 </body>
 </html>
