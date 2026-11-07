@@ -238,7 +238,7 @@ header,nav,.no-print{display:none!important}
 <label>Tipo</label>
 <select id="relTipo">
 <option value="cliente">Cliente — valor a repassar à DJ</option>
-<option value="parceiro">Parceiro — valor a receber</option>
+<option value="parceiro">Parceiro — valor a repassar ao parceiro</option>
 </select>
 </div>
 
@@ -260,8 +260,16 @@ header,nav,.no-print{display:none!important}
 </div>
 
 <div class="actions">
-<button class="btn btn-primary" onclick="gerarFechamento()">Gerar relatório</button>
+<button class="btn btn-primary" onclick="gerarFechamento()">Gerar relatório individual</button>
 <button class="btn btn-secondary" onclick="limparFechamento()">Limpar</button>
+</div>
+</div>
+
+<div class="card">
+<h2>Relatório geral consolidado</h2>
+<p class="small">Gera um fechamento de toda a movimentação financeira, reunindo clientes, parceiros, recebimentos, repasses e saldo da DJ no período selecionado acima.</p>
+<div class="actions">
+<button class="btn btn-success" onclick="gerarRelatorioGeral()">Gerar relatório geral</button>
 </div>
 </div>
 
@@ -680,23 +688,25 @@ tb.appendChild(tr);
 }
 
 /* ==================================================
-   REGRA FINANCEIRA CORRIGIDA
+   REGRA FINANCEIRA
 
-   RECEBIDO = SOMENTE LANÇAMENTOS DE CLIENTES
-   REPASSE = SOMENTE VALORES DOS PARCEIROS
+   RECEBIDO = LANÇAMENTOS DE CLIENTES
+              + COMISSÕES LEGADAS DE PARCEIROS
+
+   REPASSE = LANÇAMENTOS DE PARCEIROS
+             + REPASSES LEGADOS DE CLIENTES
+
    LUCRO = RECEBIDO - REPASSES
-
-   O valor do parceiro nunca é somado à receita.
 ================================================== */
 
-function totaisDashboard(){
+function calcularTotaisFinanceiros(dados){
 
 let totalClientes=0;
 let totalParceiros=0;
 let repasseLegado=0;
 let receitaComissaoLegada=0;
 
-lancamentos.forEach(x=>{
+dados.forEach(x=>{
 
 let total=numero(x.valorTotal);
 
@@ -727,14 +737,18 @@ repasseLegado+=numero(x.valorRepasse);
 
 let repasse=totalParceiros+repasseLegado;
 let recebido=totalClientes+receitaComissaoLegada;
-let saldo=recebido-repasse;
 
 return{
 totalServicos:recebido,
+recebido:recebido,
 repasse:repasse,
-saldo:saldo
+saldo:recebido-repasse
 };
 
+}
+
+function totaisDashboard(){
+return calcularTotaisFinanceiros(lancamentos);
 }
 
 function atualizarDashboard(){
@@ -747,24 +761,40 @@ document.getElementById("dashSaldo").textContent=moeda(t.saldo);
 
 }
 
+function obterPeriodoRelatorio(){
+
+let inicio=document.getElementById("relInicio").value;
+let fim=document.getElementById("relFim").value;
+
+if(inicio&&fim&&inicio>fim){
+alert("A data inicial não pode ser posterior à data final.");
+return null;
+}
+
+let dados=lancamentos.filter(x=>
+(!inicio||x.data>=inicio)&&
+(!fim||x.data<=fim)
+);
+
+return{inicio,fim,dados};
+
+}
+
 function gerarFechamento(){
 
 let tipo=document.getElementById("relTipo").value;
 let nome=document.getElementById("relCliente").value.trim();
-let inicio=document.getElementById("relInicio").value;
-let fim=document.getElementById("relFim").value;
 
 if(!nome)return alert("Digite o nome do cliente ou parceiro.");
 
-if(inicio&&fim&&inicio>fim){
-return alert("A data inicial não pode ser posterior à data final.");
-}
+let periodo=obterPeriodoRelatorio();
+if(!periodo)return;
 
-let dados=lancamentos.filter(x=>
+let {inicio,fim,dados:todos}=periodo;
+
+let dados=todos.filter(x=>
 (x.tipo==="parceiro"?"parceiro":"cliente")===tipo&&
-String(x.cliente).toLowerCase()===nome.toLowerCase()&&
-(!inicio||x.data>=inicio)&&
-(!fim||x.data<=fim)
+String(x.cliente).toLowerCase()===nome.toLowerCase()
 );
 
 if(!dados.length){
@@ -805,14 +835,14 @@ total,
 quantidade
 };
 
-let periodo=
+let periodoTexto=
 (inicio?dataBR(inicio):"Início não informado")+
 " até "+
 (fim?dataBR(fim):"data atual");
 
 let titulo=tipo==="cliente"?
 "Valor a repassar à DJ":
-"Valor a receber do parceiro";
+"Valor a repassar ao parceiro";
 
 let linhas=itens.map(x=>`
 <tr>
@@ -828,7 +858,7 @@ document.getElementById("fechamentoConteudo").innerHTML=`
 <div class="small">${tipo==="cliente"?"Cliente":"Parceiro"}</div>
 <strong>${escapeHTML(fechamentoAtual.nome)}</strong>
 <br>
-<span class="small">${escapeHTML(periodo)}</span>
+<span class="small">${escapeHTML(periodoTexto)}</span>
 </div>
 
 <div class="closing-box">
@@ -863,17 +893,267 @@ block:"start"
 
 }
 
+/* ==================================================
+   NOVO RELATÓRIO GERAL CONSOLIDADO
+
+   Utiliza o período selecionado nos filtros
+   da área de relatórios individuais.
+================================================== */
+
+function gerarRelatorioGeral(){
+
+let periodo=obterPeriodoRelatorio();
+if(!periodo)return;
+
+let {inicio,fim,dados}=periodo;
+
+if(!dados.length){
+return alert("Nenhum lançamento encontrado no período selecionado.");
+}
+
+let totais=calcularTotaisFinanceiros(dados);
+let quantidadeTotal=dados.reduce((s,x)=>s+numero(x.quantidade),0);
+
+let clientes={};
+let parceiros={};
+let servicosResumo={};
+
+dados.forEach(x=>{
+
+let nome=String(x.cliente||"Não informado");
+let total=numero(x.valorTotal);
+let qtd=numero(x.quantidade);
+let chaveServico=x.servico||"Serviço";
+
+if(!servicosResumo[chaveServico]){
+servicosResumo[chaveServico]={quantidade:0,total:0};
+}
+
+servicosResumo[chaveServico].quantidade+=qtd;
+servicosResumo[chaveServico].total+=total;
+
+if(x.tipo==="parceiro"){
+
+if(!parceiros[nome]){
+parceiros[nome]={quantidade:0,repasse:0,recebido:0};
+}
+
+parceiros[nome].quantidade+=qtd;
+
+if(x.versaoSimplificada){
+parceiros[nome].repasse+=total;
+}else if(x.modeloFinanceiro==="comissao"){
+parceiros[nome].recebido+=numero(x.valorRecebido);
+}else{
+parceiros[nome].repasse+=numero(x.valorRepasse||total);
+}
+
+}else{
+
+if(!clientes[nome]){
+clientes[nome]={quantidade:0,recebido:0,repasseLegado:0};
+}
+
+clientes[nome].quantidade+=qtd;
+clientes[nome].recebido+=total;
+
+if(!x.versaoSimplificada){
+clientes[nome].repasseLegado+=numero(x.valorRepasse);
+}
+
+}
+
+});
+
+let listaClientes=Object.entries(clientes).sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"));
+let listaParceiros=Object.entries(parceiros).sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"));
+let listaServicos=Object.entries(servicosResumo).sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"));
+
+let periodoTexto=
+(inicio?dataBR(inicio):"Início não informado")+
+" até "+
+(fim?dataBR(fim):"data atual");
+
+let linhasServicos=listaServicos.map(([nome,x])=>`
+<tr>
+<td>${escapeHTML(nome)}</td>
+<td>${x.quantidade}</td>
+<td>${moeda(x.total)}</td>
+</tr>
+`).join("");
+
+let linhasClientes=listaClientes.map(([nome,x])=>`
+<tr>
+<td>${escapeHTML(nome)}</td>
+<td>${x.quantidade}</td>
+<td>${moeda(x.recebido)}</td>
+</tr>
+`).join("");
+
+let linhasParceiros=listaParceiros.map(([nome,x])=>`
+<tr>
+<td>${escapeHTML(nome)}</td>
+<td>${x.quantidade}</td>
+<td>${moeda(x.repasse)}</td>
+</tr>
+`).join("");
+
+fechamentoAtual={
+tipo:"geral",
+inicio,
+fim,
+dados,
+totais,
+quantidadeTotal,
+listaClientes,
+listaParceiros,
+listaServicos
+};
+
+document.getElementById("fechamentoConteudo").innerHTML=`
+
+<div class="closing-box">
+<div class="small">RELATÓRIO GERAL CONSOLIDADO</div>
+<strong>DJ Consultoria em Energia Solar</strong>
+<br>
+<span class="small">Período: ${escapeHTML(periodoTexto)}</span>
+<br>
+<span class="small">Total de lançamentos: ${dados.length}</span>
+<br>
+<span class="small">Quantidade total de serviços: ${quantidadeTotal}</span>
+</div>
+
+<div class="closing-box">
+<strong>RESUMO FINANCEIRO</strong>
+
+<p>
+<span class="small">Total recebido</span><br>
+<strong class="blue">${moeda(totais.recebido)}</strong>
+</p>
+
+<p>
+<span class="small">Total a repassar aos parceiros</span><br>
+<strong class="red">${moeda(totais.repasse)}</strong>
+</p>
+
+<hr>
+
+<div class="small">SALDO LÍQUIDO DA DJ CONSULTORIA</div>
+<div class="closing-total">${moeda(totais.saldo)}</div>
+</div>
+
+<div class="closing-box">
+<strong>RESUMO DOS SERVIÇOS</strong>
+<div class="table-wrap">
+<table style="min-width:0">
+<thead>
+<tr>
+<th>Serviço</th>
+<th>Quantidade</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>${linhasServicos}</tbody>
+</table>
+</div>
+</div>
+
+<div class="closing-box">
+<strong>RECEBIMENTOS POR CLIENTE</strong>
+<div class="table-wrap">
+<table style="min-width:0">
+<thead>
+<tr>
+<th>Cliente</th>
+<th>Qtd.</th>
+<th>Valor recebido</th>
+</tr>
+</thead>
+<tbody>${linhasClientes||'<tr><td colspan="3">Nenhum cliente encontrado.</td></tr>'}</tbody>
+</table>
+</div>
+</div>
+
+<div class="closing-box">
+<strong>REPASSES POR PARCEIRO</strong>
+<div class="table-wrap">
+<table style="min-width:0">
+<thead>
+<tr>
+<th>Parceiro</th>
+<th>Qtd.</th>
+<th>Valor a repassar</th>
+</tr>
+</thead>
+<tbody>${linhasParceiros||'<tr><td colspan="3">Nenhum parceiro encontrado.</td></tr>'}</tbody>
+</table>
+</div>
+</div>
+`;
+
+document.getElementById("fechamento").style.display="block";
+
+document.getElementById("fechamento").scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
 function textoRelatorio(){
 
 let d=fechamentoAtual;
 
 if(!d)return"";
 
+if(d.tipo==="geral"){
+
+let msg=`PROJETOS-DJ — RELATÓRIO GERAL CONSOLIDADO
+DJ Consultoria em Energia Solar
+Período: ${d.inicio?dataBR(d.inicio):"Início não informado"} até ${d.fim?dataBR(d.fim):"Data atual"}
+
+RESUMO FINANCEIRO
+Total de lançamentos: ${d.dados.length}
+Quantidade total de serviços: ${d.quantidadeTotal}
+Total recebido: ${moeda(d.totais.recebido)}
+Total a repassar aos parceiros: ${moeda(d.totais.repasse)}
+SALDO LÍQUIDO DA DJ: ${moeda(d.totais.saldo)}
+
+SERVIÇOS REALIZADOS:
+`;
+
+d.listaServicos.forEach(([nome,x])=>{
+msg+=`${nome} | Quantidade: ${x.quantidade} | Total: ${moeda(x.total)}\n`;
+});
+
+msg+=`
+RECEBIMENTOS POR CLIENTE:
+`;
+
+d.listaClientes.forEach(([nome,x])=>{
+msg+=`${nome} | Quantidade: ${x.quantidade} | Recebido: ${moeda(x.recebido)}\n`;
+});
+
+msg+=`
+REPASSES POR PARCEIRO:
+`;
+
+d.listaParceiros.forEach(([nome,x])=>{
+msg+=`${nome} | Quantidade: ${x.quantidade} | A repassar: ${moeda(x.repasse)}\n`;
+});
+
+msg+=`
+Projetos-DJ`;
+
+return msg;
+
+}
+
 let tipo=d.tipo==="cliente"?"Cliente":"Parceiro";
 
 let destino=d.tipo==="cliente"?
 "Valor a repassar à DJ":
-"Valor a receber do parceiro";
+"Valor a repassar ao parceiro";
 
 let msg=`PROJETOS-DJ — RELATÓRIO DE SERVIÇOS
 ${tipo}: ${d.nome}
