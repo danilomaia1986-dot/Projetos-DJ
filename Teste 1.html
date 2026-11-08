@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Projetos-DJ — Teste</title>
-
+<title>Projetos-DJ — Versão 2</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f2f4f7;color:#17202a}
@@ -14,9 +13,8 @@ header p{margin:5px 0 0;font-size:13px;opacity:.8}
 nav{display:flex;background:#fff;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:10}
 nav button{flex:1;border:0;background:white;padding:14px 4px;font-size:13px;font-weight:bold;color:#555}
 nav button.active{color:#2563eb;border-bottom:3px solid #2563eb}
-.container{max-width:850px;margin:auto;padding:15px}
-.tab{display:none}
-.tab.active{display:block}
+.container{max-width:900px;margin:auto;padding:15px}
+.tab{display:none}.tab.active{display:block}
 .card{background:white;border-radius:14px;padding:16px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .card h2{margin:0 0 15px;font-size:18px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -26,21 +24,16 @@ input,select{width:100%;padding:12px;border:1px solid #ccd2d9;border-radius:9px;
 input:focus,select:focus{border-color:#2563eb}
 button{cursor:pointer}
 .btn{border:0;border-radius:9px;padding:12px 16px;font-size:14px;font-weight:bold}
-.btn-primary{background:#2563eb;color:white}
-.btn-success{background:#16a34a;color:white}
-.btn-danger{background:#dc2626;color:white}
-.btn-secondary{background:#e5e7eb;color:#111827}
-.btn-whatsapp{background:#25d366;color:white}
-.btn-print{background:#111827;color:white}
+.btn-primary{background:#2563eb;color:white}.btn-success{background:#16a34a;color:white}
+.btn-danger{background:#dc2626;color:white}.btn-secondary{background:#e5e7eb;color:#111827}
+.btn-whatsapp{background:#25d366;color:white}.btn-print{background:#111827;color:white}
 .btn-edit{background:#f59e0b;color:#111827}
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
 .summary{display:grid;grid-template-columns:1fr;gap:10px}
 .summary-card{background:white;border-radius:12px;padding:17px;box-shadow:0 2px 7px rgba(0,0,0,.05)}
 .summary-card span{display:block;font-size:13px;color:#666;margin-bottom:7px}
 .summary-card strong{font-size:22px}
-.blue{color:#2563eb}
-.green{color:#16a34a}
-.red{color:#dc2626}
+.blue{color:#2563eb}.green{color:#16a34a}.red{color:#dc2626}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;min-width:700px}
 th,td{padding:9px 7px;border-bottom:1px solid #e5e7eb;text-align:left;font-size:12px}
@@ -53,22 +46,24 @@ th{background:#f8fafc;font-weight:bold}
 .service-row{display:grid;grid-template-columns:1fr 130px;gap:8px;margin-bottom:8px;align-items:end}
 @media(max-width:600px){.service-row{grid-template-columns:1fr}}
 hr{border:0;border-top:1px solid #e5e7eb;margin:18px 0}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#111827;color:white;padding:12px 18px;border-radius:9px;display:none;z-index:999;font-size:14px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#111827;color:white;padding:12px 18px;border-radius:9px;display:none;z-index:999;font-size:14px;max-width:90%;text-align:center}
+.option-box{display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px;margin-top:10px}
+.option-box label{display:flex;align-items:center;gap:9px;margin:0;font-size:14px}
+.option-box input{width:20px;height:20px;margin:0}
+.tag{display:inline-block;padding:4px 7px;border-radius:6px;background:#e0e7ff;color:#3730a3;font-size:10px;font-weight:bold}
+.tag-auto{background:#dcfce7;color:#166534}
+.note{background:#fff7ed;border-left:4px solid #f59e0b;padding:11px;border-radius:7px;font-size:12px;color:#7c2d12;margin-top:10px}
 @media print{
-body{background:white}
-header,nav,.no-print{display:none!important}
-.container{max-width:none;padding:0}
-.card{box-shadow:none}
+body{background:white}header,nav,.no-print{display:none!important}
+.container{max-width:none;padding:0}.card{box-shadow:none}
 #fechamento{display:block!important}
 }
 </style>
 </head>
-
 <body>
-
 <header>
 <h1>Projetos-DJ</h1>
-<p>Ambiente de teste — dados separados da versão oficial</p>
+<p>Versão 2 — controle de vendas, parceiros e repasses</p>
 </header>
 
 <nav>
@@ -79,82 +74,34 @@ header,nav,.no-print{display:none!important}
 </nav>
 
 <div class="container">
-
 <section id="inicio" class="tab active">
 <div class="summary">
-
-<div class="summary-card">
-<span>Valor recebido dos clientes</span>
-<strong class="blue" id="dashServicos">R$ 0,00</strong>
+<div class="summary-card"><span>Faturamento lançado aos clientes</span><strong class="blue" id="dashServicos">R$ 0,00</strong></div>
+<div class="summary-card"><span>Repasses aos parceiros</span><strong class="red" id="dashRepasse">R$ 0,00</strong></div>
+<div class="summary-card"><span>Resultado bruto da DJ</span><strong class="green" id="dashSaldo">R$ 0,00</strong></div>
 </div>
-
-<div class="summary-card">
-<span>Valor total a repassar aos parceiros</span>
-<strong class="red" id="dashRepasse">R$ 0,00</strong>
-</div>
-
-<div class="summary-card">
-<span>Lucro da DJ Consultoria</span>
-<strong class="green" id="dashSaldo">R$ 0,00</strong>
-</div>
-
-</div>
+<div class="note">O resultado bruto é calculado pelo faturamento lançado aos clientes menos os repasses registrados aos parceiros. Não representa necessariamente valores já pagos ou recebidos em conta, nem desconta impostos e outras despesas.</div>
 </section>
 
 <section id="lancar" class="tab">
-
 <div class="card">
 <h2 id="tituloFormulario">Novo lançamento</h2>
-
 <div class="grid">
-
-<div>
-<label>Data</label>
-<input type="date" id="data">
+<div><label>Data</label><input type="date" id="data"></div>
+<div><label>Tipo</label><select id="tipo"><option value="cliente">Cliente</option><option value="parceiro">Parceiro</option></select></div>
+<div><label id="labelNome">Nome do cliente</label><input type="text" id="cliente" placeholder="Digite o nome"></div>
+<div><label>Tipo de serviço realizado</label><select id="servico"><option value="">Selecione</option></select></div>
+<div><label>Quantidade</label><input type="number" id="quantidade" value="1" min="1" step="1" oninput="calcularLancamento()"></div>
+<div><label>Valor unitário do serviço</label><input type="number" id="valorUnitario" value="0" min="0" step="0.01" oninput="calcularLancamento()"></div>
+<div><label>Valor total</label><input type="number" id="valorTotal" value="0" readonly></div>
 </div>
 
-<div>
-<label>Tipo</label>
-<select id="tipo">
-<option value="cliente">Cliente</option>
-<option value="parceiro">Parceiro</option>
-</select>
+<div id="opcaoVictorWrap" class="option-box">
+<label><input type="checkbox" id="incluirVictor"> Incluir aprovação do parceiro Victor neste projeto (repasse automático de R$ 75,00 por unidade)</label>
+<p class="small" style="margin:8px 0 0 29px">Marque somente quando o cliente contratar também a aprovação. Se não marcar, o projeto ficará somente com a DJ.</p>
 </div>
 
-<div>
-<label id="labelNome">Nome do cliente</label>
-<input type="text" id="cliente" placeholder="Digite o nome">
-</div>
-
-<div>
-<label>Tipo de serviço realizado</label>
-<select id="servico">
-<option value="">Selecione</option>
-</select>
-</div>
-
-<div>
-<label>Quantidade</label>
-<input type="number" id="quantidade" value="1" min="1" step="1" oninput="calcularLancamento()">
-</div>
-
-<div>
-<label>Valor unitário do serviço</label>
-<input type="number" id="valorUnitario" value="0" min="0" step="0.01" oninput="calcularLancamento()">
-</div>
-
-<div>
-<label>Valor total</label>
-<input type="number" id="valorTotal" value="0" readonly>
-</div>
-
-</div>
-
-<div class="highlight">
-<div class="small">Total do lançamento</div>
-<strong id="previewTotal">R$ 0,00</strong>
-</div>
-
+<div class="highlight"><div class="small">Total do lançamento</div><strong id="previewTotal">R$ 0,00</strong><div class="small" id="previewRepasse" style="margin-top:5px"></div></div>
 <div class="actions">
 <button class="btn btn-success" onclick="salvarLancamento()" id="btnSalvar">Salvar lançamento</button>
 <button class="btn btn-secondary" onclick="limparFormulario()">Limpar</button>
@@ -164,135 +111,73 @@ header,nav,.no-print{display:none!important}
 
 <div class="card">
 <h2>Serviços e valores</h2>
-<p class="small">Altere os valores padrão dos serviços. Os lançamentos já realizados não serão modificados.</p>
-
+<p class="small">Altere os valores padrão dos serviços. Os lançamentos já realizados não serão modificados. O repasse automático de Victor permanece fixo em R$ 75,00 por aprovação.</p>
 <div id="listaServicos"></div>
-
 <div class="actions">
 <button class="btn btn-primary" onclick="adicionarServico()">+ Adicionar serviço</button>
 <button class="btn btn-success" onclick="salvarServicos()">Salvar valores</button>
 </div>
 </div>
-
 </section>
 
 <section id="movimentacoes" class="tab">
-
 <div class="card">
 <h2>Movimentações</h2>
-
 <div class="grid">
-
-<div>
-<label>Cliente / parceiro</label>
-<input type="text" id="filtroCliente" placeholder="Todos" oninput="renderTabela()">
+<div><label>Cliente / parceiro</label><input type="text" id="filtroCliente" placeholder="Todos" oninput="renderTabela()"></div>
+<div><label>Data inicial</label><input type="date" id="filtroInicio" onchange="renderTabela()"></div>
+<div><label>Data final</label><input type="date" id="filtroFim" onchange="renderTabela()"></div>
 </div>
-
-<div>
-<label>Data inicial</label>
-<input type="date" id="filtroInicio" onchange="renderTabela()">
+<div class="actions"><button class="btn btn-secondary" onclick="limparFiltros()">Limpar filtros</button></div>
 </div>
-
-<div>
-<label>Data final</label>
-<input type="date" id="filtroFim" onchange="renderTabela()">
-</div>
-
-</div>
-
-<div class="actions">
-<button class="btn btn-secondary" onclick="limparFiltros()">Limpar filtros</button>
-</div>
-</div>
-
-<div class="card">
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>Data</th>
-<th>Tipo</th>
-<th>Cliente/parceiro</th>
-<th>Serviço</th>
-<th>Qtd.</th>
-<th>Valor unitário</th>
-<th>Valor total</th>
-<th>Ações</th>
-</tr>
-</thead>
-<tbody id="tabelaLancamentos"></tbody>
-</table>
-</div>
-</div>
-
+<div class="card"><div class="table-wrap">
+<table><thead><tr><th>Data</th><th>Tipo</th><th>Cliente/parceiro</th><th>Serviço</th><th>Qtd.</th><th>Valor unitário</th><th>Valor total</th><th>Vínculo</th><th>Ações</th></tr></thead>
+<tbody id="tabelaLancamentos"></tbody></table>
+</div></div>
 </section>
 
 <section id="relatorios" class="tab">
-
 <div class="card">
 <h2>Relatório individual</h2>
-
 <div class="grid">
-
-<div>
-<label>Tipo</label>
-<select id="relTipo">
-<option value="cliente">Cliente — valor a repassar à DJ</option>
-<option value="parceiro">Parceiro — valor a repassar ao parceiro</option>
-</select>
+<div><label>Tipo</label><select id="relTipo"><option value="cliente">Cliente — faturamento lançado</option><option value="parceiro">Parceiro — valor a repassar</option></select></div>
+<div><label>Nome do cliente/parceiro</label><input type="text" id="relCliente" placeholder="Digite o nome"></div>
+<div><label>Data inicial</label><input type="date" id="relInicio"></div>
+<div><label>Data final</label><input type="date" id="relFim"></div>
 </div>
-
-<div>
-<label>Nome do cliente/parceiro</label>
-<input type="text" id="relCliente" placeholder="Digite o nome">
-</div>
-
-<div>
-<label>Data inicial</label>
-<input type="date" id="relInicio">
-</div>
-
-<div>
-<label>Data final</label>
-<input type="date" id="relFim">
-</div>
-
-</div>
-
 <div class="actions">
 <button class="btn btn-primary" onclick="gerarFechamento()">Gerar relatório individual</button>
 <button class="btn btn-secondary" onclick="limparFechamento()">Limpar</button>
 </div>
 </div>
-
 <div class="card">
 <h2>Relatório geral consolidado</h2>
-<p class="small">Gera um fechamento de toda a movimentação financeira, reunindo clientes, parceiros, recebimentos, repasses e saldo da DJ no período selecionado acima.</p>
-<div class="actions">
-<button class="btn btn-success" onclick="gerarRelatorioGeral()">Gerar relatório geral</button>
+<p class="small">Separa faturamento dos clientes, serviços executados pelos parceiros, repasses e resultado bruto. Os serviços dos parceiros não são somados novamente ao faturamento.</p>
+<div class="actions"><button class="btn btn-success" onclick="gerarRelatorioGeral()">Gerar relatório geral</button></div>
 </div>
-</div>
-
 <div id="fechamento" class="card" style="display:none">
-<h2>Relatório de serviços</h2>
-<div id="fechamentoConteudo"></div>
-
+<h2>Relatório de serviços</h2><div id="fechamentoConteudo"></div>
 <div class="actions no-print">
 <button class="btn btn-whatsapp" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
 <button class="btn btn-print" onclick="imprimirFechamento()">Imprimir</button>
 </div>
 </div>
-
 </section>
-
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-
+/*
+  IMPORTANTE:
+  As chaves de armazenamento abaixo foram mantidas iguais às do código recebido.
+  Assim, esta versão continua lendo os dados que já estão nessa instalação.
+*/
 const STORAGE_KEY="projetosDJ_teste_v1";
 const SERVICOS_KEY="servicosDJ_teste_v1";
+const REPASSE_VICTOR=75;
+const NOME_VICTOR="Victor";
+const SERVICO_VENDA="Projeto sem estudo";
+const SERVICO_APROVACAO="Aprovação de projeto";
 
 const SERVICOS_PADRAO=[
 {nome:"Consulta de disponibilidade",valor:30},
@@ -305,935 +190,362 @@ const SERVICOS_PADRAO=[
 ];
 
 function lerJSON(chave,padrao){
-try{
-const v=JSON.parse(localStorage.getItem(chave));
-return v??padrao;
-}catch(e){
-return padrao;
+try{const v=JSON.parse(localStorage.getItem(chave));return v??padrao}
+catch(e){return padrao}
 }
-}
-
 let servicos=lerJSON(SERVICOS_KEY,SERVICOS_PADRAO);
 let lancamentos=lerJSON(STORAGE_KEY,[]);
-
 if(!Array.isArray(servicos))servicos=SERVICOS_PADRAO;
 if(!Array.isArray(lancamentos))lancamentos=[];
-
 let fechamentoAtual=null;
 let editandoId=null;
 
 function numero(v){
 if(v===null||v===undefined||v==="")return 0;
 if(typeof v==="number")return Number.isFinite(v)?v:0;
-
 let t=String(v).replace(/\s/g,"").replace(/R\$/g,"");
-
-if(t.includes(",")&&t.includes(".")){
-t=t.replace(/\./g,"").replace(",",".");
-}else{
-t=t.replace(",",".");
+if(t.includes(",")&&t.includes("."))t=t.replace(/\./g,"").replace(",",".");
+else t=t.replace(",",".");
+let n=parseFloat(t);return Number.isFinite(n)?n:0;
 }
-
-let n=parseFloat(t);
-return Number.isFinite(n)?n:0;
-}
-
-function moeda(v){
-return numero(v).toLocaleString("pt-BR",{
-style:"currency",
-currency:"BRL"
-});
-}
-
-function dataBR(d){
-if(!d)return "";
-let p=String(d).split("-");
-return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:d;
-}
-
-function escapeHTML(s){
-return String(s??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-}
-
-function mostrarToast(m){
-let t=document.getElementById("toast");
-t.textContent=m;
-t.style.display="block";
-clearTimeout(window.toastTimer);
-window.toastTimer=setTimeout(()=>t.style.display="none",2200);
-}
-
-function salvarDados(){
-localStorage.setItem(STORAGE_KEY,JSON.stringify(lancamentos));
-}
-
+function moeda(v){return numero(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+function dataBR(d){if(!d)return "";let p=String(d).split("-");return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:d}
+function escapeHTML(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function normalizarTexto(s){return String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase()}
+function mostrarToast(m){let t=document.getElementById("toast");t.textContent=m;t.style.display="block";clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display="none",2400)}
+function salvarDados(){localStorage.setItem(STORAGE_KEY,JSON.stringify(lancamentos))}
+function novoId(){return "dj-"+Date.now()+"-"+Math.random().toString(36).slice(2,8)}
 function abrirAba(nome,botao){
 document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
 document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));
-
-document.getElementById(nome)?.classList.add("active");
-
-if(botao)botao.classList.add("active");
-
-atualizarTudo();
+document.getElementById(nome)?.classList.add("active");if(botao)botao.classList.add("active");atualizarTudo();
 }
-
-function abrirAbaPorNome(nome){
-let b=[...document.querySelectorAll(".tab-btn")].find(
-x=>x.getAttribute("onclick")?.includes("'"+nome+"'")
-);
-abrirAba(nome,b);
-}
-
-function definirDataAtual(){
-let d=new Date();
-
-document.getElementById("data").value=[
-d.getFullYear(),
-String(d.getMonth()+1).padStart(2,"0"),
-String(d.getDate()).padStart(2,"0")
-].join("-");
-}
+function abrirAbaPorNome(nome){let b=[...document.querySelectorAll(".tab-btn")].find(x=>x.getAttribute("onclick")?.includes("'"+nome+"'"));abrirAba(nome,b)}
+function definirDataAtual(){let d=new Date();document.getElementById("data").value=[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-")}
 
 function carregarServicosSelect(){
-let s=document.getElementById("servico");
-let atual=s.value;
-
-s.innerHTML='<option value="">Selecione</option>';
-
-servicos.forEach((x,i)=>{
-let o=document.createElement("option");
-o.value=String(i);
-o.textContent=x.nome+" — "+moeda(x.valor);
-s.appendChild(o);
-});
-
+let s=document.getElementById("servico"),atual=s.value;s.innerHTML='<option value="">Selecione</option>';
+servicos.forEach((x,i)=>{let o=document.createElement("option");o.value=String(i);o.textContent=x.nome+" — "+moeda(x.valor);s.appendChild(o)});
 if(atual!=="")s.value=atual;
+atualizarOpcaoVictor();
 }
-
-function preencherValor(){
-let i=document.getElementById("servico").value;
-
-if(i==="")return;
-
-let s=servicos[Number(i)];
-if(!s)return;
-
-document.getElementById("valorUnitario").value=numero(s.valor).toFixed(2);
-
-calcularLancamento();
-}
-
+function preencherValor(){let i=document.getElementById("servico").value;if(i==="")return;let s=servicos[Number(i)];if(!s)return;document.getElementById("valorUnitario").value=numero(s.valor).toFixed(2);calcularLancamento();atualizarOpcaoVictor()}
 function renderServicos(){
-let a=document.getElementById("listaServicos");
-a.innerHTML="";
-
-servicos.forEach((s,i)=>{
-let d=document.createElement("div");
-d.className="service-row";
-
-d.innerHTML=`
-<div>
-<label>Serviço</label>
-<input type="text" value="${escapeHTML(s.nome)}" data-servico-nome="${i}">
-</div>
-<div>
-<label>Valor</label>
-<input type="number" min="0" step="0.01" value="${numero(s.valor).toFixed(2)}" data-servico-valor="${i}">
-</div>`;
-
-a.appendChild(d);
-});
+let a=document.getElementById("listaServicos");a.innerHTML="";
+servicos.forEach((s,i)=>{let d=document.createElement("div");d.className="service-row";d.innerHTML=`
+<div><label>Serviço</label><input type="text" value="${escapeHTML(s.nome)}" data-servico-nome="${i}"></div>
+<div><label>Valor</label><input type="number" min="0" step="0.01" value="${numero(s.valor).toFixed(2)}" data-servico-valor="${i}"></div>`;a.appendChild(d)});
 }
-
-function adicionarServico(){
-servicos.push({nome:"Novo serviço",valor:0});
-renderServicos();
-carregarServicosSelect();
-}
-
+function adicionarServico(){servicos.push({nome:"Novo serviço",valor:0});renderServicos();carregarServicosSelect()}
 function salvarServicos(){
-document.querySelectorAll("[data-servico-nome]").forEach(i=>{
-servicos[Number(i.dataset.servicoNome)].nome=i.value.trim()||"Novo serviço";
-});
-
-document.querySelectorAll("[data-servico-valor]").forEach(i=>{
-servicos[Number(i.dataset.servicoValor)].valor=numero(i.value);
-});
-
-localStorage.setItem(SERVICOS_KEY,JSON.stringify(servicos));
-
-renderServicos();
-carregarServicosSelect();
-
-mostrarToast("Serviços salvos!");
+document.querySelectorAll("[data-servico-nome]").forEach(i=>{servicos[Number(i.dataset.servicoNome)].nome=i.value.trim()||"Novo serviço"});
+document.querySelectorAll("[data-servico-valor]").forEach(i=>{servicos[Number(i.dataset.servicoValor)].valor=numero(i.value)});
+localStorage.setItem(SERVICOS_KEY,JSON.stringify(servicos));renderServicos();carregarServicosSelect();mostrarToast("Serviços salvos!");
 }
-
 function atualizarTipoNome(){
 let tipo=document.getElementById("tipo").value;
-
-document.getElementById("labelNome").textContent=
-tipo==="cliente"?"Nome do cliente":"Nome do parceiro";
-
-document.getElementById("cliente").placeholder=
-tipo==="cliente"?"Digite o nome do cliente":"Digite o nome do parceiro";
+document.getElementById("labelNome").textContent=tipo==="cliente"?"Nome do cliente":"Nome do parceiro";
+document.getElementById("cliente").placeholder=tipo==="cliente"?"Digite o nome do cliente":"Digite o nome do parceiro";
+atualizarOpcaoVictor();
 }
-
+function servicoSelecionado(){let i=document.getElementById("servico").value;return i===""?null:servicos[Number(i)]||null}
+function atualizarOpcaoVictor(){
+let tipo=document.getElementById("tipo").value,s=servicoSelecionado();
+let mostrar=tipo==="cliente"&&s&&normalizarTexto(s.nome)===normalizarTexto(SERVICO_VENDA);
+document.getElementById("opcaoVictorWrap").style.display=mostrar?"block":"none";
+if(!mostrar)document.getElementById("incluirVictor").checked=false;
+calcularLancamento();
+}
 function calcularLancamento(){
 let qtd=Math.max(0,numero(document.getElementById("quantidade").value));
 let unit=Math.max(0,numero(document.getElementById("valorUnitario").value));
-
 let total=qtd*unit;
-
 document.getElementById("valorTotal").value=total.toFixed(2);
 document.getElementById("previewTotal").textContent=moeda(total);
+let mostrar=document.getElementById("opcaoVictorWrap").style.display!=="none"&&document.getElementById("incluirVictor").checked;
+document.getElementById("previewRepasse").textContent=mostrar?"Repasse automático ao Victor: "+moeda(qtd*REPASSE_VICTOR):"";
 }
-
+function localizarRepasseVinculado(id){return lancamentos.find(x=>x.origemVinculo==="automatico"&&String(x.vinculoId)===String(id))}
+function sincronizarRepasseAutomatico(venda,ativar){
+let existente=localizarRepasseVinculado(venda.id);
+if(!ativar){
+if(existente)lancamentos=lancamentos.filter(x=>String(x.id)!==String(existente.id));
+return;
+}
+let repasse={
+id:existente?existente.id:novoId(),
+data:venda.data,
+cliente:NOME_VICTOR,
+tipo:"parceiro",
+servico:SERVICO_APROVACAO,
+quantidade:numero(venda.quantidade),
+valorUnitario:REPASSE_VICTOR,
+valorTotal:numero(venda.quantidade)*REPASSE_VICTOR,
+versaoSimplificada:true,
+origemVinculo:"automatico",
+vinculoId:venda.id,
+clienteOrigem:venda.cliente
+};
+if(existente){let idx=lancamentos.findIndex(x=>String(x.id)===String(existente.id));lancamentos[idx]=repasse}
+else lancamentos.push(repasse);
+}
 function limparFormulario(){
 editandoId=null;
-
 document.getElementById("cliente").value="";
 document.getElementById("tipo").value="cliente";
 document.getElementById("servico").value="";
 document.getElementById("quantidade").value="1";
 document.getElementById("valorUnitario").value="0";
 document.getElementById("valorTotal").value="0";
-
+document.getElementById("incluirVictor").checked=false;
 document.getElementById("tituloFormulario").textContent="Novo lançamento";
 document.getElementById("btnSalvar").textContent="Salvar lançamento";
 document.getElementById("btnCancelarEdicao").style.display="none";
-
-atualizarTipoNome();
-calcularLancamento();
-definirDataAtual();
+atualizarTipoNome();calcularLancamento();definirDataAtual();
 }
-
-function cancelarEdicao(){
-limparFormulario();
-mostrarToast("Edição cancelada.");
-}
-
+function cancelarEdicao(){limparFormulario();mostrarToast("Edição cancelada.")}
 function salvarLancamento(){
-
-let data=document.getElementById("data").value;
-let nome=document.getElementById("cliente").value.trim();
-let tipo=document.getElementById("tipo").value;
-let si=document.getElementById("servico").value;
-let qtd=numero(document.getElementById("quantidade").value);
-let unit=numero(document.getElementById("valorUnitario").value);
-
+let data=document.getElementById("data").value,nome=document.getElementById("cliente").value.trim();
+let tipo=document.getElementById("tipo").value,si=document.getElementById("servico").value;
+let qtd=numero(document.getElementById("quantidade").value),unit=numero(document.getElementById("valorUnitario").value);
 if(!data)return alert("Informe a data.");
 if(!nome)return alert("Informe o nome do cliente ou parceiro.");
 if(si==="")return alert("Selecione o tipo de serviço.");
 if(qtd<=0)return alert("A quantidade deve ser maior que zero.");
 if(unit<0)return alert("O valor unitário não pode ser negativo.");
-
-let s=servicos[Number(si)];
-
-if(!s)return alert("Selecione um serviço válido.");
-
-let item={
-id:editandoId??Date.now(),
-data,
-cliente:nome,
-tipo,
-servico:s.nome,
-quantidade:qtd,
-valorUnitario:unit,
-valorTotal:qtd*unit,
-versaoSimplificada:true
-};
-
+let s=servicos[Number(si)];if(!s)return alert("Selecione um serviço válido.");
+let id=editandoId??novoId();
+let item={id,data,cliente:nome,tipo,servico:s.nome,quantidade:qtd,valorUnitario:unit,valorTotal:qtd*unit,versaoSimplificada:true};
 if(editandoId!==null){
-
 let idx=lancamentos.findIndex(x=>String(x.id)===String(editandoId));
-
 if(idx<0)return alert("Lançamento não encontrado.");
-
-lancamentos[idx]={...lancamentos[idx],...item};
-
-mostrarToast("Lançamento atualizado!");
-
+item={...lancamentos[idx],...item};
+lancamentos[idx]=item;
+if(tipo==="cliente"&&normalizarTexto(s.nome)===normalizarTexto(SERVICO_VENDA)){
+sincronizarRepasseAutomatico(item,document.getElementById("incluirVictor").checked);
 }else{
-
+sincronizarRepasseAutomatico(item,false);
+}
+mostrarToast("Lançamento atualizado!");
+}else{
 lancamentos.push(item);
+if(tipo==="cliente"&&normalizarTexto(s.nome)===normalizarTexto(SERVICO_VENDA)&&document.getElementById("incluirVictor").checked){
+sincronizarRepasseAutomatico(item,true);
+}
 mostrarToast("Lançamento salvo!");
-
 }
-
-salvarDados();
-limparFormulario();
-atualizarTudo();
+salvarDados();limparFormulario();atualizarTudo();
 }
-
 function editarLancamento(id){
-
-let x=lancamentos.find(a=>String(a.id)===String(id));
-
-if(!x)return alert("Lançamento não encontrado.");
-
+let x=lancamentos.find(a=>String(a.id)===String(id));if(!x)return alert("Lançamento não encontrado.");
+if(x.origemVinculo==="automatico")return alert("Este repasse foi gerado automaticamente. Edite o projeto do cliente vinculado para atualizar ou remover o repasse.");
 editandoId=x.id;
-
 document.getElementById("data").value=x.data||"";
 document.getElementById("tipo").value=x.tipo==="parceiro"?"parceiro":"cliente";
 document.getElementById("cliente").value=x.cliente||"";
-
 let idx=servicos.findIndex(s=>s.nome===x.servico);
-
-if(idx<0){
-
-servicos.push({
-nome:x.servico||"Serviço antigo",
-valor:numero(x.valorUnitario)
-});
-
-localStorage.setItem(SERVICOS_KEY,JSON.stringify(servicos));
-
-renderServicos();
-carregarServicosSelect();
-
-idx=servicos.length-1;
-}
-
+if(idx<0){servicos.push({nome:x.servico||"Serviço antigo",valor:numero(x.valorUnitario)});localStorage.setItem(SERVICOS_KEY,JSON.stringify(servicos));renderServicos();carregarServicosSelect();idx=servicos.length-1}
 document.getElementById("servico").value=String(idx);
-
 document.getElementById("quantidade").value=numero(x.quantidade)||1;
-
-document.getElementById("valorUnitario").value=
-numero(x.valorUnitario??(numero(x.valorTotal)/(numero(x.quantidade)||1))).toFixed(2);
-
+document.getElementById("valorUnitario").value=numero(x.valorUnitario??(numero(x.valorTotal)/(numero(x.quantidade)||1))).toFixed(2);
+document.getElementById("incluirVictor").checked=!!localizarRepasseVinculado(x.id);
 document.getElementById("tituloFormulario").textContent="Editar lançamento";
 document.getElementById("btnSalvar").textContent="Salvar alterações";
 document.getElementById("btnCancelarEdicao").style.display="inline-block";
-
-atualizarTipoNome();
-calcularLancamento();
-abrirAbaPorNome("lancar");
-
-window.scrollTo({top:0,behavior:"smooth"});
+atualizarTipoNome();atualizarOpcaoVictor();document.getElementById("incluirVictor").checked=!!localizarRepasseVinculado(x.id);calcularLancamento();
+abrirAbaPorNome("lancar");window.scrollTo({top:0,behavior:"smooth"});
 }
-
 function excluirLancamento(id){
-
-if(!confirm("Deseja excluir este lançamento?"))return;
-
+let x=lancamentos.find(a=>String(a.id)===String(id));if(!x)return;
+if(x.origemVinculo==="automatico")return alert("Este repasse é automático. Para removê-lo, edite o projeto do cliente e desmarque a aprovação do Victor.");
+if(!confirm("Deseja excluir este lançamento?"+(localizarRepasseVinculado(id)?" O repasse automático vinculado também será excluído.":"")))return;
 lancamentos=lancamentos.filter(x=>String(x.id)!==String(id));
-
-salvarDados();
-atualizarTudo();
-
-mostrarToast("Lançamento excluído.");
+lancamentos=lancamentos.filter(x=>!(x.origemVinculo==="automatico"&&String(x.vinculoId)===String(id)));
+salvarDados();atualizarTudo();mostrarToast("Lançamento excluído.");
 }
-
 function obterLancamentosFiltrados(){
-
-let c=(document.getElementById("filtroCliente")?.value||"").trim().toLowerCase();
-let i=document.getElementById("filtroInicio")?.value||"";
-let f=document.getElementById("filtroFim")?.value||"";
-
-return lancamentos.filter(x=>
-(!c||String(x.cliente).toLowerCase().includes(c))&&
-(!i||x.data>=i)&&
-(!f||x.data<=f)
-);
+let c=(document.getElementById("filtroCliente")?.value||"").trim().toLowerCase(),i=document.getElementById("filtroInicio")?.value||"",f=document.getElementById("filtroFim")?.value||"";
+return lancamentos.filter(x=>(!c||String(x.cliente).toLowerCase().includes(c)||String(x.clienteOrigem||"").toLowerCase().includes(c))&&(!i||x.data>=i)&&(!f||x.data<=f));
 }
-
-function limparFiltros(){
-
-document.getElementById("filtroCliente").value="";
-document.getElementById("filtroInicio").value="";
-document.getElementById("filtroFim").value="";
-
-renderTabela();
-}
-
+function limparFiltros(){document.getElementById("filtroCliente").value="";document.getElementById("filtroInicio").value="";document.getElementById("filtroFim").value="";renderTabela()}
 function renderTabela(){
-
-let tb=document.getElementById("tabelaLancamentos");
-let dados=obterLancamentosFiltrados();
-
-tb.innerHTML="";
-
-if(!dados.length){
-tb.innerHTML='<tr><td colspan="8" class="empty">Nenhum lançamento encontrado.</td></tr>';
-return;
-}
-
+let tb=document.getElementById("tabelaLancamentos"),dados=obterLancamentosFiltrados();tb.innerHTML="";
+if(!dados.length){tb.innerHTML='<tr><td colspan="9" class="empty">Nenhum lançamento encontrado.</td></tr>';return}
 dados.slice().sort((a,b)=>String(b.data).localeCompare(String(a.data))).forEach(x=>{
-
+let vinculo=x.origemVinculo==="automatico"?' <span class="tag tag-auto">Automático</span>':(localizarRepasseVinculado(x.id)?'<span class="tag">Gera repasse</span>':'—');
+let acoes=x.origemVinculo==="automatico"?'Gerenciado pelo projeto vinculado':`<div class="actions" style="margin:0"><button class="btn btn-edit" onclick="editarLancamento('${String(x.id).replace(/'/g,"")}')">Editar</button><button class="btn btn-danger" onclick="excluirLancamento('${String(x.id).replace(/'/g,"")}')">Excluir</button></div>`;
 let tr=document.createElement("tr");
-
-tr.innerHTML=`
-<td>${dataBR(x.data)}</td>
-<td>${x.tipo==="parceiro"?"Parceiro":"Cliente"}</td>
-<td>${escapeHTML(x.cliente)}</td>
-<td>${escapeHTML(x.servico)}</td>
-<td>${numero(x.quantidade)}</td>
-<td>${moeda(x.valorUnitario??(numero(x.valorTotal)/(numero(x.quantidade)||1)))}</td>
-<td>${moeda(x.valorTotal)}</td>
-<td>
-<div class="actions" style="margin:0">
-<button class="btn btn-edit" onclick="editarLancamento('${String(x.id).replace(/'/g,"")}')">Editar</button>
-<button class="btn btn-danger" onclick="excluirLancamento('${String(x.id).replace(/'/g,"")}')">Excluir</button>
-</div>
-</td>`;
-
+tr.innerHTML=`<td>${dataBR(x.data)}</td><td>${x.tipo==="parceiro"?"Parceiro":"Cliente"}</td><td>${escapeHTML(x.cliente)}${x.origemVinculo==="automatico"&&x.clienteOrigem?'<br><span class="small">Projeto de: '+escapeHTML(x.clienteOrigem)+'</span>':''}</td><td>${escapeHTML(x.servico)}</td><td>${numero(x.quantidade)}</td><td>${moeda(x.valorUnitario??(numero(x.valorTotal)/(numero(x.quantidade)||1)))}</td><td>${moeda(x.valorTotal)}</td><td>${vinculo}</td><td>${acoes}</td>`;
 tb.appendChild(tr);
 });
 }
 
-/* ==================================================
-   REGRA FINANCEIRA
-
-   RECEBIDO = LANÇAMENTOS DE CLIENTES
-              + COMISSÕES LEGADAS DE PARCEIROS
-
-   REPASSE = LANÇAMENTOS DE PARCEIROS
-             + REPASSES LEGADOS DE CLIENTES
-
-   LUCRO = RECEBIDO - REPASSES
-================================================== */
-
+/* Financeiro: vendas de clientes são faturamento; lançamentos de parceiros são custos/repasses.
+   Os registros automáticos de Victor entram somente como repasse, nunca como faturamento. */
 function calcularTotaisFinanceiros(dados){
-
-let totalClientes=0;
-let totalParceiros=0;
-let repasseLegado=0;
-let receitaComissaoLegada=0;
-
+let recebido=0,repasse=0,comissaoLegada=0;
 dados.forEach(x=>{
-
 let total=numero(x.valorTotal);
-
 if(x.versaoSimplificada){
-
-if(x.tipo==="parceiro"){
-totalParceiros+=total;
-}else{
-totalClientes+=total;
-}
-
+if(x.tipo==="parceiro")repasse+=total;else recebido+=total;
 }else if(x.tipo==="parceiro"&&x.modeloFinanceiro==="comissao"){
-
-receitaComissaoLegada+=numero(x.valorRecebido);
-
+comissaoLegada+=numero(x.valorRecebido);
 }else{
-
-if(x.tipo==="parceiro"){
-totalParceiros+=numero(x.valorRepasse||total);
-}else{
-totalClientes+=total;
-repasseLegado+=numero(x.valorRepasse);
+if(x.tipo==="parceiro")repasse+=numero(x.valorRepasse||total);
+else{recebido+=total;repasse+=numero(x.valorRepasse)}
 }
-
-}
-
 });
-
-let repasse=totalParceiros+repasseLegado;
-let recebido=totalClientes+receitaComissaoLegada;
-
-return{
-totalServicos:recebido,
-recebido:recebido,
-repasse:repasse,
-saldo:recebido-repasse
-};
-
+recebido+=comissaoLegada;
+return{totalServicos:recebido,recebido,repasse,saldo:recebido-repasse};
 }
-
-function totaisDashboard(){
-return calcularTotaisFinanceiros(lancamentos);
-}
-
 function atualizarDashboard(){
-
-let t=totaisDashboard();
-
-document.getElementById("dashServicos").textContent=moeda(t.totalServicos);
+let t=calcularTotaisFinanceiros(lancamentos);
+document.getElementById("dashServicos").textContent=moeda(t.recebido);
 document.getElementById("dashRepasse").textContent=moeda(t.repasse);
 document.getElementById("dashSaldo").textContent=moeda(t.saldo);
-
 }
-
 function obterPeriodoRelatorio(){
-
-let inicio=document.getElementById("relInicio").value;
-let fim=document.getElementById("relFim").value;
-
-if(inicio&&fim&&inicio>fim){
-alert("A data inicial não pode ser posterior à data final.");
-return null;
+let inicio=document.getElementById("relInicio").value,fim=document.getElementById("relFim").value;
+if(inicio&&fim&&inicio>fim){alert("A data inicial não pode ser posterior à data final.");return null}
+return{inicio,fim,dados:lancamentos.filter(x=>(!inicio||x.data>=inicio)&&(!fim||x.data<=fim))};
 }
-
-let dados=lancamentos.filter(x=>
-(!inicio||x.data>=inicio)&&
-(!fim||x.data<=fim)
-);
-
-return{inicio,fim,dados};
-
-}
-
 function gerarFechamento(){
-
-let tipo=document.getElementById("relTipo").value;
-let nome=document.getElementById("relCliente").value.trim();
-
+let tipo=document.getElementById("relTipo").value,nome=document.getElementById("relCliente").value.trim();
 if(!nome)return alert("Digite o nome do cliente ou parceiro.");
-
-let periodo=obterPeriodoRelatorio();
-if(!periodo)return;
-
+let periodo=obterPeriodoRelatorio();if(!periodo)return;
 let {inicio,fim,dados:todos}=periodo;
-
-let dados=todos.filter(x=>
-(x.tipo==="parceiro"?"parceiro":"cliente")===tipo&&
-String(x.cliente).toLowerCase()===nome.toLowerCase()
-);
-
-if(!dados.length){
-return alert("Nenhum lançamento encontrado para esse nome, tipo e período.");
-}
-
+let dados=todos.filter(x=>(x.tipo==="parceiro"?"parceiro":"cliente")===tipo&&String(x.cliente).toLowerCase()===nome.toLowerCase());
+if(!dados.length)return alert("Nenhum lançamento encontrado para esse nome, tipo e período.");
 let mapa={};
-
-dados.forEach(x=>{
-
-let chave=x.servico||"Serviço";
-
-if(!mapa[chave]){
-mapa[chave]={
-servico:chave,
-quantidade:0,
-total:0
-};
-}
-
-mapa[chave].quantidade+=numero(x.quantidade);
-mapa[chave].total+=numero(x.valorTotal);
-
-});
-
+dados.forEach(x=>{let chave=x.servico||"Serviço";if(!mapa[chave])mapa[chave]={servico:chave,quantidade:0,total:0};mapa[chave].quantidade+=numero(x.quantidade);mapa[chave].total+=numero(x.valorTotal)});
 let itens=Object.values(mapa).sort((a,b)=>a.servico.localeCompare(b.servico,"pt-BR"));
-
-let total=itens.reduce((s,x)=>s+x.total,0);
-let quantidade=itens.reduce((s,x)=>s+x.quantidade,0);
-
-fechamentoAtual={
-tipo,
-nome:dados[0].cliente,
-inicio,
-fim,
-itens,
-total,
-quantidade
-};
-
-let periodoTexto=
-(inicio?dataBR(inicio):"Início não informado")+
-" até "+
-(fim?dataBR(fim):"data atual");
-
-let titulo=tipo==="cliente"?
-"Valor a repassar à DJ":
-"Valor a repassar ao parceiro";
-
-let linhas=itens.map(x=>`
-<tr>
-<td>${escapeHTML(x.servico)}</td>
-<td>${x.quantidade}</td>
-<td>${moeda(x.total)}</td>
-</tr>
-`).join("");
-
+let total=itens.reduce((s,x)=>s+x.total,0),quantidade=itens.reduce((s,x)=>s+x.quantidade,0);
+fechamentoAtual={tipo,nome:dados[0].cliente,inicio,fim,itens,total,quantidade};
+let periodoTexto=(inicio?dataBR(inicio):"Início não informado")+" até "+(fim?dataBR(fim):"data atual");
+let titulo=tipo==="cliente"?"Faturamento lançado ao cliente":"Valor a repassar ao parceiro";
+let linhas=itens.map(x=>`<tr><td>${escapeHTML(x.servico)}</td><td>${x.quantidade}</td><td>${moeda(x.total)}</td></tr>`).join("");
 document.getElementById("fechamentoConteudo").innerHTML=`
-
-<div class="closing-box">
-<div class="small">${tipo==="cliente"?"Cliente":"Parceiro"}</div>
-<strong>${escapeHTML(fechamentoAtual.nome)}</strong>
-<br>
-<span class="small">${escapeHTML(periodoTexto)}</span>
-</div>
-
-<div class="closing-box">
-<div class="small">Resumo dos serviços</div>
-
-<div class="table-wrap">
-<table style="min-width:0">
-<thead>
-<tr>
-<th>Tipo de serviço</th>
-<th>Quantidade</th>
-<th>Valor total</th>
-</tr>
-</thead>
-<tbody>${linhas}</tbody>
-</table>
-</div>
-
-<p><strong>Total de serviços: ${quantidade}</strong></p>
-
-<div class="small">${titulo}</div>
-<div class="closing-total">${moeda(total)}</div>
-</div>
-`;
-
-document.getElementById("fechamento").style.display="block";
-
-document.getElementById("fechamento").scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
-
+<div class="closing-box"><div class="small">${tipo==="cliente"?"Cliente":"Parceiro"}</div><strong>${escapeHTML(fechamentoAtual.nome)}</strong><br><span class="small">${escapeHTML(periodoTexto)}</span></div>
+<div class="closing-box"><div class="small">Resumo dos serviços</div><div class="table-wrap"><table style="min-width:0"><thead><tr><th>Tipo de serviço</th><th>Quantidade</th><th>Valor total</th></tr></thead><tbody>${linhas}</tbody></table></div>
+<p><strong>Total de serviços: ${quantidade}</strong></p><div class="small">${titulo}</div><div class="closing-total">${moeda(total)}</div></div>`;
+document.getElementById("fechamento").style.display="block";document.getElementById("fechamento").scrollIntoView({behavior:"smooth",block:"start"});
 }
-
-/* ==================================================
-   NOVO RELATÓRIO GERAL CONSOLIDADO
-
-   Utiliza o período selecionado nos filtros
-   da área de relatórios individuais.
-================================================== */
 
 function gerarRelatorioGeral(){
-
-let periodo=obterPeriodoRelatorio();
-if(!periodo)return;
-
-let {inicio,fim,dados}=periodo;
-
-if(!dados.length){
-return alert("Nenhum lançamento encontrado no período selecionado.");
-}
-
+let periodo=obterPeriodoRelatorio();if(!periodo)return;
+let {inicio,fim,dados}=periodo;if(!dados.length)return alert("Nenhum lançamento encontrado no período selecionado.");
+let dadosClientes=dados.filter(x=>x.tipo!=="parceiro"),dadosParceiros=dados.filter(x=>x.tipo==="parceiro");
 let totais=calcularTotaisFinanceiros(dados);
-let quantidadeTotal=dados.reduce((s,x)=>s+numero(x.quantidade),0);
-
-let clientes={};
-let parceiros={};
-let servicosResumo={};
-
+let qtdVendas=dadosClientes.reduce((s,x)=>s+numero(x.quantidade),0);
+let qtdExecucoes=dadosParceiros.reduce((s,x)=>s+numero(x.quantidade),0);
+let clientes={},parceiros={},servicosClientes={},servicosParceiros={};
 dados.forEach(x=>{
-
-let nome=String(x.cliente||"Não informado");
-let total=numero(x.valorTotal);
-let qtd=numero(x.quantidade);
-let chaveServico=x.servico||"Serviço";
-
-if(!servicosResumo[chaveServico]){
-servicosResumo[chaveServico]={quantidade:0,total:0};
-}
-
-servicosResumo[chaveServico].quantidade+=qtd;
-servicosResumo[chaveServico].total+=total;
-
+let nome=String(x.cliente||"Não informado"),total=numero(x.valorTotal),qtd=numero(x.quantidade),chave=x.servico||"Serviço";
 if(x.tipo==="parceiro"){
-
-if(!parceiros[nome]){
-parceiros[nome]={quantidade:0,repasse:0,recebido:0};
-}
-
+if(!parceiros[nome])parceiros[nome]={quantidade:0,repasse:0};
 parceiros[nome].quantidade+=qtd;
-
-if(x.versaoSimplificada){
-parceiros[nome].repasse+=total;
-}else if(x.modeloFinanceiro==="comissao"){
-parceiros[nome].recebido+=numero(x.valorRecebido);
+if(x.versaoSimplificada)parceiros[nome].repasse+=total;
+else if(x.modeloFinanceiro!=="comissao")parceiros[nome].repasse+=numero(x.valorRepasse||total);
+let r=servicosParceiros[chave]||(servicosParceiros[chave]={quantidade:0,total:0});
+r.quantidade+=qtd;r.total+=total;
 }else{
-parceiros[nome].repasse+=numero(x.valorRepasse||total);
+if(!clientes[nome])clientes[nome]={quantidade:0,recebido:0};
+clientes[nome].quantidade+=qtd;clientes[nome].recebido+=total;
+let r=servicosClientes[chave]||(servicosClientes[chave]={quantidade:0,total:0});
+r.quantidade+=qtd;r.total+=total;
 }
-
-}else{
-
-if(!clientes[nome]){
-clientes[nome]={quantidade:0,recebido:0,repasseLegado:0};
-}
-
-clientes[nome].quantidade+=qtd;
-clientes[nome].recebido+=total;
-
-if(!x.versaoSimplificada){
-clientes[nome].repasseLegado+=numero(x.valorRepasse);
-}
-
-}
-
 });
-
 let listaClientes=Object.entries(clientes).sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"));
 let listaParceiros=Object.entries(parceiros).sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"));
-let listaServicos=Object.entries(servicosResumo).sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"));
+let listaServicosClientes=Object.entries(servicosClientes).sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"));
+let listaServicosParceiros=Object.entries(servicosParceiros).sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"));
+let projetosSemEstudo=dadosClientes.filter(x=>normalizarTexto(x.servico)===normalizarTexto(SERVICO_VENDA));
+let qtdProjetos=projetosSemEstudo.reduce((s,x)=>s+numero(x.quantidade),0);
+let qtdComVictor=projetosSemEstudo.filter(x=>!!localizarRepasseVinculado(x.id)).reduce((s,x)=>s+numero(x.quantidade),0);
+let qtdSomenteDJ=qtdProjetos-qtdComVictor;
+let valorVendasProjeto=projetosSemEstudo.reduce((s,x)=>s+numero(x.valorTotal),0);
+let custoVictorVinculado=dadosParceiros.filter(x=>x.origemVinculo==="automatico").reduce((s,x)=>s+numero(x.valorTotal),0);
+let periodoTexto=(inicio?dataBR(inicio):"Início não informado")+" até "+(fim?dataBR(fim):"data atual");
+function linhasResumo(lista,modo){
+return lista.map(([nome,x])=>`<tr><td>${escapeHTML(nome)}</td><td>${x.quantidade}</td><td>${moeda(modo==="cliente"?x.recebido:x.repasse)}</td></tr>`).join("");
+}
+function linhasServicos(lista){return lista.map(([nome,x])=>`<tr><td>${escapeHTML(nome)}</td><td>${x.quantidade}</td><td>${moeda(x.total)}</td></tr>`).join("")}
+let linhasClientes=linhasResumo(listaClientes,"cliente"),linhasParceiros=linhasResumo(listaParceiros,"parceiro");
+let linhasVenda=linhasServicos(listaServicosClientes),linhasExecucao=linhasServicos(listaServicosParceiros);
+let totalVendasServicos=listaServicosClientes.reduce((s,[,x])=>s+x.total,0);
+let totalExecucaoServicos=listaServicosParceiros.reduce((s,[,x])=>s+x.total,0);
 
-let periodoTexto=
-(inicio?dataBR(inicio):"Início não informado")+
-" até "+
-(fim?dataBR(fim):"data atual");
-
-let linhasServicos=listaServicos.map(([nome,x])=>`
-<tr>
-<td>${escapeHTML(nome)}</td>
-<td>${x.quantidade}</td>
-<td>${moeda(x.total)}</td>
-</tr>
-`).join("");
-
-let linhasClientes=listaClientes.map(([nome,x])=>`
-<tr>
-<td>${escapeHTML(nome)}</td>
-<td>${x.quantidade}</td>
-<td>${moeda(x.recebido)}</td>
-</tr>
-`).join("");
-
-let linhasParceiros=listaParceiros.map(([nome,x])=>`
-<tr>
-<td>${escapeHTML(nome)}</td>
-<td>${x.quantidade}</td>
-<td>${moeda(x.repasse)}</td>
-</tr>
-`).join("");
-
-fechamentoAtual={
-tipo:"geral",
-inicio,
-fim,
-dados,
-totais,
-quantidadeTotal,
-listaClientes,
-listaParceiros,
-listaServicos
-};
-
+fechamentoAtual={tipo:"geral",inicio,fim,dados,totais,qtdVendas,qtdExecucoes,listaClientes,listaParceiros,listaServicosClientes,listaServicosParceiros,projetos:{qtdProjetos,qtdComVictor,qtdSomenteDJ,valorVendasProjeto,custoVictorVinculado}};
 document.getElementById("fechamentoConteudo").innerHTML=`
-
-<div class="closing-box">
-<div class="small">RELATÓRIO GERAL CONSOLIDADO</div>
-<strong>DJ Consultoria em Energia Solar</strong>
-<br>
-<span class="small">Período: ${escapeHTML(periodoTexto)}</span>
-<br>
-<span class="small">Total de lançamentos: ${dados.length}</span>
-<br>
-<span class="small">Quantidade total de serviços: ${quantidadeTotal}</span>
-</div>
-
-<div class="closing-box">
-<strong>RESUMO FINANCEIRO</strong>
-
-<p>
-<span class="small">Total recebido</span><br>
-<strong class="blue">${moeda(totais.recebido)}</strong>
-</p>
-
-<p>
-<span class="small">Total a repassar aos parceiros</span><br>
-<strong class="red">${moeda(totais.repasse)}</strong>
-</p>
-
-<hr>
-
-<div class="small">SALDO LÍQUIDO DA DJ CONSULTORIA</div>
-<div class="closing-total">${moeda(totais.saldo)}</div>
-</div>
-
-<div class="closing-box">
-<strong>RESUMO DOS SERVIÇOS</strong>
-<div class="table-wrap">
-<table style="min-width:0">
-<thead>
-<tr>
-<th>Serviço</th>
-<th>Quantidade</th>
-<th>Valor</th>
-</tr>
-</thead>
-<tbody>${linhasServicos}</tbody>
-</table>
-</div>
-</div>
-
-<div class="closing-box">
-<strong>RECEBIMENTOS POR CLIENTE</strong>
-<div class="table-wrap">
-<table style="min-width:0">
-<thead>
-<tr>
-<th>Cliente</th>
-<th>Qtd.</th>
-<th>Valor recebido</th>
-</tr>
-</thead>
-<tbody>${linhasClientes||'<tr><td colspan="3">Nenhum cliente encontrado.</td></tr>'}</tbody>
-</table>
-</div>
-</div>
-
-<div class="closing-box">
-<strong>REPASSES POR PARCEIRO</strong>
-<div class="table-wrap">
-<table style="min-width:0">
-<thead>
-<tr>
-<th>Parceiro</th>
-<th>Qtd.</th>
-<th>Valor a repassar</th>
-</tr>
-</thead>
-<tbody>${linhasParceiros||'<tr><td colspan="3">Nenhum parceiro encontrado.</td></tr>'}</tbody>
-</table>
-</div>
-</div>
-`;
-
-document.getElementById("fechamento").style.display="block";
-
-document.getElementById("fechamento").scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
-
+<div class="closing-box"><div class="small">RELATÓRIO GERAL CONSOLIDADO</div><strong>DJ Consultoria em Energia Solar</strong><br><span class="small">Período: ${escapeHTML(periodoTexto)}</span><br><span class="small">Registros no histórico: ${dados.length}</span><br><span class="small">Serviços vendidos aos clientes: ${qtdVendas} unidades</span><br><span class="small">Execuções registradas pelos parceiros: ${qtdExecucoes} unidades</span></div>
+<div class="closing-box"><strong>RESUMO FINANCEIRO</strong>
+<p><span class="small">Faturamento lançado aos clientes</span><br><strong class="blue">${moeda(totais.recebido)}</strong></p>
+<p><span class="small">Total de repasses aos parceiros</span><br><strong class="red">${moeda(totais.repasse)}</strong></p>
+<hr><div class="small">RESULTADO BRUTO DA DJ</div><div class="closing-total">${moeda(totais.saldo)}</div>
+<div class="small">Margem bruta sobre o faturamento: ${totais.recebido>0?(totais.saldo/totais.recebido*100).toLocaleString("pt-BR",{maximumFractionDigits:1}):"0"}%</div></div>
+<div class="closing-box"><strong>CONTROLE — PROJETOS SEM ESTUDO</strong>
+<p>Quantidade vendida: <strong>${qtdProjetos}</strong></p><p>Com aprovação vinculada ao Victor: <strong>${qtdComVictor}</strong></p><p>Somente executados pela DJ: <strong>${qtdSomenteDJ}</strong></p><p>Faturamento desses projetos: <strong>${moeda(valorVendasProjeto)}</strong></p><p>Repasses automáticos ao Victor: <strong>${moeda(custoVictorVinculado)}</strong></p>
+<div class="small">Apenas vínculos criados nesta versão são identificados automaticamente. Lançamentos antigos não são vinculados por suposição.</div></div>
+<div class="closing-box"><strong>SERVIÇOS VENDIDOS AOS CLIENTES</strong><div class="table-wrap"><table style="min-width:0"><thead><tr><th>Serviço vendido</th><th>Quantidade</th><th>Faturamento</th></tr></thead><tbody>${linhasVenda||'<tr><td colspan="3">Nenhum serviço encontrado.</td></tr>'}</tbody></table></div><p><strong>Total de vendas: ${moeda(totalVendasServicos)}</strong></p></div>
+<div class="closing-box"><strong>SERVIÇOS EXECUTADOS PELOS PARCEIROS</strong><div class="table-wrap"><table style="min-width:0"><thead><tr><th>Serviço executado</th><th>Quantidade</th><th>Valor registrado</th></tr></thead><tbody>${linhasExecucao||'<tr><td colspan="3">Nenhuma execução encontrada.</td></tr>'}</tbody></table></div><p><strong>Total registrado em serviços de parceiros: ${moeda(totalExecucaoServicos)}</strong></p><div class="small">Este quadro é de produção/custo dos parceiros. Não é somado novamente ao faturamento dos clientes.</div></div>
+<div class="closing-box"><strong>FATURAMENTO POR CLIENTE</strong><div class="table-wrap"><table style="min-width:0"><thead><tr><th>Cliente</th><th>Qtd.</th><th>Faturamento</th></tr></thead><tbody>${linhasClientes||'<tr><td colspan="3">Nenhum cliente encontrado.</td></tr>'}</tbody></table></div></div>
+<div class="closing-box"><strong>REPASSES POR PARCEIRO</strong><div class="table-wrap"><table style="min-width:0"><thead><tr><th>Parceiro</th><th>Qtd.</th><th>Valor a repassar</th></tr></thead><tbody>${linhasParceiros||'<tr><td colspan="3">Nenhum parceiro encontrado.</td></tr>'}</tbody></table></div></div>
+<div class="note">Este relatório considera os valores lançados no sistema. Ele não confirma, por si só, se o cliente já pagou ou se o parceiro já recebeu.</div>`;
+document.getElementById("fechamento").style.display="block";document.getElementById("fechamento").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 function textoRelatorio(){
-
-let d=fechamentoAtual;
-
-if(!d)return"";
-
+let d=fechamentoAtual;if(!d)return"";
 if(d.tipo==="geral"){
-
 let msg=`PROJETOS-DJ — RELATÓRIO GERAL CONSOLIDADO
 DJ Consultoria em Energia Solar
 Período: ${d.inicio?dataBR(d.inicio):"Início não informado"} até ${d.fim?dataBR(d.fim):"Data atual"}
 
 RESUMO FINANCEIRO
-Total de lançamentos: ${d.dados.length}
-Quantidade total de serviços: ${d.quantidadeTotal}
-Total recebido: ${moeda(d.totais.recebido)}
-Total a repassar aos parceiros: ${moeda(d.totais.repasse)}
-SALDO LÍQUIDO DA DJ: ${moeda(d.totais.saldo)}
+Registros no histórico: ${d.dados.length}
+Serviços vendidos aos clientes: ${d.qtdVendas}
+Execuções registradas pelos parceiros: ${d.qtdExecucoes}
+Faturamento lançado aos clientes: ${moeda(d.totais.recebido)}
+Repasses aos parceiros: ${moeda(d.totais.repasse)}
+RESULTADO BRUTO DA DJ: ${moeda(d.totais.saldo)}
 
-SERVIÇOS REALIZADOS:
+PROJETOS SEM ESTUDO
+Quantidade vendida: ${d.projetos.qtdProjetos}
+Com aprovação vinculada ao Victor: ${d.projetos.qtdComVictor}
+Somente DJ: ${d.projetos.qtdSomenteDJ}
+Faturamento: ${moeda(d.projetos.valorVendasProjeto)}
+Repasses automáticos Victor: ${moeda(d.projetos.custoVictorVinculado)}
+
+SERVIÇOS VENDIDOS AOS CLIENTES:
 `;
-
-d.listaServicos.forEach(([nome,x])=>{
-msg+=`${nome} | Quantidade: ${x.quantidade} | Total: ${moeda(x.total)}\n`;
-});
-
-msg+=`
-RECEBIMENTOS POR CLIENTE:
-`;
-
-d.listaClientes.forEach(([nome,x])=>{
-msg+=`${nome} | Quantidade: ${x.quantidade} | Recebido: ${moeda(x.recebido)}\n`;
-});
-
-msg+=`
-REPASSES POR PARCEIRO:
-`;
-
-d.listaParceiros.forEach(([nome,x])=>{
-msg+=`${nome} | Quantidade: ${x.quantidade} | A repassar: ${moeda(x.repasse)}\n`;
-});
-
-msg+=`
-Projetos-DJ`;
-
-return msg;
-
+d.listaServicosClientes.forEach(([nome,x])=>{msg+=`${nome} | Quantidade: ${x.quantidade} | Faturamento: ${moeda(x.total)}\n`});
+msg+=`\nSERVIÇOS EXECUTADOS PELOS PARCEIROS:\n`;
+d.listaServicosParceiros.forEach(([nome,x])=>{msg+=`${nome} | Quantidade: ${x.quantidade} | Valor registrado: ${moeda(x.total)}\n`});
+msg+=`\nFATURAMENTO POR CLIENTE:\n`;
+d.listaClientes.forEach(([nome,x])=>{msg+=`${nome} | Quantidade: ${x.quantidade} | Faturamento: ${moeda(x.recebido)}\n`});
+msg+=`\nREPASSES POR PARCEIRO:\n`;
+d.listaParceiros.forEach(([nome,x])=>{msg+=`${nome} | Quantidade: ${x.quantidade} | A repassar: ${moeda(x.repasse)}\n`});
+msg+=`\nProjetos-DJ`;return msg;
 }
-
-let tipo=d.tipo==="cliente"?"Cliente":"Parceiro";
-
-let destino=d.tipo==="cliente"?
-"Valor a repassar à DJ":
-"Valor a repassar ao parceiro";
-
-let msg=`PROJETOS-DJ — RELATÓRIO DE SERVIÇOS
-${tipo}: ${d.nome}
-Período: ${d.inicio?dataBR(d.inicio):"Não informado"} até ${d.fim?dataBR(d.fim):"Não informado"}
-
-SERVIÇOS:
-`;
-
-d.itens.forEach(x=>{
-msg+=`${x.servico} | Quantidade: ${x.quantidade} | Total: ${moeda(x.total)}\n`;
-});
-
-msg+=`
-Quantidade total de serviços: ${d.quantidade}
-${destino}: ${moeda(d.total)}
-
-Projetos-DJ`;
-
-return msg;
+let tipo=d.tipo==="cliente"?"Cliente":"Parceiro",destino=d.tipo==="cliente"?"Faturamento lançado":"Valor a repassar";
+let msg=`PROJETOS-DJ — RELATÓRIO DE SERVIÇOS\n${tipo}: ${d.nome}\nPeríodo: ${d.inicio?dataBR(d.inicio):"Não informado"} até ${d.fim?dataBR(d.fim):"Não informado"}\n\nSERVIÇOS:\n`;
+d.itens.forEach(x=>{msg+=`${x.servico} | Quantidade: ${x.quantidade} | Total: ${moeda(x.total)}\n`});
+msg+=`\nQuantidade total de serviços: ${d.quantidade}\n${destino}: ${moeda(d.total)}\n\nProjetos-DJ`;return msg;
 }
-
-function enviarWhatsApp(){
-
-if(!fechamentoAtual){
-return alert("Gere o relatório primeiro.");
-}
-
-window.open(
-"https://wa.me/?text="+encodeURIComponent(textoRelatorio()),
-"_blank"
-);
-
-}
-
-function imprimirFechamento(){
-
-if(!fechamentoAtual){
-return alert("Gere o relatório primeiro.");
-}
-
-window.print();
-}
-
+function enviarWhatsApp(){if(!fechamentoAtual)return alert("Gere o relatório primeiro.");window.open("https://wa.me/?text="+encodeURIComponent(textoRelatorio()),"_blank")}
+function imprimirFechamento(){if(!fechamentoAtual)return alert("Gere o relatório primeiro.");window.print()}
 function limparFechamento(){
-
-document.getElementById("relCliente").value="";
-document.getElementById("relInicio").value="";
-document.getElementById("relFim").value="";
-
-document.getElementById("fechamento").style.display="none";
-document.getElementById("fechamentoConteudo").innerHTML="";
-
-fechamentoAtual=null;
+document.getElementById("relCliente").value="";document.getElementById("relInicio").value="";document.getElementById("relFim").value="";
+document.getElementById("fechamento").style.display="none";document.getElementById("fechamentoConteudo").innerHTML="";fechamentoAtual=null;
 }
-
-function atualizarTudo(){
-
-atualizarDashboard();
-renderTabela();
-renderServicos();
-carregarServicosSelect();
-calcularLancamento();
-atualizarTipoNome();
-
-}
-
+function atualizarTudo(){atualizarDashboard();renderTabela();renderServicos();carregarServicosSelect();calcularLancamento();atualizarTipoNome()}
 document.addEventListener("DOMContentLoaded",()=>{
-
-definirDataAtual();
-renderServicos();
-carregarServicosSelect();
-
+definirDataAtual();renderServicos();carregarServicosSelect();
 document.getElementById("servico").addEventListener("change",preencherValor);
 document.getElementById("tipo").addEventListener("change",atualizarTipoNome);
-
+document.getElementById("incluirVictor").addEventListener("change",calcularLancamento);
 atualizarTudo();
-
 });
-
 </script>
-
 </body>
 </html>
